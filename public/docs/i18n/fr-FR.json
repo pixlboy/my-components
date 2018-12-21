@@ -1,0 +1,17 @@
+{
+    "pageId":{
+        "jnpr_001":"French Key Trans",
+        "jnpr_002": "Bonjour %1 %2"
+    },
+    "home":{
+        "jnpr_003": "s'identifier",
+        "jnpr_004": "Bonjour",
+        "jnpr_005": "Bonjour"
+    },
+    "errors":{
+        "300": "300 error - fr",
+        "301": "301 error - fr",
+        "401": "401 error - fr",
+        "501": "501 error - fr"
+    }
+}

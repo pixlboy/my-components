@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+
+</head>
+
+
+<body>
+	<h5>Confirmation Pop Up demo</h5>
+    <hr/>
+
+	<button id="confirmation_pop" onclick="modalPopUp()"> Click here to open modal window </button>
+
+    <div id="popup"></div>
+
+	<section class="Explanation">
+		<h5> <b> Explanation of component </b> </h5>
+
+			<ol>
+				<li> confirmation popup component which has title,body content, close and can have n no.of buttons like cancel, add, delete, submit</li>
+				<li> click button and modal box opens with title, content, buttons </li>
+				<li> close button to the top right to close the whole tabbed wrapper component based on visible true or false (because we need to open it again) </li>
+				<li> modalbox positioned center of the page </li>
+			</ol>
+
+			<h5> <b> Usage of Component </b></h5>
+
+			<ol>
+				<li> step1: Create config with title, buttons, and content:
+					<pre>
+						var config = {
+							title: "",
+							content: "",
+							buttons: ['cancel', 'add', 'submit']
+						}
+
+					</pre>
+				</li>
+
+				<li> step2: Render modalbox - popup confirmation
+					<pre>
+						var onClose = function(visible){
+							JnprCL.ConfirmationPopUpStore('appId_1').setVisible( true );
+						}
+
+						var onBtnClicked = function(visible){
+							JnprCL.ConfirmationPopUpStore('appId_1').setVisible( true );
+						}
+
+						var modalPopUp = function(config){
+							JnprCL.ConfirmationPopUpStore('appId_1').setConfig(
+								{
+									title: "Title Anything can go here",
+									content: "any content can go here asdasdasdas dsadad adasdad asdasdasd asdasdas sdasdasd yewhwehdxmncmsacn  ajcsnakmdasd jsadajsdnas ajsdnakjsdnaksj ",
+									buttons: [
+										{
+											buttonId:'buttonid',
+											title:'cancel',
+											status:'status'
+										},
+										{
+											buttonId:'buttonid',
+											title:'Add',
+											status:'Active'
+										}
+									],
+									visible:  true
+							})
+
+
+						}
+
+						ReactDOM.render(React.createElement(ConfirmationPopUpComp, {
+							appId: "appId_1",
+						    onClose: this.onClose.bind(this),
+							config: config,
+							onBtnClicked: onBtnClicked
+
+						}), document.getElementById('popup'));
+
+					</pre>
+				</li>
+
+					<li>you need to set config into setConfig like in step2 with title, content,buttons, visible</li>
+					<li>You need to add onClose() handler to handle closing function of the table. </li>
+
+			</ol>
+</section>
+
+
+</body>
+
+
+<script type="text/javascript">
+
+var ConfirmationPopUpComp = JnprCL.ConfirmationPopUpComp;
+
+var onClose = function(visible){
+	JnprCL.ConfirmationPopUpStore('appId_1').setVisible( true );
+}
+
+var modalPopUp = function(config){
+	JnprCL.ConfirmationPopUpStore('appId_1').setConfig(
+		{
+			title: "Title for PopUp Modal",
+			content: "Content continues<br/>thsi is second line ",
+			buttons: [
+				{
+					buttonId:'buttonid',
+					title:'cancel',
+					status:'inactive'
+				},
+				{
+					buttonId:'buttonid',
+					title:'Add',
+					status:'active'
+				},
+				{
+					buttonId:'buttonid',
+					title:'button3',
+					status:'active'
+				}
+			],
+			visible:  true
+	})
+
+
+}
+
+var onBtnClicked = function(visible){
+	JnprCL.ConfirmationPopUpStore('appId_1').setVisible( true );
+}
+
+
+var config = {
+	title: "",
+	content: "",
+	buttons: ['']
+}
+
+ReactDOM.render(React.createElement(ConfirmationPopUpComp, {
+	appId: "appId_1",
+    onClose: this.onClose.bind(this),
+	config: config,
+	onBtnClicked: onBtnClicked
+
+}), document.getElementById('popup'));
+</script>
+
+
+</html>

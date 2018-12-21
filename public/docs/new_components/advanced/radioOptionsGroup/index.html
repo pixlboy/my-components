@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+    <title>Hello React Juniper!</title>
+    <script src="/lib/react-with-addons.js"></script>
+    <script src="/lib/react-dom.js"></script>
+    <script src="/dist/jnpr-vendors.js"></script>
+    <script src="/dist/jnpr-components.js"></script>
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+</head>
+
+
+<body>
+    <a href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/new_components/advanced/radioOptionsGroup/README.md">View
+		Documentation In Git</a>
+    <h5>JNPR RadioOptionsGroupComp Demo</h5>
+    <div id="example"></div>
+    <div id='select_result'></div>
+    <hr>
+    <iframe src="./README.md" width="100%" height="1000" frameBorder="0"></iframe>
+</body>
+
+
+<script type="text/javascript">
+    var RadioOptionsGroupComp = JnprCL.RadioOptionsGroupComp;
+
+    var options = [{
+            title: 'option1',
+            value: 'value1',
+            selected: false
+        }, {
+            title: 'option2',
+            value: 'value2',
+            selected: false
+        }, {
+            title: '!option3',
+            value: 'value3',
+            selected: false
+        },
+        {
+            title: 'option4',
+            value: 'value4',
+            selected: false
+        }, {
+            title: 'option5',
+            value: 'value5',
+            selected: false
+        }, {
+            title: 'option6',
+            value: 'value6',
+            selected: true
+        },
+        {
+            title: 'option7',
+            value: 'value7',
+            selected: false
+        }
+    ];
+
+    var onChange = function(data) {
+        console.log(data)
+        $("#select_result").html("You selected: " + data.title + "(" + data.value + ")");
+    }
+
+    ReactDOM.render(React.createElement(RadioOptionsGroupComp, {
+        appId: "appId_1",
+        groupTitle: 'Title: Radio Demo',
+        options: options,
+        onChange: this.onChange.bind(this),
+    }), document.getElementById('example'));
+</script>
+
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+
+	<script src="/lib/aws-sdk-2.7.20.min.js"></script>
+</head>
+
+
+<body>
+	<a href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/widget_chooser">View
+		Documentation In Git</a>
+	<h5>JNPR Uploader with dynamic AWS Keys</h5>
+	<div id="uploader"></div>
+	<hr />
+	<h5>JNPR Uploader ProgressBar with dynamic AWS Keys</h5>
+	<div id="progressBar"></div>
+	<hr />
+	<hr />
+	<h5>JNPR Uploader with static AWS Key</h5>
+	<div id="uploader2"></div>
+	<hr />
+	<h5>JNPR Uploader ProgressBar with static AWS Key</h5>
+	<div id="progressBar2"></div>
+	<hr />
+	<hr />
+	<h5>JNPR Uploader with KiteWorks APIs</h5>
+	<div id="uploader3"></div>
+	<hr />
+	<h5>JNPR Uploader ProgressBar with KiteWorks APIs</h5>
+	<div id="progressBar3"></div>
+	<hr />
+</body>
+
+
+<script type="text/javascript">
+	var JnprUploader = JnprCL.JnprUploader;
+	var JnprUploaderProgresBar = JnprCL.JnprUploaderProgressBar;
+	var JnprUploaderDataObject = JnprCL.JnprUploaderDataObjectFactory.getDataObject();
+	var awsKeysForFiles = null;
+	var kiteAccessToken = '77f1fbc9d2affcfa51bb2f9cf5db43e4c65fe80c';
+	var host_name = 'dacfs_upload2';
+	var uploadId = ['416', '417'];
+
+	var getDynamicAWSKeys = function() {
+		// console.log('awsKeysForFiles', awsKeysForFiles)
+		return awsKeysForFiles;
+	}
+
+	var onUploadKeys = function(files) {
+		var keys = [];
+		awsKeysForFiles = [];
+		files.forEach(file => {
+			keys.push('' + Math.floor(Math.random() * 100000));
+		});
+		//get STS access keys for each files
+		files.forEach((file, i) => {
+			awsKeysForFiles.push({
+				fileName: file.file.name,
+				aws_key: (i + 1).toString() //mock value
+			})
+		});
+		JnprUploaderDataObject.setFileKeysFor('appId_1', keys);
+	}
+
+	var onClose = function() {
+		ReactDOM.unmountComponentAtNode(document.getElementById('progressBar'));
+	}
+
+	var onUploadStart = function() {
+		try {
+			ReactDOM.unmountComponentAtNode(document.getElementById('progressBar'));
+		} catch (e) {}
+
+		ReactDOM.render(React.createElement(JnprUploaderProgresBar, {
+			monitorAppId: "appId_1",
+			onClose: this.onClose.bind(this)
+		}), document.getElementById('progressBar'));
+	}
+
+	JnprUploaderDataObject.subscribeToStatus('appId_1', function(err, fileObj) {
+		console.log(err);
+		console.log(fileObj)
+	});
+
+	ReactDOM.render(React.createElement(JnprUploader, {
+
+		maxFileCounts: 5,
+		maxTotalFilesSize: 50000000000, //500M
+		maxEachFileSize: 100000000000, //100M
+		//allowedFileTypes: ['pdf','txt','csv','zip'],
+
+		aws_signerUrl: 'http://localhost:3000/api/sign_auth/juniper123',
+		aws_key: null, //'AKIAJQEPYP2JOSXIPXRQ',
+		aws_bucket: 'development-myjuniper',
+		aws_region: 'us-west-1',
+		getDynamicAWSKeys: this.getDynamicAWSKeys.bind(this),
+		onUploadKeys: this.onUploadKeys.bind(this),
+		appId: "appId_1",
+		logging: true,
+		btnText: "Upload File",
+		onUploadStart: this.onUploadStart.bind(this),
+
+		x_amz_headers: {
+			'x-amz-meta-attachment-type': 'CORE',
+			'x-amz-meta-is-attachment-private': 'X',
+			'x-amz-meta-user-id': 'ngcsc1@ngcsc.33mail.com'
+		}
+
+	}), document.getElementById('uploader'));
+
+
+	var onUploadKeys2 = function(files) {
+		var keys = [];
+		files.forEach(file => {
+			keys.push('' + Math.floor(Math.random() * 100000));
+		});
+		JnprUploaderDataObject.setFileKeysFor('appId_2', keys);
+	}
+
+	var onClose2 = function() {
+		ReactDOM.unmountComponentAtNode(document.getElementById('progressBar2'));
+	}
+
+	var onUploadStart2 = function() {
+		try {
+			ReactDOM.unmountComponentAtNode(document.getElementById('progressBar2'));
+		} catch (e) {}
+
+		ReactDOM.render(React.createElement(JnprUploaderProgresBar, {
+			monitorAppId: "appId_2",
+			onClose: this.onClose2.bind(this)
+		}), document.getElementById('progressBar2'));
+	}
+
+	JnprUploaderDataObject.subscribeToStatus('appId_2', function(err, fileObj) {
+		console.log(err);
+		console.log(fileObj)
+	});
+
+	ReactDOM.render(React.createElement(JnprUploader, {
+
+		maxFileCounts: 5,
+		maxTotalFilesSize: 50000000000, //500M
+		maxEachFileSize: 100000000000, //100M
+		//allowedFileTypes: ['pdf','txt','csv','zip'],
+
+		aws_signerUrl: 'http://localhost:3000/api/sign_auth/juniper123',
+		aws_key: 'AKIAJQEPYP2JOSXIPXRQ',
+		aws_bucket: 'development-myjuniper',
+		aws_region: 'us-west-1',
+
+		onUploadKeys: this.onUploadKeys2.bind(this),
+		appId: "appId_2",
+		logging: true,
+		btnText: "Upload File",
+		onUploadStart: this.onUploadStart2.bind(this),
+		x_amz_headers: {
+			'x-amz-meta-attachment-type': 'CORE',
+			'x-amz-meta-is-attachment-private': 'X',
+			'x-amz-meta-user-id': 'ngcsc1@ngcsc.33mail.com'
+		}
+
+	}), document.getElementById('uploader2'));
+
+	var onUpdateConfigs = function(files) {
+
+		var data = {};
+		var uploaderUrlList = [];
+		files.forEach((file, idx) => {
+			var kiteUrl = 'https://filexfer.juniper.net/' + host_name + '/rest/uploads/' + uploadId[idx];
+			uploaderUrlList.push(kiteUrl);
+		});
+
+		data['uploaderUrlList'] = uploaderUrlList;
+		data['customHeaders'] = {
+			'Authorization': 'Bearer ' + kiteAccessToken,
+			'X-Accellion-Version': 7.1
+		}
+
+		JnprUploaderDataObject.setPostMandatoryConfigs('appId_3', data); //once it's set, it will start to upload file
+	}
+
+	var onClose3 = function() {
+		ReactDOM.unmountComponentAtNode(document.getElementById('progressBar3'));
+	}
+
+	var onUploadStart3 = function() {
+		try {
+			ReactDOM.unmountComponentAtNode(document.getElementById('progressBar3'));
+		} catch (e) {}
+
+		ReactDOM.render(React.createElement(JnprUploaderProgresBar, {
+			monitorAppId: "appId_3",
+			onClose: this.onClose3.bind(this)
+		}), document.getElementById('progressBar3'));
+	}
+
+	JnprUploaderDataObject.subscribeToStatus('appId_3', function(err, fileObj) {
+		console.log(err);
+		console.log(fileObj)
+	});
+
+
+	ReactDOM.render(React.createElement(JnprUploader, {
+
+		maxFileCounts: 5,
+		singleFileUpload: false,
+		maxTotalFilesSize: 50000000000, //500M
+		maxEachFileSize: 100000000000, //100M
+		//allowedFileTypes: ['pdf','txt','csv','zip'],
+
+		onUpdateConfigs: this.onUpdateConfigs.bind(this),
+		appId: "appId_3",
+		logging: true,
+		btnText: "Upload File",
+
+		info: {
+			caseId: '12345-12345',
+			path: '12345'
+		},
+		generalUploader: true,
+		onUploadStart: this.onUploadStart3.bind(this),
+
+	}), document.getElementById('uploader3'));
+</script>
+
+
+</html>

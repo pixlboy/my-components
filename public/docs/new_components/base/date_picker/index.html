@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<link rel="stylesheet" href="./jquery-ui.css">
+</head>
+
+
+<body>
+	<h5>DatePicker Document</h5>
+	<div id="output" class='output'></div>
+	<div id='result'>Selected Results: </div>
+	<input type="text" id='txtExternalDate'/> <input type='button' value="set date" onclick="setDate()" />
+	<hr/>
+
+	<section>
+		<h5>Explanation</h5>
+		<p>
+			<b>Goal of Component:</b>
+			There are many places that require data picker. This component aims at providing belowing features:
+			<ol>
+				<li>User can have different input and output date format, this can suite various application requirements</li>
+				<li>Input and output can be either timestamp or date string</li>
+				<li>Timezone support is also provided</li>
+			</ol>
+		</p>
+		<p>
+			<b>Usage of Component:</b>
+			<pre>
+				var onDateChange = function(date, ts){
+					document.getElementById('result').innerHTML = "Selected Results: " + date +", ts:"+ts;
+				}
+				var DatePicker = JnprCL.DatePicker;
+				ReactDOM.render(React.createElement(DatePicker, {
+					onDateChange: this.onDateChange,
+					format: 'DD-MMM-YYYY',
+					timezone: 'PST',
+					minDate: 1519691729000,
+					date_ts: '28-Feb-2018' // 1519691729000
+				}), document.getElementById('output'));
+			</pre>
+			Meaning for properties:
+			<ol>
+				<li>
+					<b>format (optional)</b>: default is 'YYYY-MM-DD'. List of format is as below:
+					<ul>
+						<li>DD - two digits days</li>
+						<li>MM - two digits months</li>
+						<li>MMM - three characters for months(short)</li>
+						<li>YYYY - four digits for year</li>
+					</ul>
+					Now, you can use separators, such as '-' or '/' to separate different parts of the date
+				</li>
+				<li>
+					<b>timezone(optional)</b>: default is 'PST'. This timezone is the same as dataTable requirements
+				</li>
+				<li>
+					<b>date_ts(optional)</b>: default value for date or timestamp. Here, it can be either string (such as 2018-01-01) or timestamp (in milliseconds)
+				</li>
+				<li>
+					<b>onDateChange</b>: callback handler whenever user changed the date.It accept two parameters, first one is string format and second parameter is timestamp. Please take whatever you need.
+				</li>
+				<li>
+					<b>minDate</b>: Minimum date to be able to select. Please use timestamp here.
+				</li>
+				<li>
+					In case you need to set up date from external, please use store like below:
+					<pre>
+						var setDate = function(){
+							var Store = JnprCL.DatePickerStore;
+							Store().setNewDate(	document.getElementById('txtExternalDate').value  );
+						}
+					</pre>
+				</li>
+			</ol>
+		</p>
+
+	</section>
+</body>
+
+
+<script type="text/javascript">
+var setDate = function(){
+	var Store = JnprCL.DatePickerStore;
+	Store().setNewDate(	document.getElementById('txtExternalDate').value  );
+}
+var onDateChange = function(date, ts){
+	document.getElementById('result').innerHTML = "Selected Results: " + date +", ts:"+ts;
+}
+var DatePicker = JnprCL.DatePicker;
+ReactDOM.render(React.createElement(DatePicker, {
+	onDateChange: this.onDateChange,
+	format: 'DD-MMM-YYYY',
+	timezone: 'PST',
+	minDate: 1519691729000,
+	date_ts: '28-Feb-2018' // 1519691729000
+}), document.getElementById('output'));
+</script>
+
+
+</html>

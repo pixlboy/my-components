@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+	<h5>I18N support Demo</h5>
+	Content to translate:
+	<input type='text' id='content' value='jnpr_004'/>
+	<select id='selLocale' onchange="changeLocale()">
+		<option value='de-DE'>de_DE</option>
+		<option value='en-GB'>en_GB</option>
+		<option value='fr-FR'>fr_FR</option>
+		<option value='ja-JP'>ja_JP</option>
+		<option value='ko-KR'>ko-KR</option>
+		<option value='zh-CN'>zh_CN</option>
+	</select>
+	<input type="button" onclick="trans()" value='translate'/>
+	<div>
+		Result: <span id='result' style="background-color: #ccc;"></span>
+	</div>
+
+	<p>
+		Error Code to translate:
+		<select id="errorCode">
+			<option value='300'>300</option>
+			<option value='301'>301</option>
+			<option value='401'>401</option>
+			<option value='501'>501</option>
+		</select>
+		<select id='selErrorLoc' onchange="changeErrorLocale()">
+			<option value='de-DE'>de_DE</option>
+			<option value='en-GB'>en_GB</option>
+			<option value='fr-FR'>fr_FR</option>
+			<option value='ja-JP'>ja_JP</option>
+			<option value='ko-KR'>ko-KR</option>
+			<option value='zh-CN'>zh_CN</option>
+		</select>
+		<input type="button" onclick="transError()" value='translate'/>
+
+		<div>
+			Result: <span id='resultError' style="background-color: #ccc;"></span>
+		</div>
+	</p>
+</body>
+
+<script type="text/javascript">
+
+	var i18n = JnprCL.I18NFactory.get();
+	var _t_ = i18n.trans.bind(i18n);
+	var _l_ = i18n.getLocale.bind(i18n);
+	var _e_ = i18n.transError.bind(i18n);
+
+	var changeLocale = function(){
+		var fileName = $("#selLocale").val() + '.json';
+		$.get('./'+fileName, data=>{
+			i18n.setDictFor( $("#selLocale").val(), data );
+		});
+	}
+
+	var changeErrorLocale = function(){
+		var fileName = $("#selErrorLoc").val() + '.json';
+		$.get('./'+fileName, data=>{
+			i18n.setDictFor( $("#selErrorLoc").val(), data );
+		});
+	}
+
+	var trans = function(){
+		$("#result").html( _t_($('#content').val(),'home')  + ' language is:' + _l_() );
+	}
+
+	var transError = function(){
+		$("#resultError").html( _e_($('#errorCode').val(),'home')  + ' language is:' + _l_() );
+	}
+
+	$.get('./'+ _l_()+'.json' , data=>{
+		i18n.setDictFor( _l_(), data );
+		trans();
+		transError();
+	});
+
+
+</script>
+
+
+
+</html>

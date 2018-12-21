@@ -1,0 +1,18 @@
+.loadingSpinnerWrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 800px;
+    background: #eee;
+    opacity: 0.5;
+    z-index: 999;
+    .content{
+        text-align: center;
+        width: 100%;
+        margin-top: 300px;
+    }
+}
+.hidingSpinner{
+    display: none;
+}

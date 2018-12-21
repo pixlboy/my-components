@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+<title>Hello React Juniper!</title>
+<script src="/lib/react-with-addons.js"></script>
+<script src="/lib/react-dom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+<script src="/dist/jnpr-vendors.js"></script>
+<script src="/dist/jnpr-components.js"></script>
+
+<link rel="stylesheet" href="/lib/jquery-ui.min.css">
+
+</head>
+
+
+<body>
+	<a
+		href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+		Documentation In Git</a>
+	<h3>Using Standard HTML table for Nested Data - NGCSC Contracts
+		Table</h3>
+	<div id="example3"></div>
+	<hr />
+
+	<input type='button' value='Change ContractId Clickable'
+		onClick="updateContractIdSetting();" />
+	<input type='button' value='Change Configuration'
+		onClick="changeConfiguration();" />
+	<input type='button' value='UnLoad Me' onClick="unloadMe();" />
+	<input type='button' value='Checking updates' onClick="checkEqual();" />
+	<input type='button' value='Get selected data' onClick="getSelected();" />
+	<input type="button" value="Toggle StartDate"
+		onClick="updateTableConfig()" />
+	<input type='button' value='Toggle Class' onClick="toggleClass()" />
+	<input type='button' value='Change Dropdown options' onClick="updateDropDown()" />
+
+</body>
+
+
+<script type="text/javascript">
+
+	var updateDropDown = function(){
+
+		var locationOptions = [];
+	    accountsList.forEach(item=>{
+	      locationOptions.push(
+	        {
+	          value: item.uuid + ",456",
+	          title: item.accountName+"-"+item.accountId +' - new'
+	        }
+	      );
+	    });
+
+		jnprDataTableObj.setBigColumnAutoCompleteData("appId_contract", "locationName",  locationOptions);
+	}
+
+	var toggleClass = function(){
+
+	  jnprDataTableObj.setHighlightedRows('appId_contract', [ '0060402018']);
+
+	}
+
+	var updateTableConfig = function(){
+	  this.config.columns.startDate['hidden'] = !this.config.columns.startDate['hidden'];
+	  jnprDataTableObj.setConfig(this.config, "appId_contract");
+	}
+
+	var getSelected = function(){
+	  console.log( jnprDataTableObj.getCheckedRowsFor('appId_contract') );
+	}
+
+	var checkEqual = function(){
+	 if (jnprDataTableObj.isConfigurationChanged('appId_contract', ['colWidths'/*,'filterModel','sortModel'*/]).changed ) {
+        console.log('changed!')
+    	}else{
+    	  console.log('non-chnaged');
+    	}
+	}
+
+	var unloadMe = function(){
+	  ReactDOM.unmountComponentAtNode(document.getElementById('example3'));
+	}
+
+
+	var clickable = false;
+	var updateContractIdSetting	= function(){
+	  jnprDataTableObj.updateTableColumnConfigFor('appId_contract', 'contractId', 'sendClickToParent', clickable );
+	  jnprDataTableObj.updateTableColumnConfigFor('appId_contract', 'contractId', 'title', 'newTitle' );
+	  clickable = !clickable;
+	}
+
+	var changeConfiguration = function(){
+	  var config = {"appId_contract":{"orderedKeyList":["locationName_locationAccId","contractId","startDate","endDate","status","locationName","serviceSKU","serialNo","product","shipDate","warrentyExpDate","city","country"],"selectedColumnKeys":["contractId","startDate","endDate","city","country"],"sortModel":{"field":"startDate","up":false},"filterModel":{"locationName":{"comp":"in", "value1":["2741857a-cf1b-11e5-917a-005056a93f00"]}, "status":{"comp":"contains","value1":"Expired"},"accountId":{"comp":"in","value1":["d30fb81b-cf1a-11e5-b83b-005056a9381e","b5e860e6-cf1b-11e5-a1bd-005056a9381b","4fcd01d9-cf1b-11e5-895e-005056a95759","2741857a-cf1b-11e5-917a-005056a93f00"]},"contractId":{"comp":"contains","value1":"0060402018"},"startDate":{"comp":"between","value1":"2016-07-10","value2":"2016-07-15"},"shipDate":{"comp":"onorafter","value1":"2016-12-20"}},"defaultSelectedAccountList":["0100082295:NOS-IIJ:d30fb81b-cf1a-11e5-b83b-005056a9381e","0100172289:NET ONE SYSTEMS CO., LTD:b5e860e6-cf1b-11e5-a1bd-005056a9381b","0100253620:NTT-E/NETONE:4fcd01d9-cf1b-11e5-895e-005056a95759","0101176992:IIJ AMERICA:2741857a-cf1b-11e5-917a-005056a93f00"],"colWidths":{},"appId":"appId_contract"}};
+	  jnprDataTableObj.setCustomConfigFor ("appId_contract", config["appId_contract"]);
+	}
+
+   var jsonObj1 = JSON.parse(
+   '{"totalRecords":2,"contractsList":[{"contractId":"00650444840065044484006504448400650444840065044484","startDate":"20140810100344","endDate":"20170809100344","status":"Active","locationName":"PROACTIVE DATA SYSTEMS PRIVATE LTD-0100036240","hasLineItems":true},{"contractId":"0060402018","startDate":"20160303093744","endDate":"20160331083744","status":"Expired","locationName":"ABC DATA SYSTEMS PRIVATE LTD-0100389181","hasLineItems":false}]}'
+      );
+
+   var jsonObjItems = JSON.parse('{  \"pageSize\": 0,  \"totalRecords\": 1,  \"contractId\": \"0060009482\",  \"startDate\": 1348668000000,  \"endDate\": 1380117600000,  \"status\": \"Expired\",  \"locationName\": null,  \"contractItemsList\": [    {      \"primaryKey\": null,      \"contractId\": \"0060009482\",      \"startDate\": 1465925241079,      \"endDate\": 1465925241079,      \"status\": \"Expired\",      \"locationName\": \"\",      \"supportCoverage\": null,      \"serialNo\": \"\",      \"product\": \"SVC-ND-WLC200R\",      \"shipDate\": null,      \"warrentyExpDate\": 1465925241079,      \"city\": \"VESTER SKERNINGE\",      \"state\": \"null\",      \"country\": \"Denmark\"    },     {      \"primaryKey\": null,      \"contractId\": \"0060009482\",      \"startDate\": 146592524122,      \"endDate\": 146592524222,      \"status\": \"Active\",      \"locationName\": \"\",      \"supportCoverage\": null,      \"serialNo\": \"Test123\",      \"product\": \"SVC-ND-WLB443R\",      \"shipDate\": null,      \"warrentyExpDate\": 1465925241123,      \"city\": \"VESTER SKERNINGE\",      \"state\": \"Britain\"    },     {      \"primaryKey\": null,      \"contractId\": \"0060009482\",      \"startDate\": 14659252555,      \"endDate\": 146592524888,      \"status\": \"PENDING\",      \"locationName\": \"\",      \"supportCoverage\": null,      \"serialNo\": \"Test456\",      \"product\": \"SVC-ND-WLB33R\",      \"shipDate\": null,      \"warrentyExpDate\": 146592553434,      \"city\": \"VESTER SKERNINGE\",      \"state\": \"CHINA\"    }  ]}      ');
+
+   var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+   var accountsStr = '{  "totalRecords": 18,  "accountsList": [    {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }, {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }, {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }  ]}';
+   var accountsList = JSON.parse(accountsStr).accountsList;
+
+
+   var locationOptions = [];
+   accountsList.forEach(item=>{
+     locationOptions.push(
+       {
+         value: item.uuid + ",123",
+         title: item.accountName+"-"+item.accountId
+       }
+     );
+   });
+
+
+   var config = {
+
+      rowHeight: 29,
+      headerHeight: 38,
+      tableHeight: 348,
+      tableWidth: 800,
+      columnFilterable: false,
+      showGlobalCheckbox: false,
+      defaultGlobal: true,
+      globalAutoComplete: true,
+			 closeLeftPanelBtn: true,
+      resizeMode: 'table', // table|column
+      showingInitialHiddenWhenFiltering: true, //we need to change hidden to show when filtering
+      showingInitialHiddenForSuperUser: false, //control if we want to show all columns for super user
+
+      displayingActionButton: true,
+
+      userRoles: ["Case Manager View Only"],
+      displayingActionButtonOptionList: 'CONTRACTS',
+
+      defaultSortField: 'contractId',
+      defaultSortOrder: 'desc',
+      checkBoxEnabled: true,
+      multipleConfigEnabled: true,
+
+      enableInAppDownload: true,
+
+      allowAccountInFilterNumber: false,
+      enableTimeZone: true,
+      defaultTimeZone: "PST",
+
+      allowPopupColumnSelect : false,
+
+      columns: {
+
+        locationName: {
+          defaultColumn: true,
+          width: 100,
+          flexGrows: 0,
+          id: "locationName",
+          type: "autoCompleteSearch",
+          title: "Location Name",
+          sortable: true,
+          filterable: true,
+          editable: false,
+          items: locationOptions
+       },
+
+        contractId: {
+            defaultColumn: true,
+            width: 100,
+            flexGrows: 0,
+            id: "contractId",
+            type: "text",
+            title: "Contract ID #",
+            sortable: true,
+            filterable: true,
+            editable: false,
+            key: true,
+            sendClickToParent: true,
+
+            resizable: false,
+            clickToHighlight: true,
+            freezable: true
+         },
+         startDate: {
+            defaultColumn: true,
+            width: 200,
+            flexGrows: 0,
+            id: "startDate",
+            type: "customDate",
+            title: "Start Date #",
+            sortable: true,
+            filterable: true,
+            editable: false,
+            minWidth: 100,
+            freezable: true
+         },
+         endDate: {
+            defaultColumn: true,
+            width: 200,
+            flexGrows: 0,
+            id: "endDate",
+            type: "customDate",
+            title: "End Date",
+            sortable: true,
+            filterable: true,
+            editable: false
+         },
+         status: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 0,
+            type: "multilist",
+            id: "status",
+            title: "Status",
+            sortable: true,
+            filterable: true,
+            editable: true,
+            items: [{
+               id: 'active',
+               title: 'Active',
+               value: 'Active'
+            }, {
+               id: 'expired',
+               title: 'Expired',
+               value: 'Expired'
+            }]
+            // items: ["Active", "Expired"]
+         },
+
+        serviceSKU: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 0,
+            type: "text",
+            id: "serviceSKU",
+            title: "Support Coverage",
+            sortable: false,
+            filterable: false,
+            editable: false,
+            initialHidden: true
+         },
+         serialNo: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 0,
+            type: "text",
+            id: "serialNo",
+            title: "Serial No.",
+            sortable: false,
+            filterable: true,
+            initialHidden: true
+         },
+         product: {
+            defaultColumn: false,
+            width: 250,
+            flexGrows: 0,
+            type: "text",
+            id: "product",
+            title: "Product",
+            sortable: false,
+            filterable: true,
+            editable: false,
+            initialHidden: true
+         },
+         shipDate: {
+            defaultColumn: false,
+            width: 250,
+            flexGrows: 0,
+            id: "shipDate",
+            type: "customDate",
+            title: "Ship Date",
+            sortable: false,
+            filterable: true,
+            editable: false,
+            initialHidden: true
+         },
+         warrentyExpDate: {
+            defaultColumn: false,
+            width: 250,
+            flexGrows: 0,
+            id: "warrentyExpDate",
+            type: "customDate",
+            title: "Warranty Expiration Date",
+            sortable: false,
+            filterable: true,
+            editable: false,
+            initialHidden: true
+         },
+         city: {
+            defaultColumn: true,
+            width: 200,
+            flexGrows:0,
+            type: "text",
+            id: "city",
+            title: "City",
+            sortable: false,
+            filterable: true,
+            editable: false,
+            initialHidden: true
+         },
+         country: {
+            defaultColumn: true,
+            width: 150,
+            flexGrows: 0,
+            type: "text",
+            id: "country",
+            title: 'Country',
+            sortable: false,
+            filterable: true,
+            editable: false,
+            initialHidden: true
+         }
+      }
+
+   };
+
+   var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+
+   jnprDataTableObj.setConfig(config, "appId_contract");
+
+
+   if(localStorage.getItem('jnpr_datatable_custom_config_contract')){
+     jnprDataTableObj.allCustomConfigurations = JSON.parse(localStorage.getItem('jnpr_datatable_custom_config_contract'));
+   	}
+
+   jnprDataTableObj.dataList =  jsonObj1.contractsList;
+   jnprDataTableObj.grandTotalRecords = jsonObj1.contractsList.length;
+
+   var callBack = function() {
+      jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0).concat(jsonObj1.contractsList);
+      jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+   };
+
+   var configUpdateCallBack = function(config) {
+      sessionStorage.setItem('key', JSON.stringify(config));
+   };
+
+
+   var updateConfig = function() {
+      config.tableWidth = config.tableWidth + 50;
+      jnprDataTableObj.config = config;
+   };
+
+   var changeValueHandler = function(obj, col, newValue) {
+      console.log(obj);
+      console.log(col);
+      console.log(newValue);
+   };
+
+   var sortHandler = function(key, up) {
+      console.log(key);
+      console.log(up);
+   };
+
+   var fetchHandler = function(filter, sorter){
+     console.log(filter);
+     console.log(sorter);
+
+     jnprDataTableObj.dataList =[];
+     jnprDataTableObj.grandTotalRecords = 0;
+
+   };
+
+   var filterHandler = function(filterObject, sortObject) {
+
+  	console.log(filterObject);
+    console.log(sortObject);
+
+    if('accountId' in filterObject && 'value1' in filterObject.accountId && Array.isArray(filterObject.accountId.value1) && filterObject.accountId.value1.length==0){
+      //doing nother
+    }else{
+       if (Object.keys(filterObject).length == 0) {
+        jnprDataTableObj.dataList = jsonObj1.contractsList;
+        jnprDataTableObj.grandTotalRecords = jsonObj1.contractsList.length;
+      } else {
+        var length = 0
+        Object.keys(filterObject).map(function(key) {
+          if (Object.keys(filterObject[key]).length > 0) {
+            length++;
+          }
+        });
+
+       /*  if (length > 0) {
+          jnprDataTableObj.dataList = jsonObjItems.contractItemsList;
+          jnprDataTableObj.grandTotalRecords = jsonObjItems.contractItemsList.length;
+        } else {
+          jnprDataTableObj.dataList = jsonObj1.contractsList;
+          jnprDataTableObj.grandTotalRecords = jsonObj1.contractsList.length;
+        } */
+      }
+    }
+
+
+
+  };
+
+  var saveConfigCallBack = function(configObject) {
+    localStorage.setItem('jnpr_datatable_custom_config_contract', JSON
+        .stringify(configObject));
+    console.log(configObject);
+  };
+
+
+  jnprDataTableObj.accountList = accountsList;
+
+
+  var selectedAccountsUpdateCallBack = function(accounts) {
+    sessionStorage.setItem('selectedAccountsKey', JSON.stringify(accounts));
+  };
+
+  var accountSearchCallBack = function(term) {
+
+    accountsList = [];
+    JSON.parse(accountsStr).accountsList.map(function(account) {
+      if (account.accountName.toLowerCase().includes(term)
+          || account.accountId.toLowerCase().includes(term))
+        accountsList.push(account);
+    });
+    jnprDataTableObj.accountList = accountsList;
+  };
+
+  var cellClicked = function(data) {
+    console.log(data);
+  };
+
+
+  //testing variables for saving testing configs
+  var config1 = {"appId_contract":{"frozenColumnKeyList":["contractId"], "orderedKeyList":["contractId","startDate","endDate","status","locationName","serviceSKU","serialNo","product","shipDate","warrentyExpDate","city","country"],"selectedColumnKeys":["contractId","startDate","endDate","locationName","serviceSKU","city","country"],"sortModel":{},"filterModel":{"contractId":{"comp":"contains","value1":"1234"},"status":{"comp":"contains","value1":"Active"}},"defaultSelectedAccountList":[],"colWidths":{},"appId":"appId_contract"}};
+  var config2 = {"appId_contract":{"orderedKeyList":["contractId","startDate","endDate","status","locationName","serviceSKU","serialNo","product","shipDate","warrentyExpDate","city","country"],"selectedColumnKeys":["contractId","startDate","endDate","serialNo","product","city","country"],"sortModel":{},"filterModel":{"contractId":{"comp":"contains","value1":"1234abcd"},"status":{},"startDate":{"comp":"between","value1":"2016-07-06","value2":"2016-07-26"}},"defaultSelectedAccountList":[],"colWidths":{},"appId":"appId_contract"}};
+  var availableConfigs ={
+      "config 1": {
+        value: config1['appId_contract'],
+        default: true
+      },
+      "config 2": {
+        value: config2['appId_contract'],
+    	 default: false
+      }
+  };
+  // jnprDataTableObj.setAvailableConfigsFor('appId_contract', availableConfigs);
+
+  // jnprDataTableObj.setCustomerConfigForOne('appId_contract', availableConfigs['config 1'].value);
+
+  var saveConfigWithName = function(name, config){
+    	console.log('saving new cofig here...');
+     	console.log( "name: " + name );
+     	console.log("config", config);
+  };
+
+  var defaultConfigHandler = function(subType){
+    console.log("default to " + subType);
+  };
+
+  var deleteConfigHandler = function(subType){
+    console.log("deleting " + subType);
+  };
+
+  jnprDataTableObj.setBaseFilterFor("appId_contract",
+      {
+    	status: {
+    	  comp: "contains",
+    	  value1: "Expired"
+    	}
+  	   });
+  // jnprDataTableObj.setHighlightedRows('appId_contract', [ '0065044484', '2014-0602-T-0470' ]);
+
+  ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+    nextPageCallBack : this.callBack.bind(this),
+    changeValueHandler : this.changeValueHandler.bind(this),
+    sortHandler : this.sortHandler.bind(this),
+    filterHandler : this.filterHandler.bind(this),
+    fetchHandler : this.fetchHandler.bind(this),
+    selectedAccountsUpdateCallBack : this.selectedAccountsUpdateCallBack
+        .bind(this),
+    nested : false,
+    styleType : "ngcsc",
+    appId : "appId_contract",
+    accountSearchCallBack : this.accountSearchCallBack.bind(this),
+    saveConfigCallBack : this.saveConfigCallBack.bind(this),
+    saveConfigWithName: this.saveConfigWithName.bind(this),
+    cellClicked : this.cellClicked.bind(this),
+    defaultConfigHandler: this.defaultConfigHandler.bind(this),
+    deleteConfigHandler: this.deleteConfigHandler.bind(this),
+    destroy : function() {
+      setTimeout(function() {
+        ReactDOM.unmountComponentAtNode(document.getElementById('example3'));
+      }, 0);
+    }
+  }), document.getElementById('example3'));
+</script>
+
+
+</html>

@@ -1,0 +1,117 @@
+.rc-filter-dropdown-container
+{
+    position: relative;
+
+    display: -ms-flexbox;
+    display: flex;
+        flex-direction: column;
+
+    margin: 5px 10px;
+
+    -ms-flex-direction: column;
+    .rc-filter-dropdown-title
+    {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #fff;
+    }
+    .rc-filter-dropdown-menu-value-holder
+    {
+        display: -ms-flexbox;
+        display: flex;
+
+        height: 26px;
+        .rc-filter-dropdown-menu-value
+        {
+            line-height: 26px;
+
+            overflow: hidden;
+
+            min-width: 80px;
+            max-width: 330px;
+            padding-right: 6px;
+            padding-left: 6px;
+
+            cursor: pointer;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+            text-align: left;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            background: #24536A;
+            color: #fff;
+
+        }
+        .rc-filter-dropdown-ico
+        {
+            width: 16px;
+
+            cursor: pointer;
+            background: #24536A;
+
+        }
+    }
+    .rc-filter-dropdown-menu-wrapper
+    {
+        position: absolute;
+
+        visibility: hidden;
+
+        width: 98%;
+        height: 0;
+
+        transition: opacity .5s;
+
+        opacity: 0;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        outline: none;
+        background: #fff;
+        &.open
+        {
+            z-index: 2;
+
+            visibility: visible;
+
+            height: auto;
+            max-height: auto;
+
+            opacity: 1;
+        }
+        ul
+        {
+            display: -ms-flexbox;
+            display: flex;
+                flex-direction: column;
+
+            margin: 5px 0;
+            padding: 0;
+
+            list-style: none;
+
+            -ms-flex-direction: column;
+            li
+            {
+                line-height: 22px;
+
+                min-height: 22px;
+                padding-left: 10px;
+
+                cursor: pointer;
+                text-transform: capitalize;
+                &:hover
+                {
+                    background: #ddd;
+                }
+                &.selected
+                {
+                    background: #ccc;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.radioOptionsGroupWrapper {
+    width: 100%;
+    padding: 10px;
+    .radioOptionsGroupTitle{
+    }
+
+    .mdl-radio {
+        font-size: 13px;
+
+        &.is-upgraded {
+            padding-left: 18px;
+            padding-right: 7px;
+        }
+    }
+        .ngcl-radioButton {
+            padding-right: 10px;
+        }
+    }

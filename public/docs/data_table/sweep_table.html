@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+    <title>Hello React Juniper!</title>
+    <script src="/lib/react-with-addons.js"></script>
+    <script src="/lib/react-dom.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="/dist/jnpr-vendors.js"></script>
+    <script src="/dist/jnpr-components.js"></script>
+
+    <link rel="stylesheet" href="/lib/jquery-ui.min.css">
+
+</head>
+
+
+<body>
+    <div id="sweepLogicTable"></div>
+    <button onclick="setHighlightedRows();">Highlight</button>
+    <script>
+
+        var config = {
+            "rowHeight": 40,
+            "headerHeight": 35,
+            "tableHeight": 500,
+            "tableWidth": 1200,
+            "defaultGlobal": false,
+            "partialGlobal": true,
+            "hidingBottomPagePositioner": true,
+            "closeLeftPanelBtn": true,
+            "title_filter_option": "Filter",
+            "title_column_option": "Filter",
+            "resizeMode": "table",
+            "checkBoxEnabled": true,
+            "displayingActionButton": false,
+            "customize_extra_data": true,
+            "noAccountTab": true,
+            "extraDataControllerColumn": "having_extra_data",
+            "extraDataShowingColumns": "quotes",
+            "extraDataOffsets": [
+                900,
+                -40
+            ],
+            "customizedPopUp": true,
+            "enableTimeZone": false,
+            "isGlobalTimeZone": true,
+            "hidingBottomIndicator": true,
+            "enableInAppDownload": false,
+            "defaultSortField": "serialNumber",
+            "defaultSortOrder": "asc",
+            "multipleConfigEnabled": true,
+            "columns": {
+                "keyIndex": {
+                    title: "keyIndex",
+                    id: "keyIndex",
+                    key: true,
+                    clickToHighlight: true,
+                    hidden: true,
+                },
+                "serialNumber": {
+                    defaultColumn: true,
+                    width: 100,
+                    flexGrows: 0,
+                    id: "serialNumber",
+                    type: "text",
+                    title: "Serials #",
+                    sortable: true,
+                    filterable: true,
+                    editable: false,
+                    sendClickToParent: true,
+                    resizable: false,
+                    freezable: true
+                },
+                "ssrn": {
+                    "id": "ssrn",
+                    "title": "SSRN",
+                    "key": false,
+                    "type": "autoCompleteSearch",
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 1,
+                    "items": [
+                        {
+                            "value": "0239823",
+                            "title": "0239823",
+                            "selected": false
+                        },
+                        {
+                            "value": "0239824",
+                            "title": "0239824",
+                            "selected": false
+                        },
+                        {
+                            "value": "0239825",
+                            "title": "0239825",
+                            "selected": false
+                        }
+                    ]
+                },
+                "product": {
+                    "id": "product",
+                    "title": "Product",
+                    "key": false,
+                    "type": "autoCompleteSearch",
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 1,
+                    "items": [
+                        {
+                            "value": "EX-SFP-10GE-LRM",
+                            "title": "EX-SFP-10GE-LRM",
+                            "selected": false
+                        }
+                    ]
+                },
+                "contractId": {
+                    "id": "contractId",
+                    "title": "Contract ID",
+                    "type": "autoCompleteSearch",
+                    "key": false,
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 0,
+                    "sticky": true,
+                    "integerSort": true,
+                    "items": [
+                        {
+                            "value": "0060903912",
+                            "title": "0060903912",
+                            "selected": false
+                        },
+                        {
+                            "value": "0060903913",
+                            "title": "0060903913",
+                            "selected": false
+                        }
+                    ]
+                },
+                "supportCoverage": {
+                    "id": "supportCoverage",
+                    "title": "Support Coverage",
+                    "key": false,
+                    "type": "autoCompleteSearch",
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 1,
+                    "items": [
+                        {
+                            "value": "EXSFP-10GE-LRM",
+                            "title": "EXSFP-10GE-LRM",
+                            "selected": false
+                        }
+                    ]
+                },
+                "_endDate": {
+                    "id": "_endDate",
+                    "title": "End Date",
+                    "key": false,
+                    "type": "customDate",
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 0
+                },
+                "installedAt": {
+                    "id": "installedAt",
+                    "title": "Installed at account",
+                    "type": "autoCompleteSearch",
+                    "filterable": true,
+                    "defaultColumn": true,
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 1,
+                    "key": false,
+                    "items": [
+                        {
+                            "value": "ISTISHARI ARAB HOSPITAL",
+                            "title": "ISTISHARI ARAB HOSPITAL",
+                            "selected": false
+                        }
+                    ]
+                },
+                "installedCity": {
+                    "id": "installedCity",
+                    "width": 150,
+                    "type": "autoCompleteSearch",
+                    "title": "Installed at city",
+                    "filterable": true,
+                    "key": false,
+                    "sendClickToParent": false,
+                    "defaultColumn": true,
+                    "items": [
+                        {
+                            "value": "RAMALLAH",
+                            "title": "RAMALLAH",
+                            "selected": false
+                        }
+                    ]
+                },
+                "quotes": {
+                    "id": "quotes",
+                    "title": "Existing quotes",
+                    "width": 150,
+                    "minWidth": 150,
+                    "flexGrows": 0,
+                    "type": "text",
+                    "sortable": false,
+                    "filterable": false,
+                    "key": false,
+                    "sendClickToParent": false,
+                    "defaultColumn": true
+                },
+                "having_extra_data": {
+                    "id": "extra_data_controller",
+                    "hidden": true
+                },
+                "addedCheckBox": {
+                    "width": 40,
+                    "flexGrows": 0,
+                    "id": "addedCheckBox",
+                    "type": "addedCheckBox",
+                    "resizable": false
+                }
+            }
+        }
+
+        var data = [
+            {
+                "keyIndex": "B14A00376:EX-SFP-10GE-LRM",
+                "checked": true,
+                "serialNumber": "B14A00376",
+                "ssrn": "0239823",
+                "product": "EX-SFP-10GE-LRM",
+                "contractId": "0060903912",
+                "supportCoverage": "EXSFP-10GE-LRM",
+                "endDate": 1521183600000,
+                "installedAt": "ISTISHARI ARAB HOSPITAL",
+                "installedCity": "RAMALLAH",
+                "quotes": "100060",
+                "disabledCheckbox": true,
+                "_endDate": "16-MAR-2018"
+            },
+            {
+                "keyIndex": "B14A00377:EX-SFP-10GE-LRM",
+                "serialNumber": "B14A00377",
+                "ssrn": "0239824",
+                "product": "EX-SFP-10GE-LRM",
+                "contractId": "0060903913",
+                "supportCoverage": "EXSFP-10GE-LRM",
+                "endDate": 1521183600000,
+                "installedAt": "ISTISHARI ARAB HOSPITAL",
+                "installedCity": "RAMALLAH",
+                "quotes": 2,
+                "having_extra_data": true,
+                "customize_extra_icon": true,
+                "_endDate": "16-MAR-2018"
+            },
+            {
+                "keyIndex": "B14A00378:EX-SFP-10GE-LRM",
+                "serialNumber": "B14A00378",
+                "ssrn": "0239825",
+                "product": "EX-SFP-10GE-LRM",
+                "contractId": "0060903913",
+                "supportCoverage": "EXSFP-10GE-LRM",
+                "endDate": 1521183600000,
+                "installedAt": "ISTISHARI ARAB HOSPITAL",
+                "installedCity": "RAMALLAH",
+                "quotes": "100061",
+                "_endDate": "16-MAR-2018"
+            }
+        ]
+
+        var jnprDataTableObj = null;
+        jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+        jnprDataTableObj.appId = "sweep_table";
+        jnprDataTableObj.setConfig(config, "sweep_table");
+        jnprDataTableObj.setDataListFor("sweep_table", data);
+        jnprDataTableObj.setGrandTotalRecordsFor("sweep_table", data.length);
+        jnprDataTableObj.setHighlightedRows('sweep_table', ['B14A00376:EX-SFP-10GE-LRM']);
+        var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+        ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+            simplifiedTable: true,
+            nested: false,
+            appId: "sweep_table",
+            checkBoxCallBackHandler: function () { },
+            extraDataCallBack: function () {
+                let domNode = `<div id="sweep_quote_table">Tada</div>`;
+                jnprDataTableObj.setExtraData('sweep_table', domNode);
+            }
+        }), document.getElementById("sweepLogicTable"));
+
+        function setHighlightedRows() {
+            jnprDataTableObj.setHighlightedRows('sweep_table', ['B14A00376:EX-SFP-10GE-LRM']);
+        }
+
+    </script>
+</body>
+
+</html>

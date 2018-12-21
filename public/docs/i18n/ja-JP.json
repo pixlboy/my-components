@@ -1,0 +1,17 @@
+{
+    "pageId":{
+        "jnpr_001":"Japanese Key Trans",
+        "jnpr_002": "こんにちは %1 %2"
+    },
+    "home":{
+        "jnpr_003": "ログイン",
+        "jnpr_004": "こんにちは",
+        "jnpr_005": "こんにちは"
+    },
+    "errors":{
+        "300": "300 error - jp",
+        "301": "301 error - jp",
+        "401": "401 error - jp",
+        "501": "501 error - jp"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "pageId":{
+        "jnpr_001":"Korean Key Trans",
+        "jnpr_002": "안녕하세요 %1 %2"
+    },
+    "home":{
+        "jnpr_003": "로그인",
+        "jnpr_004": "안녕하세요",
+        "jnpr_005": "안녕하세요"
+    },
+    "errors":{
+        "300": "300 error - ko",
+        "301": "301 error - ko",
+        "401": "401 error - ko",
+        "501": "501 error - ko"
+    }
+}

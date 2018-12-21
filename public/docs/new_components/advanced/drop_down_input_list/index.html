@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+
+</head>
+
+
+<body>
+	<h5>JNPR MultiSelect Component Demo</h5>
+	<b>Legacy dropdown</b>
+	<div id="multi_select" style="margin: 30px"></div>
+
+	<iframe width="100%" height="300px;" src="./README.md"></iframe>
+
+	<hr/>
+	<h5>Updated DropDown (Appending Mode)</h5>
+	<p>
+		<b>Goal of Component:</b>
+	Above dropdown is NOT working in datetable row, because the dropdown is always hidden below the row, in our case, we need to have dropdown for one cell.
+	The solution is to make the dropdonw out of the dataTable and position it at the mouse click position. Just like datepicker.
+	</p>
+
+	<h5>attention</h5>
+	As the solution has changed the context, traditional 'this' is no longer working in some cases. In order to maintain the original context, you need to pass props like below example!
+<hr/>
+	<b>Appended solution for data table (single select)</b>
+	<div id="multi_select_append" style="margin: 30px"></div>
+	<div id="multi_select_append_oneoption" style="margin: 30px"></div>
+
+	<pre>
+
+		var onChange = function(data){
+			console.log( data );
+		}
+		ReactDOM.render(React.createElement(DropDownInputAppendCompSingle, {
+			options : options,
+			passedProps: {tmp:'a'},
+			onChange: this.onChange.bind(this),
+			appId: "appId_2",
+			disableSingleSelectOption: true
+		}), document.getElementById('multi_select_append'));
+	</pre>
+
+	disableSingleSelectOption: If you want to disable dropdown when there is only one option, please use this flag
+
+<hr />
+	<b>Appended solution for data table (multi select)</b>
+	<div id="multi_select_append_1" style="margin: 30px"></div>
+	<div id="multi_select_append_1_singleoption" style="margin: 30px"></div>
+
+	<pre>
+		var onChange = function(data){
+			console.log( data );
+		}
+		ReactDOM.render(React.createElement(DropDownInputAppendCompMulti, {
+			options : options,
+			passedProps: {tmp:'a'},
+			onChange: this.onChange.bind(this),
+			appId: "appId_3",
+			disableSingleSelectOption: true
+		}), document.getElementById('multi_select_append_1'));
+
+	</pre>
+	<ol>
+		<li>Here the callback is the list of selected values</li>
+	<ol>
+<hr />
+	<b>Appended solution for data table (multi select - number)</b>
+	<div id="multi_select_append_2" style="margin: 30px"></div>
+	<pre>
+		ReactDOM.render(React.createElement(DropDownInputAppendCompMulti, {
+			options : options,
+			passedProps: {tmp:'a'},
+			numberTitle: true,
+			onChange: this.onChange.bind(this),
+			appId: "appId_4"
+		}), document.getElementById('multi_select_append_2'));
+	</pre>
+	<ol>
+		<li>numberTitle: true|false - If you do not want to list the options, but want to list number of selected items, then set this flag to true</li>
+	</ol>
+	<hr/>
+
+</section>
+</body>
+
+
+<script type="text/javascript">
+var DropDownInputComp = JnprCL.DropDownInputComp;
+var DropDownInputAppendCompSingle = JnprCL.DropDownInputAppendCompSingle;
+var DropDownInputAppendCompMulti = JnprCL.DropDownInputAppendCompMulti;
+
+
+var S = JnprCL.DropDownInputCompStore;
+var options = [ {
+	title : 'option1,option2,option3,optoin4',
+	value : 'value1,value2,value3',
+	selected : false
+}, {
+	title : 'option2',
+	value : 'value2,value3,value4',
+	selected : false
+}, {
+	title : '!option3',
+	value : 'value3',
+	selected : false,
+},
+{
+	title : 'option4',
+	value : 'value4',
+	selected : false
+}, {
+	title : 'option5',
+	value : 'value5',
+	selected : false
+}, {
+	title : 'option6',
+	value : 'value6',
+	selected : true,
+},
+{
+	title : 'uoption6',
+	value : 'value7',
+	selected : false,
+},
+{
+	title : 'varId_0',
+	value : 'varId_0',
+	selected : false,
+},
+{
+	title : 'varId_1',
+	value : 'varId_1',
+	selected : false,
+}
+
+];
+
+var options_single = [ {
+	title : 'option',
+	value : 'value1',
+	selected : true
+}];
+
+var onChange = function(data, passedProps){
+	console.log( data, passedProps );
+}
+
+var noItemHandler = function(data){
+	console.log('searching for ' + data);
+	setTimeout(function(){
+		S('appId_1').setError(true);
+	}, 500);
+}
+
+
+ReactDOM.render(React.createElement(DropDownInputAppendCompSingle, {
+	options : options_single,
+	singleSelect:true,
+	onChange: this.onChange.bind(this),
+	noItemHandler: this.noItemHandler.bind(this),
+	appId: "appId_x",
+	disableSingleSelectOption: true
+}), document.getElementById('multi_select_append_oneoption'));
+
+
+ReactDOM.render(React.createElement(DropDownInputComp, {
+	options : options,
+	singleSelect:false,
+	onChange: this.onChange.bind(this),
+	noItemHandler: this.noItemHandler.bind(this),
+	appId: "appId_1"
+}), document.getElementById('multi_select'));
+
+ReactDOM.render(React.createElement(DropDownInputAppendCompSingle, {
+	passedProps: {tmp:'a'},
+	options : options,
+	onChange: this.onChange.bind(this),
+	appId: "appId_2",
+	//defaultDisabled: true,
+}), document.getElementById('multi_select_append'));
+
+
+
+ReactDOM.render(React.createElement(DropDownInputAppendCompMulti, {
+	passedProps: {tmp:'b'},
+	options : options,
+	onChange: this.onChange.bind(this),
+	appId: "appId_3"
+}), document.getElementById('multi_select_append_1'));
+
+ReactDOM.render(React.createElement(DropDownInputAppendCompMulti, {
+	passedProps: {tmp:'b'},
+	options : options_single,
+	disableSingleSelectOption: true,
+	numberTitle: true,
+	appId: "appId_y"
+}), document.getElementById('multi_select_append_1_singleoption'));
+
+
+ReactDOM.render(React.createElement(DropDownInputAppendCompMulti, {
+	passedProps: {tmp:'c'},
+	options : options,
+	numberTitle: true,
+	onChange: this.onChange.bind(this),
+	appId: "appId_4"
+}), document.getElementById('multi_select_append_2'));
+
+</script>
+
+
+</html>

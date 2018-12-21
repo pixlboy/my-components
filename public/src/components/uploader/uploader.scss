@@ -1,0 +1,30 @@
+.jnprUploader{
+	button, input[type='button'] {
+	    font-family: Antenna Regular;
+	    font-size: 14px;
+	    padding: 6px 10px;
+	    min-width: 80px;
+	    cursor: pointer;
+	    text-transform: capitalize;
+	    border-radius: 2px;
+	    outline: none;
+	    border: 1px solid #2d6e8e;
+	    background: #2d6e8e;
+	    color: #fff;
+	    margin: 2px;
+	}
+
+	.errors{
+	    margin-left: 20px;
+		margin-top: 10px;
+		color: red;
+		ul{
+			padding: 0px;
+			margin: 0px;
+			position: absolute;
+		}
+		li{
+			list-style-type: none;
+		}
+	}
+}

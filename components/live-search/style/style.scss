@@ -1,0 +1,104 @@
+$grey1: #ccc;
+$grey2: #2A6D8E;
+$grey3: #656565;
+$grey4: #9c9c9c;
+$grey5: #eff6f8;
+$grey6: #afafaf;
+$white: #fff;
+$red : #ff535c;
+
+.jncl-auto-complete-wrapper {
+    position: relative;
+    width: 100%;
+
+    .auto-complete-bar, .select-bar {
+        border: 1px solid $grey1;
+        padding: 5px 10px 5px 26px;
+        line-height: 33px;
+        height: 30px;
+        width: 100%;
+        font-size: 14px;
+        box-sizing: border-box;
+        outline: none;
+        color: $grey2;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: inherit;
+        &:disabled, &.disabled{
+            background: $grey1;
+            cursor: not-allowed;
+        }
+        &.error{
+            border-color: $red;
+        }
+    }
+
+    .select-bar{
+        padding: 5px 26px 5px 10px;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    .search-icon, .dd-icon {
+        line-height: 20px;
+        font-family: Material Icons;
+        font-size: 18px;
+        color: $grey2;
+        position: absolute;
+    }
+
+    .search-icon{
+        left: 6px;
+        top: 6px;
+    }
+
+    .dd-icon{
+        right: 6px;
+        top: 6px;
+    }
+
+    .auto-complete-opt-list {
+        max-height: 300px;
+        border: 1px solid $grey3;
+        box-sizing: border-box;
+        box-shadow: 0 1px 3px 1px $grey4;
+        width: 100%;
+        overflow: auto;
+        position: absolute;
+        background: $white;
+        z-index: 100;
+
+        .list {
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .option {
+            font-size: 12px;
+            padding: 5px 10px;
+            line-height: 18px;
+
+            &.selected,
+            &:hover {
+                background: $grey5;
+                cursor: pointer;
+            }
+
+            .metadata {
+                color: $grey6;
+                text-transform: uppercase;
+                font-family: inherit;
+                margin: 0;
+            }
+        }
+    }
+    .hidden{
+        display: none;
+    }
+    .no-records{
+        text-align: center;
+        color: $grey6;
+    }
+}

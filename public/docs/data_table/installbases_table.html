@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+<title>Hello React Juniper!</title>
+<script src="/lib/react-with-addons.js"></script>
+<script src="/lib/react-dom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+<script src="/dist/jnpr-vendors.js"></script>
+<script src="/dist/jnpr-components.js"></script>
+
+
+<link rel="stylesheet" href="/lib/jquery-ui.min.css">
+<style>
+.clicked {
+	background-color: #F2DEDE;
+	border: 1px solid #EBCCCC;
+}
+
+#rowNoticeMsg {
+	color: #A94442;
+	padding: 4px;
+	position: absolute;
+	left: 500px;
+}
+</style>
+</head>
+
+
+<body>
+	<a
+		href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+		Documentation In Git</a>
+	<h1>Using Standard HTML table for Nested Data - NGCSC Installbases
+		Table</h1>
+	<span id="rowNoticeMsg"></span>
+	<div id="example4"></div>
+
+	<hr />
+
+	<input type='button' value='Change serialNumber Clickable'
+		onClick="updateSerialNumberSetting();" />
+</body>
+
+
+<script type="text/javascript">
+	var clickable = false;
+
+	var updateSerialNumberSetting	= function(){
+	  jnprDataTableObj.updateTableColumnConfigFor('appId_installbases', 'serialNumber', 'sendClickToParent', clickable );
+	//   jnprDataTableObj.updateTableColumnConfigFor('appId_installbases', 'serialNumber', 'title', 'newTitle' );
+	  clickable = !clickable;
+	}
+  var rowNoticeMsg= null;
+
+   var jsonObj1 = JSON.parse('{"pageSize":5,"totalRecords":40,"ibaseList":[{"serialNumber":"JN11E3CEAAHA","productName":null,"materialItemCategory":"Premium Config Sys", "isIbParent": true,"contractID":"0000000001","assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-106072","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":"NORTHWESTEL INC - 0100276710","reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1302480000000,"warrantyStartDate":1302511298000,"warrantyExpirationDate":1334041200000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037537077","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":false,"primaryKey":{"propKey":"serialNo","propValue":"100011170123","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"100011170123","reverseTimeStamp":"9223372036854775807","targetVertexId":"100011170123|::|BP3AM1MI|::|10018762265|::|000000000037537077","identifier":null}},{"serialNumber":"","productName":null,"materialItemCategory":"Customer specific CTO", "isIbParent": true,"assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100491","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":null,"reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1225324800000,"warrantyStartDate":1225357966000,"warrantyExpirationDate":1256799600000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037551248","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":true,"primaryKey":{"propKey":"serialNo","propValue":"6332001223","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"6332001223","reverseTimeStamp":"9223372036854775807","targetVertexId":"6332001223|::|BP3AM1MI|::|10018771808|::|000000000037551248","identifier":null}},{"serialNumber":"6332001226","productName":null,"materialItemCategory":"Configurable System","isIbParent": true,"contractID":"0000000002","assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100491","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":"NORTHWESTEL INCORPORATED - 0100189169","reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1225324800000,"warrantyStartDate":1225353316000,"warrantyExpirationDate":1256799600000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037516576","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":true,"primaryKey":{"propKey":"serialNo","propValue":"6332001226","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"6332001226","reverseTimeStamp":"9223372036854775807","targetVertexId":"6332001226|::|BP3AM1MI|::|10018740922|::|000000000037516576","identifier":null}},{"serialNumber":"8623099122","productName":null,"materialItemCategory":"ADV","isIbParent": true,"contractID":null,"assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100914","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":null,"reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1238025600000,"warrantyStartDate":1238058417000,"warrantyExpirationDate":1269500400000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037547043","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":true,"primaryKey":{"propKey":"serialNo","propValue":"8623099122","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"8623099122","reverseTimeStamp":"9223372036854775807","targetVertexId":"8623099122|::|BP3AM1MS|::|10018767569|::|000000000037547043","identifier":null}},{"serialNumber":"8623099123","parentSerialNumber":null,"productName":null,"materialItemCategory":"BP3AM1MS","isIbParent": false,"contractID":"0000000004","assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100914","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":null,"reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1238025600000,"warrantyStartDate":1238055961000,"warrantyExpirationDate":1269500400000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037532817","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":true,"primaryKey":{"propKey":"serialNo","propValue":"8623099123","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"8623099123","reverseTimeStamp":"9223372036854775807","targetVertexId":"8623099123|::|BP3AM1MS|::|10018757585|::|000000000037532817","identifier":null}},{"serialNumber":"8623099124","parentSerialNumber":"ABCDEF","productName":null,"materialItemCategory":"BP3AM1MS", "isIbParent": false,"contractID":null,"assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100914","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":null,"reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1238025600000,"warrantyStartDate":1238055961000,"warrantyExpirationDate":1269500400000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037532817","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":false,"primaryKey":{"propKey":"serialNo","propValue":"8623099123","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"8623099123","reverseTimeStamp":"9223372036854775807","targetVertexId":"8623099123|::|BP3AM1MS|::|10018757585|::|000000000037532817","identifier":null}},{"serialNumber":"8623099125","parentSerialNumber":"ABCDEF","productName":null,"materialItemCategory":"Fixed Software", "isIbParent": false,"contractID":"0000000006","assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-100914","salesOrderLineItem":null,"city":null,"state":null,"country":null,"address":null,"installedAt":null,"reseller":null,"distributor":null,"productRegistrationDate":1468338069086,"shipDate":1238025600000,"warrantyStartDate":1238055961000,"warrantyExpirationDate":1269500400000,"endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null,"ibaseNumber":"000000000037532817","warrantyType":"Hardware Warranty","renewalContractExists":null,"hasChildComponents":false,"primaryKey":{"propKey":"serialNo","propValue":"8623099123","propValueNum":"0","srcVertexId":"-1182313304_771d13b7-152b-11e6-98a4-005056a95c7a","label":"ibase","direction":"-->","defaultIndexSequence":"8623099123","reverseTimeStamp":"9223372036854775807","targetVertexId":"8623099123|::|BP3AM1MS|::|10018757585|::|000000000037532817","identifier":null}}]}');
+
+   var jsonObjItems = JSON.parse('{"totalRecords":1,"ibaseProductsList":[{"serialNumber":"100011170123","productName":null,"materialItemCategory":"BP3AM1MI","assemblyNumber":null,"assemblyRev":null,"assemblyHardwareRev":null,"salesOrderNumber":"SOO-106072","salesOrderLineItem":null,"city":"ZAGREB","state":"Grad Zagreb","country":"Croatia","address":"KRAPINSKA 45 PP 93","installedAt":"771d13b7-152b-11e6-98a4-005056a95c7a - ERICSSON NIKOLA TESLA D.D.","reseller":null,"distributor":null,"productRegistrationDate":1468532765601,"shipDate":1302480000000,"warrantyStartDate":1302511298000,"warrantyExpirationDate":1334041200000,"warrantyType":"Hardware Warranty","endOfLifeDate":null,"endOfServiceDate":null,"serviceDeclined":null,"contractID":null,"status":null,"contractStartDate":null,"contractEndDate":null,"supportCoverage":null,"coverageType":null,"description":null}]}');
+   var config  = {
+           rowHeight: 29,
+    headerHeight: 38,
+    tableHeight: 348,
+           tableWidth: 800,
+           columnFilterable: false,
+            closeLeftPanelBtn: false,
+           showGlobalCheckbox: false,
+           defaultGlobal: true,
+           globalAutoComplete: true,
+           mode:'R',
+					 newActionFeatureEnabled: true,
+					 srDataEnabled: true,
+           resizeMode: 'table', // table|column
+           showingInitialHiddenWhenFiltering: true, //we need to change hidden to show when filtering
+           showingInitialHiddenForSuperUser: false, //control if we want to show all columns for super user
+           caseManagerLink: 'https://cmstage.juniper.net/casemanager/#', //this is only for caseManagerLink
+           userRoles: ["Case Manager View Only"],
+           displayingActionButton: true,
+           displayingActionButtonOptionList: 'IBASES',
+           checkBoxEnabled: true,
+
+           defaultSortField: 'serialNumber',
+           defaultSortOrder: 'asc',
+
+           columns: {
+             serialNumber: {
+               defaultColumn: true,
+               width: 150,
+               flexGrows: 0,
+               id: 'serialNumber',
+               type: 'text',
+               title: 'Serial #',
+               sortable: true,
+               filterable: true,
+               key: true,
+               sticky: true,
+               sendClickToParent: true,
+               clickToHighlight: false
+             },
+             productName: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'productName',
+               type: 'text',
+               title: 'Product Name',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             materialItemCategory: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'materialItemCategory',
+               type: 'text',
+               title: 'Material Item Category',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             assemblyNumber: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'assemblyNumber',
+               type: 'text',
+               title: 'Assembly Number',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             assemblyRev: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'assemblyRev',
+               type: 'text',
+               title: 'Assembly Rev',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             assemblyHardwareRev: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'assemblyHardwareRev',
+               type: 'text',
+               title: 'Assembly Hardware Rev',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             salesOrderNumber: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'salesOrderNumber',
+               type: 'text',
+               title: 'Sales Order Number',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             salesOrderLineItem: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'salesOrderLineItem',
+               type: 'text',
+               title: 'Sales Order Line Item',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             city: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               type: 'text',
+               id: 'city',
+               title: 'City',
+               sortable: true,
+               filterable: true,
+               initialHidden: false
+             },
+             state: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               type: 'text',
+               id: 'state',
+               title: 'State',
+               sortable: true,
+               filterable: true,
+               initialHidden: false
+             },
+             country: {
+               defaultColumn: true,
+               width: 150,
+               flexGrows: 0,
+               type: 'text',
+               id: 'country',
+               title: 'Country',
+               sortable: true,
+               filterable: true,
+               initialHidden: false
+             },
+             address: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'address',
+               type: 'text',
+               title: 'Address',
+               sortable: false,
+               filterable: false,
+               hidden: false
+             },
+             installedAt: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'installedAt',
+               type: 'text',
+               title: 'Installed At',
+               sortable: true,
+               filterable: true,
+               editable: false,
+               hidden: false
+             },
+             reseller: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'reseller',
+               type: 'text',
+               title: 'Reseller',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             distributor: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'distributor',
+               type: 'text',
+               title: 'Distributor',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             productRegistrationDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'productRegistrationDate',
+               type: 'customDate',
+               title: 'Product Registration Date',
+               sortable: true,
+               filterable: true
+             },
+             shipDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'shipDate',
+               type: 'customDate',
+               title: 'Ship Date',
+               sortable: true,
+               filterable: true
+             },
+             warrantyType: {
+                defaultColumn: true,
+                width: 100,
+                flexGrows: 0,
+                id: 'warrantyType',
+                type: 'text',
+                title: 'Warranty Type',
+                sortable: true,
+                filterable: false,
+                hidden: false
+              },
+             warrantyStartDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'warrantyStartDate',
+               type: 'customDate',
+               title: 'Warranty Start Date',
+               sortable: true,
+               filterable: true
+             },
+             warrantyExpirationDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'warrantyExpirationDate',
+               type: 'customDate',
+               title: 'Warranty End Date',
+               sortable: true,
+               filterable: true
+             },
+             endOfLifeDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'endOfLifeDate',
+               type: 'customDate',
+               title: 'End Of Life Date',
+               sortable: true,
+               filterable: true
+             },
+             endOfServiceDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'endOfServiceDate',
+               type: 'customDate',
+               title: 'End Of Service Date',
+               sortable: true,
+               filterable: true
+             },
+             serviceDeclined: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 1,
+               type: 'multilist',
+               id: 'serviceDeclined',
+               title: 'Service Declined',
+               sortable: true,
+               filterable: true,
+               items: [{
+                 id: 'yes',
+                 title: 'Yes',
+                 value: 'Yes'
+               }, {
+                 id: 'no',
+                 title: 'No',
+                 value: 'No'
+               }]
+             },
+             contractID: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows:0 ,
+               id: 'contractID',
+               type: 'text',
+               title: 'Contract ID',
+               sortable: true,
+               filterable: false,
+               hidden: false
+             },
+             status: {
+               defaultColumn: true,
+               width: 100,
+
+               flexGrows: 1,
+               type: 'multilist',
+               id: 'status',
+               title: 'status',
+
+               sortable: true,
+               filterable: true,
+               items: [{
+                 id: 'active',
+                 title: 'Active',
+                 value: 'Active'
+               }, {
+                 id: 'expired',
+                 title: 'Expired',
+                 value: 'Expired'
+               }]
+             },
+             contractStartDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'contractStartDate',
+               type: 'customDate',
+               title: 'Contract Start Date',
+               sortable: true,
+               filterable: true
+             },
+             contractEndDate: {
+               defaultColumn: true,
+               width: 200,
+               flexGrows: 0,
+               id: 'contractEndDate',
+               type: 'customDate',
+               title: 'Contract End Date',
+               sortable: true,
+               filterable: true
+             },
+             supportCoverage: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               type: 'text',
+               id: 'supportCoverage',
+               title: 'Support Coverage',
+               sortable: true,
+               filterable: true
+             },
+             coverageType: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'coverageType',
+               type: 'text',
+               title: 'Coverage Type',
+               sortable: true,
+               filterable: true,
+               hidden: false
+             },
+             description: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               type: 'text',
+               id: 'description',
+               title: 'Description',
+               sortable: true,
+               filterable: true
+             },
+             renewalContractExists: {
+                defaultColumn: true,
+                width: 250,
+                flexGrows: 0,
+                type: 'text',
+                id: 'renewalContractExists',
+                title: 'Renewal Contract Exists',
+                sortable: true,
+                filterable: true
+              },
+             ibaseNumber: {
+               defaultColumn: false,
+               width: 100,
+               flexGrows: 1,
+               type: 'text',
+               id: 'ibaseNumber',
+               title: 'ibase Number',
+               sortable: true,
+               filterable: false,
+               hidden: true
+             }
+           }
+         };
+
+         var ibContractsHistoryConfig = {
+           initalNumberPerPage: 4,
+           rowHeight: 29,
+           headerHeight: 38,
+           tableHeight: 348,
+           tableWidth: 800,
+           hidingBottomIndicator: true,
+           enableInAppDownload: true,
+           defaultGlobal: true,
+           columns: {
+             contractId: {
+               defaultColumn: true,
+               width: 130,
+               minWidth: 100,
+               flexGrows: 0,
+               id: 'contractId',
+               type: 'text',
+               title: 'Contract ID',
+               key: true,
+               sticky: true,
+               sortable: true
+               //  sendClickToParent: true,
+             },
+             contractType: {
+               defaultColumn: true,
+               width: 120,
+               flexGrows: 0,
+               id: 'contractType',
+               type: 'text',
+               title: 'Contract Type',
+               sortable: true
+             },
+             status: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 1,
+               type: 'multilist',
+               id: 'status',
+               title: 'status',
+               items: [
+                 {
+                   id: 'active',
+                   title: 'Active',
+                   value: 'Active'
+                 }, {
+                   id: 'expired',
+                   title: 'Expired',
+                   value: 'Expired'
+                 }
+               ]
+             },
+             startDate: {
+               defaultColumn: true,
+               width: 120,
+               flexGrows: 0,
+               id: 'startDate',
+               type: 'customDate',
+               title: 'Start Date'
+             },
+             endDate: {
+               defaultColumn: true,
+               width: 120,
+               flexGrows: 0,
+               id: 'endDate',
+               type: 'customDate',
+               title: 'End Date'
+             },
+             supportCoverage: {
+               defaultColumn: true,
+               width: 160,
+               flexGrows: 0,
+               type: 'text',
+               id: 'supportCoverage',
+               title: 'Support Coverage'
+             },
+             coverageType: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               id: 'coverageType',
+               type: 'text',
+               title: 'Coverage Type'
+             },
+             description: {
+               defaultColumn: true,
+               width: 100,
+               flexGrows: 0,
+               type: 'text',
+               id: 'description',
+               title: 'Description'
+             }
+           }
+
+            };
+
+   var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+
+   jnprDataTableObj.setConfig(config, "appId_installbases");
+
+   var detailConfigs = {};
+   detailConfigs['contractsHistory'] = ibContractsHistoryConfig;
+
+   jnprDataTableObj.setAdditionalConfigFor("appId_installbases", 'detailConfigs', detailConfigs);
+
+
+   if(localStorage.getItem('jnpr_datatable_custom_config_installbase')){
+     jnprDataTableObj.allCustomConfigurations = JSON.parse(localStorage.getItem('jnpr_datatable_custom_config_installbase'));
+   	}
+
+   jnprDataTableObj.dataList = jsonObj1.ibaseList;
+   jnprDataTableObj.grandTotalRecords = jsonObj1.ibaseList.length;
+
+   var callBack = function() {
+      jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0).concat(jsonObj1.ibaseList);
+      jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+   };
+
+   var configUpdateCallBack = function(config) {
+      sessionStorage.setItem('key', JSON.stringify(config));
+   };
+
+
+   var updateConfig = function() {
+      config.tableWidth = config.tableWidth + 50;
+      jnprDataTableObj.config = config;
+   };
+
+   var changeValueHandler = function(obj, col, newValue) {
+      console.log(obj);
+      console.log(col);
+      console.log(newValue);
+   };
+
+   var sortHandler = function(key, up) {
+      console.log(key);
+      console.log(up);
+   };
+
+   var fetchHandler = function(filter, sorter){
+ //    console.log(filter);
+ //    console.log(sorter);
+
+     jnprDataTableObj.dataList =[];
+     jnprDataTableObj.grandTotalRecords = 0;
+
+   };
+
+   var filterHandler = function(filterObject) {
+console.log( filterObject );
+     if(Object.keys(filterObject).length == 0 ){
+        jnprDataTableObj.dataList = jsonObj1.ibaseList;
+        jnprDataTableObj.grandTotalRecords = jsonObj1.ibaseList.length;
+      }else{
+     	var length = 0
+        Object.keys(filterObject).map(function(key){
+          if( Object.keys(filterObject[key]).length>0 ) {
+            length++;
+          }
+        });
+
+        if(length>0){
+          jnprDataTableObj.dataList = jsonObjItems.ibaseProductsList;
+          jnprDataTableObj.grandTotalRecords = jsonObjItems.ibaseProductsList.length;
+        }else{
+          jnprDataTableObj.dataList = jsonObj1.ibaseList;
+          jnprDataTableObj.grandTotalRecords = jsonObj1.ibaseList.length;
+        }
+
+      }
+   };
+
+   var saveConfigCallBack=function(configObject){
+     localStorage.setItem('jnpr_datatable_custom_config_installbase', JSON.stringify(configObject));
+     console.log( configObject );
+   };
+
+   var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+   var accountsStr =
+      '{  "totalRecords": 6,  "accountsList": [    {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }  ]}';
+   var accountsList = JSON.parse(accountsStr).accountsList;
+   jnprDataTableObj.accountList = accountsList;
+
+
+   var selectedAccountsUpdateCallBack = function(accounts) {
+      console.log(accounts);
+      sessionStorage.setItem('selectedAccountsKey', JSON.stringify(accounts));
+   };
+
+   var accountSearchCallBack = function(term) {
+
+      accountsList = [];
+      JSON.parse(accountsStr).accountsList.map(function(account) {
+         if (account.accountName.toLowerCase().includes(term) || account.accountId.toLowerCase().includes(term))
+            accountsList.push(account);
+      });
+      jnprDataTableObj.accountList = accountsList;
+   };
+
+   var cellClicked = function(data){
+
+ //make sure it's product table
+     if(data.hasOwnProperty('serialNumber') &&  data.serialNumber.key == true){
+       if(data.isIbParent.value){
+         if(!data.hasChildComponents.value){
+           jnprDataTableObj.setHighlightedRows("appId_installbases", [data.serialNumber.value]);
+           rowNoticeMsg = "No component part found.";
+         }else{
+           jnprDataTableObj.setHighlightedRows("appId_installbases", []);
+           rowNoticeMsg ='';
+         }
+
+       }else{
+         if(data.hasOwnProperty('parentSerialNumber')){
+           if ( data.parentSerialNumber.value === null ) {
+                jnprDataTableObj.setHighlightedRows("appId_installbases", [data.serialNumber.value]);
+                  rowNoticeMsg = 'No parent part found.';
+            } else {
+              jnprDataTableObj.setHighlightedRows("appId_installbases", []);
+              // jnprDataTableObj.setHighlightedRows("appId_installbases", [data.serialNumber.value]);
+              //have to call API....... with data.parentSerialNumber.value
+              rowNoticeMsg ='';
+          }
+         }
+
+       }
+
+     }
+
+    //  console.log(data);
+    // console.log(rowNoticeMsg);
+    if(rowNoticeMsg !='' && rowNoticeMsg != null){
+        document.getElementById('rowNoticeMsg').innerHTML= rowNoticeMsg;
+          document.getElementById('rowNoticeMsg').className = "clicked";
+    }else{
+      document.getElementById('rowNoticeMsg').innerHTML= rowNoticeMsg;
+        document.getElementById('rowNoticeMsg').className = " ";
+    }
+
+   };
+
+   var nestedFilterHandler = function(type, filterObject){
+   // 	console.log('type: ' + type);
+   // 	console.log('filter is ');
+   // 	console.log( filterObject);
+   };
+
+   var nestedSortHandler = function(type, key, up){
+    //  console.log('type: ' + type);
+    //  console.log("key: " + key);
+    //  console.log('up: ' + up);
+   };
+
+   var accumulatedNestedContentDataList = [];
+   var nestedNextPageHandler = function(type, currentPage){
+    //  console.log(type, currentPage)
+     var responseibContractsHistory =  JSON.parse('{"pageSize":50,"totalRecords":100,"contractsList":[{"contractId":"1455396","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14553960000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455430","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14554300000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455827","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14558270000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456727","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567270000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456138","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14561380000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455534","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14555340000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456728","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567280000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455408","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14554080000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456731","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567310000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456232","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14562320000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456736","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567360000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455855","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14558550000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456740","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567400000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456272","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14562720000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456746","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567460000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456755","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567550000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456278","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14562780000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456768","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567680000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455903","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14559030000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456773","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567730000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456281","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14562810000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455611","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14556110000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456777","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567770000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456782","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567820000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456322","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14563220000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456786","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567860000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455922","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14559220000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456790","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14567900000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456385","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14563850000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456808","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568080000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456809","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568090000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456386","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14563860000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456812","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568120000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455458","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14554580000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455926","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14559260000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456821","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568210000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456402","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14564020000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455674","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14556740000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456830","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568300000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456844","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568440000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456458","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14564580000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456859","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568590000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455959","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14559590000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456877","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568770000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456461","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14564610000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456881","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568810000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456890","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568900000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456492","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14564920000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456895","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14568950000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1455967","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14559670000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"},{"contractId":"1456902","startDate":1488434882000,"endDate":1496120882000,"status":"Active","locationName":null,"locationAccId":null,"primaryKey":{"propKey":"location","propValue":null,"propValueNum":"0","srcVertexId":"-503584928_a87ce2c2-5b40-11e6-92de-005056a96047","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370540733893807","targetVertexId":"14569020000000010"},"hasLineItems":true,"city":null,"serialNo":"JN11D0E90ADA","state":null,"country":null,"supportCoverage":"PAR-ND-SRX214","product":"PAR-ND-SRX214","shipDate":null,"warrantyExpDate":null,"softwareSupportReferenceNumber":"1529875435678678","contractType":"Subscription Contract"}],"responseList":[]}');
+    	var tmp = [];
+    	responseibContractsHistory.contractsList.forEach(item=>{
+    	  tmp.push(item);
+    	});
+    	responseibContractsHistory.responseList=tmp;
+
+      var updatingNestedContentDataList = accumulatedNestedContentDataList.concat(responseibContractsHistory.responseList);
+
+      //sending updatedNestedContentDataList to component
+      responseibContractsHistory.responseList = updatingNestedContentDataList;
+      //saving updatedNestedContentDataList
+      accumulatedNestedContentDataList = updatingNestedContentDataList;
+
+     jnprDataTableObj.setExtraDataUpdate('appId_installbases', responseibContractsHistory);
+   };
+
+   var showDetailExtraDataCallBack = function(type, data){
+   		var responseibContractsHistory =  JSON.parse('{"pageSize":50,"totalRecords":100,"contractsList":[{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482630","startDate":1477987085000,"endDate":1606467485000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1477987085000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370430387290807","targetVertexId":"00604826300000000010"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null}],"responseList":[{"contractId":"0060482629","startDate":1320828049000,"endDate":1511426449000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1320828049000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370525428326807","targetVertexId":"00604826290000000020"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null},{"contractId":"0060482630","startDate":1477987085000,"endDate":1606467485000,"status":"Active","locationName":"SYNAPSE NETWORKS","locationAccId":"0100130816","primaryKey":{"propKey":"contEndDt","propValue":null,"propValueNum":"1477987085000","srcVertexId":"-191444005_6092b263-a990-11e6-ae05-005056a97723","label":"scLI","direction":"-->","defaultIndexSequence":null,"reverseTimeStamp":"9223370430387290807","targetVertexId":"00604826300000000010"},"hasLineItems":true,"city":"CHICAGO","serialNo":"NGMY14006","state":"Illinois","country":"United States","supportCoverage":"SVC-ND-MAG4610-L","product":"SCBE-MX-BB","shipDate":1540882800000,"warrantyExpDate":0,"softwareSupportReferenceNumber":null}]}');
+		responseibContractsHistory.responseList=responseibContractsHistory.contractsList;
+     	jnprDataTableObj.setExtraData('appId_installbases', responseibContractsHistory, type);
+
+      accumulatedNestedContentDataList = responseibContractsHistory.contractsList;
+
+  }
+  jnprDataTableObj.setAvailableConfigsFor("appId_installbases", {});
+
+
+   var blurHighlightRows = function (){
+     if(jnprDataTableObj.getHighlightedRowsFor("appId_installbases")){
+       jnprDataTableObj.setHighlightedRows("appId_installbases", [])
+     }
+   }
+   document.getElementById("example4").addEventListener("blur", blurHighlightRows());
+
+
+   var openCasesClicked = function(data){
+     console.log(data);
+   };
+
+   //testing variables for saving testing configs
+   var config1 = {"appId_installbases":{"orderedKeyList":["contractId","startDate","endDate","status","locationName","serviceSKU","serialNo","product","shipDate","warrentyExpDate","city","country"],"selectedColumnKeys":["contractId","startDate","endDate","locationName","serviceSKU","city","country"],"sortModel":{},"filterModel":{"contractId":{"comp":"contains","value1":"1234"},"status":{"comp":"contains","value1":"Active"}},"defaultSelectedAccountList":[],"colWidths":{},"appId":"appId_contract"}};
+   var config2 = {"appId_installbases":{"orderedKeyList":["contractId","startDate","endDate","status","locationName","serviceSKU","serialNo","product","shipDate","warrentyExpDate","city","country"],"selectedColumnKeys":["contractId","startDate","endDate","serialNo","product","city","country"],"sortModel":{},"filterModel":{"contractId":{"comp":"contains","value1":"1234"},"status":{},"startDate":{"comp":"between","value1":"2016-07-06","value2":"2016-07-26"}},"defaultSelectedAccountList":[],"colWidths":{},"appId":"appId_contract"}};
+   var availableConfigs ={
+       "config 1": {
+         value: config1['appId_installbases'],
+         default: true
+       },
+       "config 2": {
+         value: config2['appId_installbases'],
+     	 default: false
+       }
+   };
+   jnprDataTableObj.setAvailableConfigsFor('appId_installbases', availableConfigs);
+
+   var saveConfigWithName = function(name, config){
+     //	console.log('saving new cofig here...');
+     //now need to do here, as it will change state
+     //	availableConfigs[name] = config;
+   	 //	console.log( availableConfigs );
+   };
+   ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+     nestedNextPageHandler: this.nestedNextPageHandler.bind(this),
+     nestedSortHandler: this.nestedSortHandler.bind(this),
+     nestedFilterHandler:this.nestedFilterHandler.bind(this),
+      nextPageCallBack: this.callBack.bind(this),
+      changeValueHandler: this.changeValueHandler.bind(this),
+      sortHandler: this.sortHandler.bind(this),
+      filterHandler: this.filterHandler.bind(this),
+      fetchHandler: this.fetchHandler.bind(this),
+      selectedAccountsUpdateCallBack: this.selectedAccountsUpdateCallBack.bind(this),
+      nested: false,
+      styleType: "ngcsc",
+      appId: "appId_installbases",
+      showDetailExtraDataCallBack: this.showDetailExtraDataCallBack.bind(this),
+      accountSearchCallBack: this.accountSearchCallBack.bind(this),
+      saveConfigCallBack: this.saveConfigCallBack.bind(this),
+      saveConfigWithName: this.saveConfigWithName.bind(this),
+      actionButtonClickHandler: this.openCasesClicked.bind(this),
+      cellClicked: this.cellClicked.bind(this),
+      destroy: function() {
+         setTimeout(function() {
+            ReactDOM.unmountComponentAtNode(document.getElementById('example4'));
+         }, 0);
+      }
+   }), document.getElementById('example4'));
+
+
+</script>
+
+
+</html>

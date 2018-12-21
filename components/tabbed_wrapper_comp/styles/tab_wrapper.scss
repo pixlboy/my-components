@@ -1,0 +1,45 @@
+.tabs-tabbedwrapper {
+    overflow: hidden;
+
+    .activeindex{
+        color:#3C9AC9;
+        border-top:3px solid #3C9AC9;
+    }
+
+    .tabtitle{
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        border-right: solid 1px #ccc;
+    }
+
+    .closingBtn {
+        display: inline-block;
+        float: right;
+        margin-top: 8px;
+        margin-right: 10px;
+        i{
+            cursor: pointer;
+        color: #2a6d8e;
+        font-size: 20px;
+        }
+    }
+
+    .display-content{
+        float: left;
+        position: absolute;
+        margin-top: 50px;
+    }
+
+    .Explanation{
+        margin-top: 100px;
+    }
+}
+
+#tabbedwrapper-popuptable{
+    border: 0.5px solid #8D8D8D;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.72);
+}

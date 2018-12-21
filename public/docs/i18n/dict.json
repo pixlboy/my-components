@@ -1,0 +1,22 @@
+{
+	"pageId":{
+		"jnpr_001":"Germany Key Trans",
+		"jnpr_002": "Einloggen %1, %2"
+	},
+	"home":{
+		"jnpr_003": "Einloggen",
+		"jnpr_004": "Hallo",
+		"jnpr_005": "Hi"
+	},
+	"":{
+		"jnpr_006": "msg1_de",
+		"jnpr_007": "msg2_de",
+		"jnpr_008": "Einloggen123 %1, %2"
+	},
+	"errors":{
+		"300": "300 error - de",
+		"301": "301 error - de",
+		"401": "401 error - de",
+		"501": "501 error - de",
+	}
+}

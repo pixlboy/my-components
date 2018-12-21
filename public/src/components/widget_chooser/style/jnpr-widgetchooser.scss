@@ -1,0 +1,479 @@
+$base-border-color-selected: #2a6d8e;
+$base-border-color-default: #d7d7d7;
+$base-background-color: #fbfbfb;
+$base-disabled-color: #eee;
+
+.jnpr_widget_chooser {
+   background: $base-background-color;
+   padding: 10px;
+   display: inline-block;
+   width: 95%;
+   overflow: auto;
+   position: relative;
+   height: 150px;
+
+   .swiper-container {
+	    height: 100%;
+	    width: 92%;
+    	margin-left: 18px;
+	}
+
+   .swiper-slide {
+        text-align: center;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+   .swiper-pagination{
+   		position: relative;
+   		padding-top: 5px;
+   		.swiper-pagination-bullet{
+   			margin-left: 10px;
+   		}
+   }
+
+   .swiper-button-prev{
+   			background-image: url("images/arrow-drop-down.png");
+   			-webkit-transform: rotate(180deg);
+		  	-moz-transform: rotate(180deg);
+		  	-ms-transform: rotate(180deg);
+		  	-o-transform: rotate(180deg);
+		  	transform: rotate(180deg);
+   			background-size: 7px 14px;
+   		}
+   	.swiper-button-next{
+   			background-image: url("images/arrow-drop-down.png");
+   			background-size: 7px 14px;
+   		}
+
+	.swiper-pagination-bullet-active {
+	    background: $base-border-color-selected
+	}
+
+   .disabled{
+	   	background: $base-disabled-color;
+	   	cursor: crosshair;
+	   }
+
+   .headerBlockWrapper {
+      float: left;
+      margin: 3px 10px 3px 10px;
+      .caption {
+         text-transform: uppercase;
+			font-size: 14px;
+			font-family: Antenna Medium;
+      }
+		ul {
+			margin: 10px 0;
+		}
+      .item {
+         width: 90px;
+         height: 70px;
+         border: solid 1px $base-border-color-default;
+         display: block;
+         float: left;
+			margin-right: 8px;
+			text-align: center;
+			cursor: pointer;
+         .title {
+				text-transform: capitalize;
+            font-size: 12px;
+            margin: 7px 0;
+            line-height:1;
+         }
+         .itemContent {
+            background-size: 44px 29px;
+            height: 29px;
+            text-align: center;
+				margin: 10px 0 0;
+            background-position: center;
+            background-repeat: no-repeat;
+         }
+         .table {
+            background-image: url("./table.png");
+         }
+         .chart {
+            background-image: url("./chart.png");
+         }
+         .stackedbar, .bar{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 13px;
+            margin-bottom:0;
+            background-repeat: no-repeat;
+            background-image: url("./bar.png");
+         }
+         .line{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 20px;
+            margin-bottom: 0;
+            background-repeat: no-repeat;
+            background-image: url("./line.png");
+         }
+         .donut{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 13px;
+            margin-bottom:0;
+            background-repeat: no-repeat;
+            background-image: url("./pie.png");
+         }
+         .screen_share{
+            background-image: url("./screen_share.png");
+         }
+         .content:before {
+            content: "\E2C7";
+            font-family: 'Material Icons';
+            font-size: 40px;
+            color: $base-border-color-selected;
+         }
+      }
+
+      .itemDisabled{
+      	 width: 90px;
+         height: 70px;
+         border: solid 1px $base-border-color-default;
+         display: block;
+         background: $base-disabled-color;
+         float: left;
+		 margin-right: 8px;
+		 text-align: center;
+         .title {
+			text-transform: capitalize;
+            font-size: 12px;
+            margin: 7px 0;
+            line-height:1;
+         }
+         .itemContent {
+            background-size: 44px 29px;
+            height: 29px;
+            text-align: center;
+				margin: 10px 0 0;
+            background-position: center;
+            background-repeat: no-repeat;
+         }
+         .table {
+            background-image: url("./table.png");
+         }
+         .chart {
+            background-image: url("./chart.png");
+         }
+         .stackedbar, .bar{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 13px;
+            margin-bottom:0;
+            background-repeat: no-repeat;
+            background-image: url("./bar.png");
+         }
+         .line{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 20px;
+            margin-bottom: 0;
+            background-repeat: no-repeat;
+            background-image: url("./line.png");
+         }
+         .donut{
+            background-size: 100%;
+            height: 45px;
+            width: 45px;
+            margin-top: 13px;
+            margin-bottom:0;
+            background-repeat: no-repeat;
+            background-image: url("./pie.png");
+         }
+         .screen_share{
+            background-image: url("./screen_share.png");
+         }
+         .content:before {
+            content: "\E2C7";
+            font-family: 'Material Icons';
+            font-size: 40px;
+            color: $base-border-color-selected;
+         }
+      }
+      .item:hover {
+			border-radius: 2px;
+			background-color: #fbfbfb;
+			box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+			border: solid 1px #2a6d8e;
+			color: #2a6d8e;
+      }
+   }
+   .widgetsListWrapper {
+		background: $base-background-color;
+		display: inline-block;
+		overflow: auto;
+		overflow-y: hidden;
+		padding-left:10px;
+		width:100%;
+      .title {
+			text-transform: uppercase;
+			cursor: pointer;
+			font-family: Antenna Medium;
+			font-size: 14px;
+      }
+      .widgetItemWrapper {
+         .widgetItem {
+				position: relative;
+				width: 240px;
+				height: 70px;
+				border: solid 1px $base-border-color-default;
+				font-size: 12px;
+				/* padding: 10px;*/
+				margin: 4px 20px 0 0;
+				float: left;
+				cursor: pointer;
+            display:block;
+            .left {
+					float: left;
+					width: 170px;
+					margin: 6px 5px 6px 7px;
+					height: 81%;
+					-webkit-box-align: center;
+					-webkit-align-items: center;
+						 -ms-flex-align: center;
+							  align-items: center;
+					display: -webkit-box;
+					display: -webkit-flex;
+					display: -ms-flexbox;
+					display: flex;
+					font-size:12px;
+					line-height: 1.2;
+               text-align: left;
+            }
+            .right {
+               float: right;
+               width: 50px;
+					margin: 5px;
+            }
+            .itemContent {
+               background-size: 50px 34px;
+               height: 34px;
+               text-align: center;
+					margin: 18px 7px 18px 0;
+            }
+            .table {
+               background-image: url("./table.png");
+            }
+            .chart {
+               background-image: url("./chart.png");
+            }
+            .stackedbar, .bar{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 13px;
+               margin-bottom:0;
+               background-repeat: no-repeat;
+               background-image: url("./bar.png");
+            }
+            .line{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 20px;
+               margin-bottom: 0;
+               background-repeat: no-repeat;
+               background-image: url("./line.png");
+            }
+            .donut{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 13px;
+               margin-bottom:0;
+               background-repeat: no-repeat;
+               background-image: url("./pie.png");
+            }
+            .content:before {
+               content: "\E2C7";
+               font-family: 'Material Icons';
+               font-size: 36px;
+               color: $base-border-color-selected;
+            }
+            .add {
+               position: absolute;
+               bottom: 5px;
+               right: 5px;
+               cursor: pointer;
+            }
+            .add:before {
+               content: "\E147";
+               font-family: 'Material Icons';
+               font-size: 16px;
+               color: $base-border-color-selected;
+            }
+         }
+
+         .widgetItemDisabled {
+				position: relative;
+				background: $base-disabled-color;
+				width: 240px;
+				height: 70px;
+				border: solid 1px $base-border-color-default;
+				font-size: 12px;
+				/* padding: 10px;*/
+				margin: 4px 20px 0 0;
+				float: left;
+            .left {
+					float: left;
+               text-align: left;
+					width: 170px;
+					margin: 6px 5px 6px 7px;
+					height: 81%;
+					-webkit-box-align: center;
+					-webkit-align-items: center;
+						 -ms-flex-align: center;
+							  align-items: center;
+					display: -webkit-box;
+					display: -webkit-flex;
+					display: -ms-flexbox;
+					display: flex;
+					font-size:12px;
+					line-height: 1.2;
+            }
+            .right {
+               float: right;
+               width: 50px;
+					margin: 5px;
+            }
+            .itemContent {
+               background-size: 50px 34px;
+               height: 34px;
+               text-align: center;
+					margin: 18px 7px 18px 0;
+            }
+            .table {
+               background-image: url("./table.png");
+            }
+            .chart {
+               background-image: url("./chart.png");
+            }
+            .stackedbar, .bar{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 0;
+               margin-bottom:0;
+               background-repeat: no-repeat;
+               background-image: url("./bar.png");
+            }
+            .line{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 20px;
+               margin-bottom: 0;
+               background-repeat: no-repeat;
+               background-image: url("./line.png");
+            }
+            .donut{
+               background-size: 100%;
+               height: 45px;
+               width: 45px;
+               margin-top: 0;
+               margin-bottom:0;
+               background-repeat: no-repeat;
+               background-image: url("./pie.png");
+            }
+            .content:before {
+               content: "\E2C7";
+               font-family: 'Material Icons';
+               font-size: 36px;
+               color: $base-border-color-selected;
+            }
+            .add {
+               position: absolute;
+               bottom: 5px;
+               right: 5px;
+               cursor: pointer;
+            }
+            .add:before {
+               content: "\E147";
+               font-family: 'Material Icons';
+               font-size: 16px;
+               color: $base-border-color-selected;
+            }
+         }
+
+			.widgetItem:hover {
+				border-radius: 2px;
+				background-color: #fbfbfb;
+				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+				border: solid 1px #2a6d8e;
+				color: #2a6d8e;
+			}
+      }
+   }
+   ul {
+      padding: 0;
+      overflow-x: auto;
+      li {
+         display: inline;
+      }
+   }
+   .closeMe {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		background-size: 25px 25px;
+		height: 25px;
+		width: 25px;
+		text-align: center;
+		background-position: center;
+		background-repeat: no-repeat;
+		cursor: pointer;
+      font-family: 'Material Icons';
+   }
+   .closeMe:before {
+
+      content: '\E5C9';
+      font-size: 25px;
+      color: $base-border-color-selected;
+   }
+}
+.jnpr_widget_chooser_ngcsc {
+   @extend .jnpr_widget_chooser;
+   padding:10px;
+   .widgetsListWrapper {
+      .widgetItemWrapper {
+         .widgetItem {
+            width: 220px;
+            font-size: 8px;
+            .left {
+               width: 145px;
+               text-align: left;
+            }
+            .right {
+					&.content{
+						padding-top:6px;
+					}
+            }
+            .add {
+               bottom: -2px;
+            }
+         }
+      }
+   }
+}

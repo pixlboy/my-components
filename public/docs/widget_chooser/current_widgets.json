@@ -1,0 +1,126 @@
+[
+    {
+      "id": "57a110e63aa89586eb2c3571",
+      "attributes": [
+        {
+          "id": "57a110e63aa89586eb2c3566",
+          "name": "dataType",
+          "value": "relatedcontents",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3567",
+          "name": "dataTypeTitle",
+          "value": "related content",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3568",
+          "name": "widgetType",
+          "value": "all",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3569",
+          "name": "subWidgetType",
+          "value": "content",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356a",
+          "name": "title",
+          "value": "Related Content",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356b",
+          "name": "description",
+          "value": "Related Content",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356c",
+          "name": "id",
+          "value": null,
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356d",
+          "name": "userId",
+          "value": null,
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356e",
+          "name": "name",
+          "value": "related_contents",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c356f",
+          "name": "order",
+          "value": "0",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3570",
+          "name": "actv",
+          "value": "true",
+          "userId": "e-chiba@netone.co.jp"
+        }
+      ],
+      "userId": "e-chiba@netone.co.jp",
+      "name": "related_contents",
+      "order": 0
+    },
+    {
+      "id": "57a110e63aa89586eb2c3579",
+      "attributes": [
+        {
+          "id": "57a110e63aa89586eb2c3572",
+          "name": "dataType",
+          "value": "cases",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3573",
+          "name": "dataTypeTitle",
+          "value": "cases",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3574",
+          "name": "widgetType",
+          "value": "stackedbar",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3575",
+          "name": "subWidgetType",
+          "value": "chart",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3576",
+          "name": "title",
+          "value": "Current Open Cases by Product Series and Priority",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3577",
+          "name": "description",
+          "value": "Current Open Cases by Product Series and Priority",
+          "userId": "e-chiba@netone.co.jp"
+        },
+        {
+          "id": "57a110e63aa89586eb2c3578",
+          "name": "visibility",
+          "value": "Case Manager Read/Write;Case Manager View Only",
+          "userId": "e-chiba@netone.co.jp"
+        }
+      ],
+      "userId": "e-chiba@netone.co.jp",
+      "name": "cur_open_cases_by_prodseries_priority",
+      "order": 0
+    }
+  ]

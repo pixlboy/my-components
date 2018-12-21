@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+
+</head>
+
+
+<body>
+	<h5>Pop Up Tabbed Table Component Demo</h5>
+
+    <div id="tabbedwrapper-popuptable"></div>
+
+	<section class="Explanation">
+	<h5> <b> Explanation of component </b> </h5>
+
+		<ol>
+			<li> tabbed wrapper component which can have 'n' no.of tabs </li>
+			<li> can pass pure html or config div to display different content for each tabs </li>
+			<li> close button to the right to close the whole tabbed wrapper component </li>
+			<li> background color as per active tab </li>
+		</ol>
+
+		<h5> <b> Usage of Component </b></h5>
+
+		<ol>
+			<li> step1: Create tabtitles how many ever tabs needed:
+				<pre>
+					var titles = ['tab0','allopen', ''allapproved]
+				</pre>
+			</li>
+
+			<li> step2: Render tab titles
+				<pre>
+					var onClose = function(){
+						ReactDOM.unmountComponentAtNode(document.getElementById('tabbedwrapper-popuptable'));
+					}
+
+					var onTabClicked = function(tabindex){
+						JnprCL.TabbedWrapperStore('appId_1').setContent('html text should display ', tabindex);
+					}
+
+					ReactDOM.render(React.createElement(TabbedWrapperComp, {
+					    appId: "appId_1",
+						tabTitles: tabTitles ,
+						onTabClicked: this.onTabClicked.bind(this),
+						onClose: this.onClose.bind(this),
+
+					}), document.getElementById('tabbedwrapper-popuptable'));
+
+				</pre>
+			</li>
+
+				<li>You need to pass titles you create at step1 when creating the component</li>
+				<li>you need to pass html or config into setContent like in step2 with tabindex</li>
+				<li>You need to add onClose() handler to handle closing function of the table. </li>
+
+		</ol>
+
+
+
+		<h4> If you need to display table on render, do follow the below steps </h4>
+
+		<ol>
+			<li> step1: pass config, datalist, tabtitle in one array as below </li>
+				<pre>
+					var Tabledata = [{
+						title:'tab1',
+						config:configs[0],
+						dataList:datalists[0]
+					},
+					{
+						title:'tab2',
+						config:configs[1],
+						dataList:datalists[1]
+					},
+					{
+						title:'tab3',
+						config:configs[2],
+						dataList:datalists[2]
+					}]
+
+				</pre>
+			<li> step2: assign configs and datalists </li>
+				<pre>
+					var datalists = [
+						[{ "QuoteId" : "2892124-1",
+						   "endCust" : "test0",
+						   "createdBy": "juniper"
+						 },
+						 {
+						   "QuoteId" : "2892124-1",
+						   "endCust" : "test0",
+						   "createdBy": "juniper"
+					     },
+						 {
+						   "QuoteId" : "2892124-1",
+						   "endCust" : "test0",
+						   "createdBy": "juniper"
+						 }],
+					  [{ "QuoteId" : "2892124-1"}]
+					]
+
+					var configs = [
+						 {
+							rowHeight: 29,
+							headerHeight: 35,
+							tableHeight: 348,
+							tableWidth: 1200,
+							defaultGlobal: false,
+							hidingBottomPagePositioner: true,
+							columns: {
+							  QuoteId: {
+								id: "QuoteId",
+								title: 'Quote #',
+								key: true,
+								sortable: true,
+								defaultColumn: true,
+								width: 150,
+								minWidth: 100,
+								flexGrows: 0,
+								sendClickToParent: false
+							  },
+							  endCust: {
+								id: "endCust",
+								title: 'End Customer',
+								sortable: true,
+								defaultColumn: true,
+								width: 150,
+								flexGrows: 1
+							  },
+							  createdBy: {
+								id: "createdBy",
+								title: 'Created By',
+								sortable: true,
+								defaultColumn: true,
+								width: 150,
+								flexGrows: 1
+							  }
+
+							}
+						},
+
+						{
+						  rowHeight: 29,
+						  headerHeight: 35,
+						  tableHeight: 348,
+						  tableWidth: 1200,
+						  defaultGlobal: false,
+						  hidingBottomPagePositioner: true,
+
+						  columns: {
+							QuoteId: {
+							  id: "QuoteId",
+							  title: 'Quote #',
+							  key: true,
+							  sortable: true,
+							  defaultColumn: true,
+							  width: 150,
+							  minWidth: 100,
+							  flexGrows: 0,
+							  sendClickToParent: false
+						   }
+						  }
+						}
+					]
+
+
+				</pre>
+
+			<li> step 3: lets render Tabledata as below </li>
+
+			<pre>
+				ReactDOM.render(React.createElement(TabbedWrapperComp, {
+					appId: "appId_1",
+					onClose: this.onClose.bind(this),
+					Tabledata: Tabledata
+
+				}), document.getElementById('tabbedwrapper-popuptable'));
+
+			</pre>
+			<li>You need to add onClose() handler to handle closing function of the table. </li>
+
+		</ol>
+
+	</section>
+
+
+</body>
+
+
+<script type="text/javascript">
+
+	var onClose = function(){
+		ReactDOM.unmountComponentAtNode(document.getElementById('tabbedwrapper-popuptable'));
+	}
+
+	var TabbedWrapperComp = JnprCL.TabbedWrapperComp;
+	var onTabClicked = function(tabindex){
+		JnprCL.TabbedWrapperStore('appId_1').setContent('<h4> html text should display ', tabindex);
+	}
+
+	var tabTitles = ['tab0','tab1', 'tab2']
+
+	var datalists = [
+	  [{ "QuoteId" : "2892124-1",
+		   "endCust" : "test0",
+		   "createdBy": "juniper"
+	  }],
+
+	  [{ "QuoteId" : "2892124-1",
+		  "endCust" : "test0",
+		  "createdBy": "juniper"
+	  },
+	  {
+		"QuoteId" : "2892124-1",
+		"endCust" : "test0",
+		"createdBy": "juniper"
+	  }],
+
+	  [{ "QuoteId" : "2892124-1",
+		  "netValue" : 121.12
+	   },
+	   {
+		 "QuoteId" : "2892124-1",
+		  "netValue" : 121.12
+	  },
+	  {
+		"QuoteId" : "2892124-1",
+		"endCust" : "test0"
+	  }]
+	]
+
+	var configs = [
+		 {
+			rowHeight: 29,
+			headerHeight: 35,
+			tableHeight: 348,
+			tableWidth: 1200,
+			defaultGlobal: false,
+			hidingBottomPagePositioner: true,
+			columns: {
+			  QuoteId: {
+				id: "QuoteId",
+				title: 'Quote #',
+				key: true,
+				sortable: true,
+				defaultColumn: true,
+				width: 150,
+				minWidth: 100,
+				flexGrows: 0,
+				sendClickToParent: false
+			  },
+			  endCust: {
+				id: "endCust",
+				title: 'End Customer',
+				sortable: true,
+				defaultColumn: true,
+				width: 150,
+				flexGrows: 1
+			  },
+			  createdBy: {
+				id: "createdBy",
+				title: 'Created By',
+				sortable: true,
+				defaultColumn: true,
+				width: 150,
+				flexGrows: 1
+			  }
+
+			}
+		},
+
+		{
+		  rowHeight: 29,
+		  headerHeight: 35,
+		  tableHeight: 348,
+		  tableWidth: 1200,
+		  defaultGlobal: false,
+		  hidingBottomPagePositioner: true,
+
+		  columns: {
+			QuoteId: {
+			  id: "QuoteId",
+			  title: 'Quote #',
+			  key: true,
+			  sortable: true,
+			  defaultColumn: true,
+			  width: 150,
+			  minWidth: 100,
+			  flexGrows: 0,
+			  sendClickToParent: false
+		   }
+		  }
+		},
+
+		{
+			rowHeight: 29,
+			headerHeight: 35,
+			tableHeight: 348,
+			tableWidth: 1200,
+			defaultGlobal: false,
+			hidingBottomPagePositioner: true,
+
+			columns: {
+			  QuoteId: {
+				id: "QuoteId",
+				title: 'Quote #',
+				key: true,
+				sortable: true,
+				defaultColumn: true,
+				width: 150,
+				minWidth: 100,
+				flexGrows: 0,
+				sendClickToParent: false
+			},
+
+			netValue: {
+			  id: "netValue",
+			  title: 'Net Value',
+			  sortable: true,
+			  defaultColumn: true,
+			  width: 150,
+			  flexGrows: 1
+			}
+
+			}
+		}
+		]
+
+		var tableData = [{
+			title:'tab1',
+			config:configs[0],
+			dataList:datalists[0]
+		},
+		{
+			title:'tab2',
+			config:configs[1],
+			dataList:datalists[1]
+		},
+		{
+			title:'tab3',
+			config:configs[2],
+			dataList:datalists[2]
+		}]
+
+
+
+	ReactDOM.render(React.createElement(TabbedWrapperComp, {
+	    appId: "appId_1",
+		tabTitles: tabTitles ,
+		onTabClicked: this.onTabClicked.bind(this),
+		onClose: this.onClose.bind(this),
+		// tableData: tableData
+
+	}), document.getElementById('tabbedwrapper-popuptable'));
+
+</script>
+
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+</head>
+
+
+<body>
+	<h5>Navigator Demo</h5>
+	<div>
+		Go to step:
+		<select onChange="gotoStep1();" id='gotoStep1'>
+			<option value='0'>Select Criteria</option>
+			<option value='1'>Upload Serial Numbers</option>
+			<option value='2'>Installed Asset Review</option>
+			<option value='3'>Edit & Validate</option>
+			<option value='4'>Preview & Submit</option>
+		</select>
+	</div>
+
+	<div id="example1" style="width:90%"></div>
+<br/><br/>
+	<div>
+		Go to step:
+		<select onChange="gotoStep2();" id='gotoStep2'>
+			<option value='0'>Step 0</option>
+			<option value='1'>Step 1</option>
+			<option value='2'>Step 2</option>
+			<option value='3'>Step 3</option>
+			<option value='4'>Step 4</option>
+		</select>
+	</div>
+
+	<div id="example2" style="width:90%"></div>
+
+</body>
+
+
+<script type="text/javascript">
+
+var gotoStep1=function(){
+	JnprCL.NavigatorStoreFactory.getStore().dispatch(
+		{
+			type:'NAVIGATE',
+			payload: $("#gotoStep1").val()
+		}, 'appId1'
+	);
+}
+var gotoStep2=function(){
+	JnprCL.NavigatorStoreFactory.getStore().dispatch(
+		{
+			type:'NAVIGATE',
+			payload: $("#gotoStep2").val()
+		}, 'appId2'
+	);
+}
+
+var options = [
+	{
+		title: "Select Criteria",
+		active: true
+	},
+	{
+		title: "Upload Serial Numbers",
+		active: true
+	},
+	{
+		title: "Installed Asset Review",
+		active: false
+	},
+	{
+		title: "Edit & Validate",
+		active: false
+	},
+	{
+		title: "Preview & Submit",
+		active: false
+	}
+];
+
+var onClick1=function(item){
+	console.log(item);
+	JnprCL.NavigatorStoreFactory.getStore().dispatch(
+		{
+			type:'NAVIGATE',
+			payload: item.order
+		}, 'appId1'
+	);
+}
+var onClick2=function(item){
+	console.log('clicked ');
+	JnprCL.NavigatorStoreFactory.getStore().dispatch(
+		{
+			type:'NAVIGATE',
+			payload: item.order
+		}, 'appId2'
+	);
+}
+
+ReactDOM.render(React.createElement(JnprCL.NavigatorComp, {
+	options: options,
+	appId: 'appId1',
+	onClick: onClick1
+}), document.getElementById('example1'));
+
+ReactDOM.render(React.createElement(JnprCL.NavigatorComp, {
+	options: options,
+	appId: 'appId2',
+	onClick: onClick2
+}), document.getElementById('example2'));
+</script>
+
+
+</html>

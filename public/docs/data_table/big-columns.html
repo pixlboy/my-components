@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+<title>Hello React Juniper!</title>
+<script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>
+<script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+<script src="/dist/jnpr-vendors.js"></script>
+<script src="/dist/jnpr-components.js"></script>
+
+<link rel="stylesheet" href="./jquery-ui.css">
+</head>
+
+
+<body>
+	<a
+		href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+		Documentation In Git</a>
+	<h3>Big columns Table - Internal Data Processing</h3>
+	<label>Columns:</label>
+	<input type="text" value="10" id="columns" />
+	<label>Rows:</label>
+	<input type="text" value="20" id='rows' />
+	<input type="button" onclick="draw()" value="submit"> 
+	Generate Data: <span id='spanTotal'></span>, loaded at: <span id='loaded'></span>
+	<div id="example3"></div>
+</body>
+
+
+<script type="text/javascript">
+
+  var generated = false;
+
+  var draw = function() {
+    
+    var startS = new Date().getTime();
+     
+    var newConfig = {
+      closeLeftPanelBtn : false,
+      hidingBottomPagePositioner : true,
+      columns : {}
+    };
+    for (var i = 0; i < document.getElementById('columns').value; i++) {
+      newConfig.columns['column' + i] = {
+        defaultColumn : true,
+        width : 120,
+        id : "column" + i,
+        type : "text",
+        title : "Column" + i,
+        sortable : true,
+        filterable : true,
+        key : i == 0 ? true : false
+      }
+    }
+    var newList = [];
+    for (var row = 0; row < document.getElementById("rows").value; row++) {
+      var rowData = {};
+      for (var column = 0; column < document.getElementById('columns').value; column++) {
+        rowData['column' + column] = "value_" + column;
+      }
+      newList.push(rowData);
+    }
+    var endS =  new Date().getTime();
+    document.getElementById('spanTotal').innerHTML=(endS-startS) +'ms, now ' + endS;
+	
+    var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+    jnprDataTableObj.setConfig(newConfig, "appId_1");
+    setTimeout(()=>{
+      jnprDataTableObj.dataList = newList;
+      //update number per page
+      jnprDataTableObj.setNumPerPageFor("appId_1", 10);
+    
+      var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+      var accountsStr = '{  "totalRecords": 6,  "accountsList": [    {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }  ]}';
+      var accountsList = JSON.parse(accountsStr).accountsList;
+      jnprDataTableObj.accountList = accountsList;
+      
+      ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+        nested : false,
+        appId : "appId_1",
+        loaded: function(){
+          document.getElementById('loaded').innerHTML= new Date().getTime() +" used: " + (new Date().getTime()-endS) +'ms';
+        },
+        destroy : function() {
+          setTimeout(function() {
+            ReactDOM.unmountComponentAtNode(document.getElementById('example3'));
+          }, 0);
+        }
+      }), document.getElementById('example3'));
+      
+      
+    }, 100);
+    
+    generated = true;
+  };
+
+ 
+
+  
+</script>
+
+
+</html>

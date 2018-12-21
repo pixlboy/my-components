@@ -1,0 +1,82 @@
+$activeColor: #2d6e8e;
+$inActiveColor: #ccc;
+
+.navWrapper{
+    position:  relative;
+    .navHRLine{
+        border: none;
+        border-top: 1px dotted $inActiveColor;
+    }
+    .navBody{
+        position: absolute;
+        top: -15px;
+        width: 100%;
+        .navContentHolder{
+            position: relative;
+        }
+        .navItemWrapper{
+            display: inline-block;
+            margin: auto;
+            .navItemCircle{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: inline-block;
+                font-size: 16px;
+                font-weight: bold;
+                background-color: $inActiveColor;
+                color: white;
+
+                .innerNumber{
+                    text-align: center;
+                    width: 100%;
+                    height: 100%;
+                    display: inherit;
+                    padding-top: 5px;
+                }
+            }
+
+            .navItemCircleActive{
+
+                border-radius: 50%;
+                border: 1px solid $activeColor;
+                background-color: white;
+                color: $activeColor;
+            }
+
+            .navItemCircleCurrentActive{
+                background-color: $activeColor;
+                color: white;
+            }
+
+            .navItemTitle{
+                font-weight: bold;
+                color: $inActiveColor;
+            }
+            .navItemTitleActive{
+                color: $activeColor;
+                font-weight: normal;
+            }
+
+            .navItemTitleCurrentActive{
+                color: $activeColor;
+                font-weight: bold;
+            }
+        }
+        .center{
+            text-align:  center;
+            position: absolute;
+        }
+
+        .last{
+            position: absolute;
+            text-align: right;
+            width: 150px;
+            right: 0px;
+        }
+        .clickable{
+            cursor: pointer;
+        }
+    }
+
+}

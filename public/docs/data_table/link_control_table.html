@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+<title>Hello React Juniper!</title>
+<script src="/lib/react-with-addons.js"></script>
+<script src="/lib/react-dom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+<script src="/dist/jnpr-vendors.js"></script>
+<script src="/dist/jnpr-components.js"></script>
+
+
+<link rel="stylesheet" href="/lib/jquery-ui.min.css">
+<style>
+.clicked {
+	background-color: #F2DEDE;
+	border: 1px solid #EBCCCC;
+}
+
+#rowNoticeMsg {
+	color: #A94442;
+	padding: 4px;
+	position: absolute;
+	left: 500px;
+}
+</style>
+</head>
+
+
+<body>
+	<a
+		href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+		Documentation In Git</a>
+	<h5>Link Control Table</h5>
+	<div id="example4"></div>
+
+</body>
+
+
+<script type="text/javascript">
+  var config = {
+    rowHeight : 29,
+    headerHeight : 35,
+    tableHeight : 348,
+    tableWidth : 800,
+    defaultGlobal : false,
+    hidingBottomPagePositioner : true,
+
+    extraDataControllerColumn : 'having_extra_data', //this is mandatory
+    extraDataShowingColumns : 'rma_id', //this is optional, you can also use ['rma_id, 'created_ts']
+    extraDataConfigIds : [ 'extra_data_config' ], //optional, mosted used for multiple tables
+	extraDataOffsets: [0, 20], // optional, used to place popup accurately
+	customizedPopUp: true, //optional, used to pass popup html content
+
+  	clickableColumnListNameForRow: 'clickable_columns',
+
+    columns : {
+      rma_id : {
+        id : "rma_id",
+        title : 'RMA #',
+        key : true,
+        sortable : true,
+        defaultColumn : true,
+        width : 200,
+        minWidth : 200,
+        flexGrows : 0,
+        //sendClickToParent : true
+      },
+      status : {
+        id : "status",
+        title : 'Status',
+        sortable : true,
+        defaultColumn : true,
+        width : 200,
+        flexGrows : 1
+      },
+      created_ts : {
+        id : "created_ts",
+        title : 'Created TimeStamp',
+        sortable : true,
+        defaultColumn : true,
+        width : 200,
+        flexGrows : 1
+      },
+      created_dt : {
+        id : "created_dt",
+        title : 'Created DateTime',
+        sortable : true,
+        defaultColumn : true,
+        width : 200,
+        flexGrows : 1,
+        type : "customDate",
+        editable : true,
+        noToolTip: true
+      },
+      having_extra_data : {
+        id : 'extra_data_controller',
+        hidden : true
+      }
+    }
+  };
+
+  var config_popup = {
+    rowHeight : 29,
+    headerHeight : 35,
+    tableHeight : 348,
+    tableWidth : 800,
+    defaultGlobal : false,
+    hidingBottomPagePositioner : true,
+
+    columns : {
+      replace_id : {
+        id : "replace_id",
+        title : 'Replacement Item #',
+        key : true,
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        minWidth : 100,
+        flexGrows : 0,
+        sendClickToParent : true
+      },
+      replace_status : {
+        id : "replace_status",
+        title : 'Replacement Status',
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        flexGrows : 1
+      },
+      replace_serial : {
+        id : "replace_serial",
+        title : 'Replacement Serial #',
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        flexGrows : 1
+      },
+      defective_item_id : {
+        id : "defective_item_id",
+        title : 'Defective Item #',
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        flexGrows : 1
+      },
+      defective_serial : {
+        id : "defective_serial",
+        title : 'Defective Serial #',
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        flexGrows : 1
+      },
+      defective_product_id : {
+        id : "defective_product_id",
+        title : 'Defective Product ID',
+        sortable : true,
+        defaultColumn : true,
+        width : 100,
+        flexGrows : 1
+      },
+    }
+  };
+
+  var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+
+  jnprDataTableObj.setConfig(config, "rma");
+
+  jnprDataTableObj.setAdditionalConfigFor("rma", 'extra_data_config',
+      config_popup);
+
+  jnprDataTableObj.dataList = [ {
+    "rma_id" : "R2892124-1",
+    "status" : "Open",
+    "created_ts" : 1498147871000,
+    'created_dt' : '2017-04-01 12:00:00',
+    "having_extra_data" : true,
+    "clickable_columns": "rma_id"
+  }, {
+    "rma_id" : "R4546321",
+    "status" : "Dispatch",
+    "created_ts" : 1498127871000,
+    'created_dt' : '2017-05-01 12:00:00',
+    "having_extra_data" : false,
+    "clickable_columns": "rma_id"
+  }, {
+    "rma_id" : "R45463123",
+    "status" : "Complete",
+    "created_ts" : 1498115871000,
+    'created_dt' : '2017-06-01 12:00:00',
+    "having_extra_data" : false,
+    "clickable_columns": "rma_id"
+  }, {
+    "rma_id" : "R45463413",
+    "status" : "Dispatch",
+    "created_ts" : 1498100871000,
+    'created_dt' : '2017-07-01 12:00:00',
+    "having_extra_data" : false,
+    "clickable_columns": "status"
+  }, {
+    "rma_id" : "R45463113",
+    "status" : "Dispatch",
+    "created_ts" : 1498101871000,
+    'created_dt' : '2017-08-01 12:00:00',
+    "having_extra_data" : true,
+    "clickable_columns": ""
+  } ];
+
+  var callBack = function() {
+    jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0)
+        .concat(jsonObj1.ibaseList);
+    jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+  };
+
+  var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcscPlain;
+
+  var changeValueHandler = function(item, key, valNew){
+    console.log('changing item');
+    console.log(item);
+    console.log(key);
+    console.log(valNew);
+  }
+
+  var extraDataCallBack = function(data) {
+    console.log('showing details for ');
+    console.log(data);
+
+    var extraData = {
+      extra_data_config : [ {
+        replace_id : '',
+        replace_status : 'Complete',
+        replace_serial : 'CABN6194',
+        defective_item_id : '',
+        defective_serial : 'CAAZ2876',
+        defective_product_id : 'MPC4W-3D-32XGE-SFPP'
+      }, {
+        replace_id : '',
+        replace_status : 'Complete',
+        replace_serial : 'CABN6195',
+        defective_item_id : '',
+        defective_serial : 'CAAZ2877',
+        defective_product_id : 'MPC4W-3D-32XGE-SFPP'
+      } ]
+    }
+
+    if(config.customizedPopUp){
+      var content =
+       `<table style='width:200px' border=1>
+      		<thead>
+      			<tr>
+      				<th>col1</th><th>col2</th><th>col3</th>
+      			</tr>
+      		</thead>
+      		<tbody>
+	      		<tr>
+					<td>col1</td><td>col2</td><td>col3</td>
+				</tr>
+				<tr>
+					<td>col1</td><td>col2</td><td>col3</td>
+				</tr>
+				<tr>
+					<td>col1</td><td>col2</td><td>col3</td>
+				</tr>
+      		</tbody>
+      	</table>`;
+
+      jnprDataTableObj.setExtraData('rma', content);
+    }else{
+      jnprDataTableObj.setExtraData('rma', extraData);
+    }
+
+  }
+  var cellClicked=function(data){
+    console.log( data );
+  }
+
+  ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+    appId : "rma",
+    extraDataCallBack : this.extraDataCallBack.bind(this),
+    changeValueHandler: this.changeValueHandler.bind(this),
+    cellClicked: this.cellClicked.bind(this),
+  }), document.getElementById('example4'));
+</script>
+
+
+</html>

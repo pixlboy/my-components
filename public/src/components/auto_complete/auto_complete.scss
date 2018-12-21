@@ -1,0 +1,149 @@
+$defaultColor: #2d6e8e;
+$backGroundColor: #24536A;
+$blueColor: #2B5C73;
+$foreGroundColor: white;
+
+.autoComplete {
+	width: 260px;
+	margin-bottom:5px;
+	.autoComplete-title {
+		font-size: 12px;
+		padding: 5px;
+		cursor: pointer;
+		background: $backGroundColor;
+		color: $foreGroundColor;
+		height:20px;
+		.ac-selected-content{
+			display: inline-block;
+			width: 87%;
+			white-space: nowrap;
+	 		overflow: hidden;
+	 		text-overflow: ellipsis;
+			// ecllipse:
+		}
+		.actions-icon {
+			display: inline-block;
+			font-size: 24px;
+			color: $foreGroundColor;
+			float: right;
+		}
+
+		.down:before {
+			font-family: Material Icons;
+			content: "\E5CF";
+		}
+
+		.up:before {
+			font-family: Material Icons;
+			content: "\E5CE";
+		}
+	}
+
+	.autoComplete-wrapper {
+		background-color: $blueColor;
+		color: $foreGroundColor;
+		width: 260px;
+		position: absolute;
+		z-index: 2;
+		height: auto;
+		display: block;
+		left: -0px;
+
+		.autoComplete-header {
+			padding-left: 8px;
+			border-bottom: 0.5px solid #FFFFFF;
+			.multiselect-selectall-btn {
+
+				.mdl-checkbox__focus-helper{
+					background-color: transparent;
+				}
+				.mdl-checkbox__box-outline{
+					border: 2px solid #fff;
+				}
+				.mdl-checkbox__tick-outline{
+					background-color: transparent;
+				}
+				&.is-checked{
+					.mdl-checkbox__box-outline{
+						background-color: transparent;
+					}
+					.mdl-checkbox__tick-outline{
+						background-color: #fff;
+					}
+
+				}
+
+				.mdl-checkbox__label {
+					font-size: 12px;
+				}
+			}
+		}
+
+		.autoComplete-container {
+			input {
+				outline: none;
+				min-height: 20px;
+				width: 90%;
+				padding: 0 5px;
+				margin: 5px;
+			}
+
+			.autoComplete-ulWrapper {
+				margin: 5px;
+				position: relative;
+				height: 150px;
+
+				.autoComplete-options {
+					line-height: 1;
+					padding: 0;
+					margin: 0;
+					width: 100%;
+					height: 100%;
+					/*overflow: auto;*/
+
+					li {
+						position: relative;
+						color: $foreGroundColor;
+						list-style: none;
+						padding: 2px;
+						font-size: 12px;
+						height: 20px;
+						cursor: pointer;
+
+						.selectedIcon {
+							vertical-align: middle;
+							display: inline-block;
+
+							&:before {
+								display: inline-block;
+								font-family: Material Icons;
+								content: "\E834";
+								font-size: 17px;
+							}
+
+							&.auto_complete_hide {
+								// visibility: hidden;
+								&:before {
+									display: inline-block;
+									font-family: Material Icons;
+									content: "\E835";
+									font-size: 17px;
+								}
+							}
+						}
+
+						.title {
+							white-space: nowrap;
+							overflow: hidden;
+							position: absolute;
+							text-overflow: ellipsis;
+							margin-left: 5px;
+							margin-top: 3px;
+						}
+					}
+
+				}
+			}
+		}
+	}
+}

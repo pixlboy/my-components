@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+</head>
+
+
+
+<body>
+	<h5>Checkbox Document</h5>
+	<div id="output" class='output'></div>
+	<div id='result'></div>
+	<hr/>
+
+	<section>
+		<h5>Explanation</h5>
+		<p>
+			<b>Goal of Component:</b>
+		Simplify the usage of checkbox component
+		</p>
+		<p>
+			<b>Usage of Component:</b>
+			<pre>
+				var CheckBox = JnprCL.CheckBox;
+				var onChange = function(checked){
+					document.getElementById('result').innerHTML = "checked result: " + checked;
+				};
+				ReactDOM.render(React.createElement(CheckBox, {
+					label: "Select",
+					default: true,
+					onChange: this.onChange.bind(this)
+				}), document.getElementById('output'));
+			</pre>
+			<ol>
+				<li>label (optional): label for the checkbox</li>
+				<li>default (optional): true|false,  false by default. Initial checkBox status</li>
+				<li>onChange: callback handler when you change the checkbox select status</li>
+			</ol>
+		</p>
+
+	</section>
+
+
+</body>
+
+
+<script type="text/javascript">
+var CheckBox = JnprCL.CheckBox;
+var onChange = function(checked){
+	document.getElementById('result').innerHTML = "checked result: " + checked;
+};
+ReactDOM.render(React.createElement(CheckBox, {
+	label: "Select",
+	default: true,
+	onChange: this.onChange.bind(this)
+}), document.getElementById('output'));
+</script>
+
+
+</html>

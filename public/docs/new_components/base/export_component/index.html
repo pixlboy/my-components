@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+</head>
+
+
+
+<body>
+	<h5>Export Component Document</h5>
+	<div id="output" class='output'></div>
+	<input type="button" value="using service to download" onclick="download()" />
+	<hr/>
+
+	<section>
+		<h5>Explanation</h5>
+		<p>
+			<b>Goal of Component:</b>
+			<ol>
+				<li>
+					Provide easy way to export customer data
+				</li>
+				<li>
+					Only in-app export, do not use for global export, where, you need to call backend API to export
+				</li>
+				<li>
+					Only CSV format, no excelsheet support is provided yet.
+				</li>
+			</ol>
+		</p>
+
+		<p>
+			<b>Usage of Component:</b>
+			<pre>
+				var ExportComponent = JnprCL.ExportComponent;
+				ReactDOM.render(React.createElement(ExportComponent, {
+					titles: ['column1', 'column2', 'column3'],
+					dataList: [
+					['row1_col1', 'row1_col2','row1_col3'],
+					['row2_col1', 'row2_col2','row2_col3']
+					],
+					exportFileName: 'myFile.csv'
+				}), document.getElementById('output'));
+			</pre>
+			<ol>
+				<li>titles: list of column titles for csv file</li>
+				<li>dataList: list of rows data, and each row data is another list of cell data</li>
+			</ol>
+		</p>
+
+		<p>
+			<b>Use of service directly</b>
+			In case you do not want to use this icon to download, you can use service directly. Please follow below:
+
+				<pre>
+					var service = new JnprCL.ExportService(
+						['column1', 'column2', 'column3'],
+						[
+							['row1_col1', 'row1_col2','row1_col3'],
+							['row2_col1', 'row2_col2','row2_col3']
+						]
+					);
+					service.download(true);
+				</pre>
+
+				And the constructor of the function is as below:
+
+				<pre>
+					constructor(titles, dataList , fileName, separator, addQuotes){
+						
+					}
+				</pre>
+		</p>
+
+	</section>
+
+
+</body>
+
+
+<script type="text/javascript">
+var ExportComponent = JnprCL.ExportComponent;
+ReactDOM.render(React.createElement(ExportComponent, {
+	titles: ['column1', 'column2', 'column3'],
+	dataList: [
+		['row1_col1', 'row1_col2','row1_col3'],
+		['row2_col1', 'row2_col2','row2_col3']
+	],
+	exportFileName: 'myFile.csv'
+}), document.getElementById('output'));
+
+var download = function(){
+	console.log('downlaoding ');
+	var service = new JnprCL.ExportService(
+		['column1', 'column2', 'column3'],
+		[
+			['row1_col1', 'row1_col2','row1_col3'],
+			['row2_col1', 'row2_col2','row2_col3']
+		]
+	);
+	service.download(true);
+}
+
+</script>
+
+
+</html>

@@ -1,0 +1,48 @@
+.inputBoxWrapper {
+	border: 1px solid #9f9f9f;
+	width: 100%;
+
+	input {
+		width: 98%;
+		padding-right: 0px;
+		padding-left: 0px;
+		border-left-width: 0px;
+		border-right-width: 0px;
+		height: 30px;
+		font-size: 14px;
+		padding-left: 5px;
+	}
+
+	.blocksContent {
+		min-height: 30px;
+		display: inline-block;
+
+		.mdl-chip__text {
+			font-size: 14px;
+		}
+		.material-icons {
+			font-size: 18px;
+		}
+		.mdl-chip {
+			margin-right: 5px;
+		}
+	}
+
+	.leftOverContent {
+		position: relative;
+	}
+
+	.add-button {
+		background: #0595bf;
+		border: 0;
+		color: #fff;
+		cursor: pointer;
+		font-size: 28px;
+		height: 34px;
+		line-height: 28px;
+		outline: none;
+		position: absolute;
+		right: 1px;
+		top: 1px;
+	}
+}

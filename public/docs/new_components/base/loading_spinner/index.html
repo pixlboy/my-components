@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+</head>
+
+<body>
+	<h5>Loading Spinner Document</h5>
+	<button onclick="toggle()">show loader</button>
+	<div id="output" class='output'></div>
+
+	<h5>Documentation</h5>
+	<iframe width="100%" height="500px" frameBorder="0" src="./README.md"></iframe>
+
+</body>
+
+<script type="text/javascript">
+var toggle=function(){
+	loaderComp.show();
+	setTimeout(function(){
+		loaderComp.hide();
+	}, 5000);
+}
+
+
+var LoadingSpinner = JnprCL.LoadingSpinner;
+var loaderComp = ReactDOM.render(React.createElement(LoadingSpinner), document.getElementById('output'));
+</script>
+
+
+
+</html>

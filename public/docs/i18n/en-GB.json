@@ -1,0 +1,17 @@
+{
+    "pageId":{
+        "jnpr_001":"English(UK) Key Trans",
+        "jnpr_002": "Hello %1 %2"
+    },
+    "home":{
+        "jnpr_003": "Login",
+        "jnpr_004": "Hello",
+        "jnpr_005": "Hi"
+    },
+    "errors":{
+        "300": "300 error - gb",
+        "301": "301 error - gb",
+        "401": "401 error - gb",
+        "501": "501 error - gb"
+    }
+}

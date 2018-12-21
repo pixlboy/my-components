@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Using ReactJS with AngularJS</title>
+		<link rel="stylesheet" href="/lib/jquery-ui.min.css">
+    </head>
+	<body>
+		<h1>Using ReactJS with AngularJS</h1>
+		<div id='app1' ng-controller="ReactTableCtrl">
+			<h5>My Data Table</h5>
+			<a href="javascript:void(0)" ng-click="refreshTable();" >Clear</a>
+			<div id="datatable" style="height:500px;"></div>
+		</div>
+		<script src="lib/jquery-2.1.4.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		<script src="lib/react-with-addons.min.js"></script>
+		<script src="lib/react-dom.min.js"></script>
+		<!-- <script src="lib/browser.min.js"></script> -->
+		<script src="dist/jnpr-components.js"></script>
+		<script>
+			var app = angular.module('app', []);
+			app.controller('ReactTableCtrl',['$scope', function ($scope) {
+
+			var jsonObj1= {
+					"pageSize": 5,
+					"totalRecords": 9,
+					"caseList": [{
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370584906630807",
+							"srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581765184803",
+							"targetVertexId": "2015-1215-T-1004"
+						},
+						"srId": "<strong>2015-1215-T-1004</strong>",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2015-12-15 11:09:57",
+						"lastModifiedDate": "2016-01-04 14:55:45",
+						"closedDate": "2016-01-04 14:55:45",
+						"prodSeries": "T-Series",
+						"platform": "T4000",
+						"description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100161653",
+						"serialNo": "JN11BFEA0AHA",
+						"custCaseNo": "TK10000286 RF30006872",
+						"relatedContent": {
+							"prIds": null,
+							"kbIds": null
+						},
+						"accountName": "KDDI GW"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						//"srId": null,
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						"srId": "2014-0311-T-1220",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						"srId": "2014-0311-T-1220",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						"srId": "2014-0311-T-1220",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						"srId": "2014-0311-T-1220",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}, {
+						"primaryKey": {
+							"propKey": "lastModified",
+							"propValue": null,
+							"propValueNum": "9223370636327863807",
+							"srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",
+							"label": "sr",
+							"direction": "-->",
+							"defaultIndexSequence": null,
+							"reverseTimeStamp": "9223370581768439789",
+							"targetVertexId": "2014-0311-T-1220"
+						},
+						"srId": "2014-0311-T-1220",
+						"caseType": null,
+						"caseTypeDesc": "Technical Service Request",
+						"priorityKey": "02",
+						"priority": "P2 - High",
+						"createDate": "2014-03-11 11:25:59",
+						"lastModifiedDate": "2014-05-19 12:15:12",
+						"closedDate": "2014-05-19 12:14:02",
+						"prodSeries": "MX-Series",
+						"platform": "MX480",
+						"description": "027112T1403110012 IIJ MX480 Configured M",
+						"status": "Closed",
+						"statusKey": "E0008",
+						"reason": null,
+						"release": null,
+						"reporter": null,
+						"routerName": null,
+						"accountId": "0100082295",
+						"serialNo": "JN11F3F63AFB",
+						"custCaseNo": "027112T1403110012",
+						"relatedContent": {
+							"prIds": "PR975797",
+							"kbIds": "KB28918"
+						},
+						"accountName": "NOS-IIJ"
+					}]
+				};
+
+	  		var config = {
+				rowHeight: 80,
+				headerHeight: 80,
+				tableHeight: 300,
+				tableWidth: window.innerWidth - 20,
+				columnFilterable: true,
+				showGlobalCheckbox: false,
+				defaultGlobal: false,
+				globalAutoComplete: false,
+				caseManagerLink: "/#/caseDetails/", //this is only for caseManagerLink
+				columns: {
+					srId: {
+						defaultColumn: true,
+						width: 100,
+						flexGrows: 1,
+						id: "srId",
+						type: "html",
+						title: "Case ID",
+						sortable: true,
+						filterable: true,
+						editable: true,
+						sendClickToParent: true
+					  },
+					  priority: {
+						defaultColumn: true,
+						width: 100,
+						flexGrows: 1,
+						id: "priority",
+						type: "groupedCheckBox",
+						title: "Priority",
+						sortable: true,
+						filterable: true,
+						editable: true,
+						items: ["P1 - XXXX", "P2 - High","P3 - Medium","P4 - Low"]
+					  },
+
+					  caseType:{
+					  defaultColumn: false,
+						width: 100,
+						flexGrows: 1,
+						id: "caseType",
+						type: "text",
+						title: "Case Type",
+						sortable: true,
+						filterable: true,
+						editable: true
+					  },
+
+					  createDate: {
+						defaultColumn: true,
+						width: 200,
+						flexGrows: 0,
+						id: "createDate",
+						type: "customDate",
+						title: "Create Date",
+						sortable: true,
+						filterable: true,
+						editable: false
+
+					  },
+
+					  lastModifiedDate: {
+						defaultColumn: false,
+						width: 250,
+						flexGrows: 1,
+						id: "lastModifiedDate",
+						type: "customDate",
+						title: "Last Modified Date",
+						sortable: true,
+						filterable: true,
+						editable: false
+					  },
+
+					  prodSeries: {
+						defaultColumn: false,
+						width: 250,
+						flexGrows: 1,
+						type: "text",
+						id: "prodSeries",
+						title: "Product Series",
+						sortable: true,
+						filterable: true,
+						editable: false
+					  },
+
+					  platform: {
+						defaultColumn: false,
+						width: 100,
+						flexGrows: 0,
+						type: "text",
+						id: "platform",
+						title: "Platform",
+						sortable: true,
+						filterable: true,
+						editable: false
+					  },
+
+					  description: {
+						defaultColumn: false,
+						width: 200,
+						flexGrows: 2,
+						type: "text",
+						id: "description",
+						title: "Description",
+						sortable: true,
+						filterable: true,
+						editable: true
+					  },
+
+					  status: {
+						defaultColumn: false,
+						width: 100,
+						flexGrows: 1,
+						type: "groupedCheckBox",
+						id: "status",
+						title: "Status",
+						sortable: true,
+						filterable: true,
+						editable: true,
+						items: ["Awaiting Customer","Pending Closure","In Process","Closed"]
+					  },
+
+					  serialNo: {
+						defaultColumn: false,
+						width: 100,
+						flexGrows: 1,
+						type: "text",
+						id: "serialNo",
+						title: "Serial No.",
+						sortable: true,
+						filterable: true
+					  },
+
+					  custCaseNo: {
+						defaultColumn: false,
+						width: 150,
+						flexGrows: 1,
+						type: "text",
+						id: "custCaseNo",
+						title: 'Customer #',
+						sortable: true,
+						filterable: true,
+						editable: false
+					  },
+
+					  relatedContent:{
+					  defaultColumn: false,
+						width: 100,
+						flexGrows: 1,
+						type: "list",
+						title: "Related Contents",
+						sortable: false,
+						filterable: false,
+						editable: false,
+						children:{
+						// prIds:{
+						// title: "Problem Report"
+						// },
+						// kbIds:{
+						// title: "Knowledge Base"
+						// }
+						}
+					  },
+
+					  accountId:{
+					  defaultColumn: false,
+						width: 200,
+						flexGrows: 1,
+						type: "text",
+						id: "accountId",
+						title: "Account Id",
+						sortable: true,
+						filterable: true,
+						editable: false
+					  },
+
+					  accountName: {
+						defaultColumn: false,
+						width: 200,
+						flexGrows: 1,
+						type: "text",
+						id: "accountName",
+						title: "Account Name",
+						sortable: true,
+						filterable: true,
+						editable: false
+					}
+				}
+			};
+
+	  var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+	  jnprDataTableObj.setConfig(config, "appId_1");
+
+	  jnprDataTableObj.dataList = jsonObj1.caseList;
+	  jnprDataTableObj.grandTotalRecords = jsonObj1.caseList.length;
+
+	  if(localStorage.getItem('jnpr_datatable_custom_config')){
+	    jnprDataTableObj.allCustomConfigurations = JSON.parse(localStorage.getItem('jnpr_datatable_custom_config'));
+	  }
+
+	  var callBack = function() {
+	    jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0).concat(jsonObj1.caseList);
+	    jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+	  };
+
+	  var updateConfig = function(){
+	  	config.tableWidth = config.tableWidth+50;
+	  	jnprDataTableObj.config = config;
+	  };
+
+	  var changeValueHandler=function(obj,col,newValue){
+	  	console.log(obj);
+	  	console.log(col);
+	  	console.log(newValue);
+	  };
+
+	  var sortHandler=function(key, up){
+	  	console.log( key );
+	  	console.log( up );
+	  };
+
+	  var filterHandler=function(filterObject){
+	  	console.log(filterObject);
+	  };
+
+	  var saveConfigCallBack=function(configObject){
+	    localStorage.setItem('jnpr_datatable_custom_config', JSON.stringify(configObject));
+	    console.log( configObject );
+	  };
+
+	  var cellClicked = function(event, cell){
+		  console.log("cell", event);
+		   console.log("cellData", event[cell]);
+	  }
+	    var JnprDataTableJtwb = JnprCL.JnprDataTableJtwb;
+
+		ReactDOM.render(React.createElement(JnprDataTableJtwb, {
+			nextPageCallBack: callBack.bind(this),
+			changeValueHandler: changeValueHandler.bind(this),
+			sortHandler: sortHandler.bind(this),
+			filterHandler: filterHandler.bind(this),
+			cellClicked : cellClicked.bind(this),
+			hideControls : false,
+			nested: false,
+			styleType: "ngcsc",
+			appId: "appId_1",
+			saveConfigCallBack: saveConfigCallBack.bind(this),
+			caseManagerLink: 'https://stage.juniper.net/casemanager/#/cmdetails/',
+			destroy: function(){
+				setTimeout(function(){
+					ReactDOM.unmountComponentAtNode(document.getElementById('datatable'));
+				}, 0);
+			}
+		}), document.getElementById('datatable'));
+
+		$scope.refreshTable = function(){
+			jQuery(".clearAllFilters").click();
+			console.log("triggered");
+			return false;
+		};
+
+		}]);
+
+		angular.bootstrap(document.getElementById('app1'), ['app']);
+
+		</script>
+
+	</body>
+</html>

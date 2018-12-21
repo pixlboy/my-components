@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+</head>
+
+
+<body>
+	<h5>Simplified Data Grid</h5>
+	<div id="simplifiedDataGrid"></div>
+	<hr/>
+
+	<section>
+		<h5>Explanation</h5>
+		<p>
+			<b>Goal of Component:</b>
+			<ol>
+				<li>
+					Simplified data grid, without the complicated functions as data  table
+				</li>
+				<li>
+					Ideal for pop up list of the erros, reasons etc.
+				</li>
+				<li>
+					No sorting, filtering provided, based on pure HTML table
+				</li>
+			</ol>
+		</p>
+		<p>
+			<b>Usage of Component:</b>
+
+			<ul>
+				<li>
+					Step 1: create configuration:
+					<pre>
+						var config = {
+							title: "Grid Title",
+							columns: ['column1', 'column2', 'column3'],
+							rows: [
+								['row1_col1', 'row1_col2','row1_col3'],
+								['row2_col1', 'row2_col2','row2_col3'],
+								['row3_col1', 'row3_col2','row3_col3'],
+								['row4_col1', 'row4_col2','row4_col3'],
+								['row1_col1', 'row1_col2','row1_col3'],
+								['row2_col1', 'row2_col2','row2_col3'],
+								['row3_col1', 'row3_col2','row3_col3'],
+								['row4_col1', 'row4_col2','row4_col3'],
+								['row1_col1', 'row1_col2','row1_col3'],
+								['row2_col1', 'row2_col2','row2_col3'],
+								['row3_col1', 'row3_col2','row3_col3'],
+								['row4_col1', 'row4_col2','row4_col3']
+							]
+						}
+					</pre>
+				</li>
+				<li>
+					Step 2: Render Grid:
+					<pre>
+						var onClose = function(){
+							ReactDOM.unmountComponentAtNode(document.getElementById('simplifiedDataGrid'));
+						}
+
+						var SimplifiedDataGrid = JnprCL.SimplifiedDataGrid;
+						ReactDOM.render(React.createElement(SimplifiedDataGrid, {
+							onClose: this.onClose.bind(this),
+							config: config
+						}), document.getElementById('simplifiedDataGrid'));
+					</pre>
+
+					<ol>
+						<li>You need to pass configruation created at step 1 when creating the component</li>
+						<li>You need to add onClose() handler to handle closing function of the table. </li>
+					</ol>
+				</li>
+			</ul>
+
+
+
+		</p>
+	</section>
+</body>
+
+
+<script type="text/javascript">
+
+var config = {
+	title: "Grid Title",
+	columns: ['column1', 'column2', 'column3'],
+	rows: [
+		['row1_col1', 'row1_col2','row1_col3'],
+		['row2_col1', 'row2_col2','row2_col3'],
+		['row3_col1', 'row3_col2','row3_col3'],
+		['row4_col1', 'row4_col2','row4_col3'],
+		['row1_col1', 'row1_col2','row1_col3'],
+		['row2_col1', 'row2_col2','row2_col3'],
+		['row3_col1', 'row3_col2','row3_col3'],
+		['row4_col1', 'row4_col2','row4_col3'],
+		['row1_col1', 'row1_col2','row1_col3'],
+		['row2_col1', 'row2_col2','row2_col3'],
+		['row3_col1', 'row3_col2','row3_col3'],
+		['row4_col1', 'row4_col2','row4_col3']
+	]
+}
+
+var onClose = function(){
+	ReactDOM.unmountComponentAtNode(document.getElementById('simplifiedDataGrid'));
+}
+
+var SimplifiedDataGrid = JnprCL.SimplifiedDataGrid;
+ReactDOM.render(React.createElement(SimplifiedDataGrid, {
+	onClose: this.onClose.bind(this),
+	config: config
+}), document.getElementById('simplifiedDataGrid'));
+</script>
+
+
+</html>

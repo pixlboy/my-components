@@ -1,0 +1,42 @@
+.progressBarWrapper{
+	
+	position: relative;
+    width: 400px;
+    border: solid 1px #ccc;
+	
+	.btnClose{
+		position:absolute;
+		right: 8px;
+		top: 8px;
+		cursor: pointer;
+		color: #2A6D8E;
+		font-size: 16px;
+	}
+	.mdl-progress{
+		max-width: 98%;
+	}
+	
+	.itemWrapper{
+		font-size: smaller;
+	    margin-top: 20px;
+	    margin-left: 10px;
+	    .lineItem{
+	    	margin-top:5px;
+	    	margin-bottom: 8px;
+	    }
+	}
+	
+	.mdl-progress > .progressbar {
+	    background-color:#939393;
+	}
+	.mdl-progress > .bufferbar {
+		background-color:#EEEEEE;
+		background-image: linear-gradient(to right, rgba(255,255,255, 0.7), 
+		rgba(255,255,255, 0.7)), 
+		linear-gradient(to right, #939393,#939393);
+	
+	}
+	.mdl-progress{
+		height: 6px;
+	}
+}

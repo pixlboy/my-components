@@ -1,0 +1,17 @@
+{
+    "pageId":{
+        "jnpr_001":"English(US) Key Trans",
+        "jnpr_002": "Hello %1 %2"
+    },
+    "home":{
+        "jnpr_003": "Login - US",
+        "jnpr_004": "Hello -US",
+        "jnpr_005": "Hi -US"
+    },
+    "errors":{
+        "300": "300 error - us",
+        "301": "301 error - us",
+        "401": "401 error - us",
+        "501": "501 error - us"
+    }
+}

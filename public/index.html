@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="lib/react-with-addons.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="lib/browser.min.js"></script>
+    <script src="dist/jnpr-vendors.js"></script>
+    <script src="dist/jnpr-components.js"></script>
+
+
+</head>
+
+<script type="text/babel">
+    var RudexTestComponents = JnprCL.RudexTestComponents; ReactDOM.render(
+    <RudexTestComponents appId="app1" />, document.getElementById('example1') ); ReactDOM.render(
+    <RudexTestComponents appId="app2" />, document.getElementById('example2') );
+</script>
+
+<body>
+
+    <h5>Demo Using Rudex with React</h5>
+    <table>
+        <tr>
+            <td>
+                <div id="example1" style="border:1px solid"></div>
+                <input type="button" onClick="add1();" value="+" />
+                <input type="button" onClick="remove1();" value="-" />
+            </td>
+            <td>
+                <div id="example2" style="border:1px solid"></div>
+                <input type="button" onClick="add2();" value="+" />
+                <input type="button" onClick="remove2();" value="-" />
+            </td>
+        </tr>
+    </table>
+
+
+    <script type="text/javascript">
+        var S = JnprCL.RudexTestComponentStore;
+        var newStore = JnprCL.NewStoreFactory;
+        var add1 = function() {
+            S('app1').addCounter();
+        }
+        var remove1 = function() {
+            S('app1').removeCounter();
+        }
+        var add2 = function() {
+            S('app2').addCounter();
+        }
+        var remove2 = function() {
+            S('app2').removeCounter();
+        }
+    </script>
+
+    <hr/>
+
+    <h4><u>New Components</u></h4>
+
+    <h5><i>Base Components</i></h5>
+    <ul>
+        <li> <a href='docs/new_components/base/close_button/index.html'>Close Button</a></li>
+        <li> <a href='docs/new_components/base/export_component/index.html'>Export Component</a></li>
+        <li> <a href='docs/new_components/base/date_picker/index.html'>Date Picker</a></li>
+        <li> <a href='docs/new_components/base/checkbox/index.html'>CheckBox</a></li>
+        <li> <a href='docs/new_components/advanced/input_grouping_component/index.html'>Input Grouping Length Validation Comp</a></li>
+        <li> <a href='docs/new_components/base/loading_spinner/index.html'>Loading Spinner Comp</a></li>
+    </ul>
+    <h5><i>Advanced Components</i></h5>
+    <ul>
+        <li> <a href='docs/new_components/advanced/drop_down_input_list/index.html'>DropDown Comp Box (single/multiple/number etc)</a></li>
+        <li> <a href='docs/new_components/advanced/file_selector/index.html'>File Selector</a></li>
+        <li> <a href='docs/new_components/advanced/xls_file_selector_reader/index.html'>XLS/XLSX File Selector/Parsing Component</a></li>
+        <li> <a href='docs/new_components/advanced/simplified_data_grid/index.html'>Simplified Data Grid</a></li>
+        <li> <a href='docs/new_components/advanced/tabbedWrappercomp/index.html'>Pop Up Tabbed Table Component</a></li>
+        <li> <a href='docs/new_components/advanced/confirmation_popup/index.html'>Confirmation PopUp</a></li>
+        <li> <a href='docs/new_components/advanced/radioOptionsGroup/index.html'>Radio Options Group Component</a></li>
+        <li> <a href='docs/new_components/advanced/live-search/index.html'>Live Search</a></li>
+    </ul>
+
+    <h4><u>Old Components</u></h4>
+
+    <ul>
+        <li> <a href='docs/data_table/index.html'>Juniper Data Table</a></li>
+        <li> <a href='docs/data_table/sweep_table.html'>Sweep Table</a></li>
+        <li> <a href='docs/data_table/simple-demo-table.html'>Various cell type table</a></li>
+        <li> <a href='docs/widget_chooser/index.html'>Juniper Widget Chooser</a></li>
+        <li> <a href='docs/data_table/contracts_table.html'>NGCSC Contracts Table</a></li>
+        <li> <a href='docs/data_table/installbases_table.html'>NGCSC Installbases Table</a></li>
+        <li> <a href='docs/data_table/simplified_regular_table.html'>NGCSC Simplified Table</a></li>
+        <li> <a href='docs/data_table/combined_tables.html'>Multiple tables, Cases + Contracts</a></li>
+        <li> <a href='docs/data_table/combined_tables2.html'>Big Columns Table</a></li>
+        <li> <a href='docs/data_table/plain_datatable.html'>Plain DataTable, no left control panel</a></li>
+        <li> <a href='docs/data_table/big-columns.html'>Configurable Table</a></li>
+        <li> <a href='docs/data_table/big-columns-faster.html'>Configurable Table - Faster</a></li>
+        <li> <a href='docs/dropdown_list/index.html'>DropDoewn List</a></li>
+        <li> <a href='docs/input_box/index.html'>Input Box</a></li>
+        <li> <a href='docs/uploader/index.html'>Uploader</a></li>
+        <li> <a href='docs/data_table/rma_table.html'>RMA</a></li>
+        <li> <a href='docs/data_table/link_control_table.html'>Link Control Table</a></li>
+        <li> <a href='docs/auto_complete/index.html'>Auto Complete</a></li>
+        <li> <a href='docs/i18n/index.html'>I18N support</a></li>
+        <li> <a href='docs/navigator/index.html'>Navigator Comp</a></li>
+
+    </ul>
+
+</body>
+
+</html>

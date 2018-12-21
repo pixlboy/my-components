@@ -1,0 +1,81 @@
+.actionBtnComp {
+   display: inline-block;
+   // float: right;
+   justify-content: flex-end;
+   button {
+      font-size: 14px;
+      min-width: 80px;
+      margin-right: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      text-transform: capitalize;
+      color: #fff;
+      border: none;
+      border: 1px solid grey;
+      border-radius: 2px;
+      outline: none;
+      background: grey;
+      // pointer-events: none;
+      &.active{
+         border: 1px solid #2d6e8e;
+         background: #2d6e8e;
+         // pointer-events: visible;
+      }
+      .actions-icon {
+         display: inline-block;
+         font-size: 14px;
+         margin-left: 7px;
+         color: #fff;
+         &.up:before {
+            font-family: 'Material Icons';
+            content: '\E316';
+         }
+         &.down:before {
+            font-family: 'Material Icons';
+            content: '\E313';
+         }
+      }
+   }
+}
+.actions-options-list {
+   height: auto;
+    width: 130px;
+    border-radius: 3px;
+    border-top: .5px solid #fff;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1002;
+    color: grey;
+    margin-top: 2px;
+   cursor: default;
+      pointer-events: none;
+    .active{
+    	color: #2a6d8e;
+      cursor: pointer;
+      text-decoration: none;
+      pointer-events:  auto;
+      a{
+         color: #2a6d8e;
+      }
+    }
+   ul {
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+      border: 0.5px solid #d6d6d6;
+      padding: 0 4px;
+      margin: 0;
+      li {
+         list-style: none;
+         width:100%;
+         padding: 3px;
+         font-size: 13px;
+         border-top: solid 0.5px #2a6d8e;
+         a{
+           color: grey;
+           text-decoration: none;
+         }
+      }
+      li:first-child {
+         border-top: 0;
+      }
+   }
+}

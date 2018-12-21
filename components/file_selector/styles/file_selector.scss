@@ -1,0 +1,51 @@
+$button_border_color: #E1E1E1;
+$button_bg_color: #F6F6F6;
+$button_color: #222222;
+$button_active_bg_color: #2A6D8E;
+$error_color: red;
+.jnprFileSelector{
+    .hidden{
+        display: none;
+    }
+    ul{
+        padding-left: 0px;
+        li{
+            display: inline;
+            button{
+                border: 1px solid $button_border_color;
+                border-radius: 2px;
+                background-color: $button_bg_color;
+                color: $button_color;
+                padding: 5px 20px 5px 20px;
+                font-size: 12px;
+                cursor: pointer;
+                &:focus{
+                    outline: none
+                }
+                &.active{
+                    background-color: $button_active_bg_color;
+                    color: white;
+                }
+                &.disabled{
+                    pointer-events: none;
+                }
+            }
+            span{
+                &.middle{
+                    min-width: 120px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    display: inline-block;
+                    text-align: center;
+                }
+                &.delete{
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .error{
+        color: $error_color;
+    }
+}

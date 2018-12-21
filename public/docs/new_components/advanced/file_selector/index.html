@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+	<script src="/lib/jquery-2.1.4.min.js"></script>
+
+</head>
+
+
+<body>
+	<h5>File Selector Component Demo</h5>
+
+	<div id="file_selector"></div>
+	<hr/>
+	<div id='selectedFile' />
+</section>
+</body>
+
+
+<script type="text/javascript">
+var FileSelector = JnprCL.FileSelector;
+
+var onUploadCallback = function(file){
+	$('#selectedFile').html('You have selected file: ' + file.name);
+}
+
+ReactDOM.render(React.createElement(FileSelector, {
+	appId: "appId_1",
+	btnText: 'Choose File to Upload',
+	restrictions: {
+		allowedFileTypes: ['xls', 'xlsx', 'docx', 'doc'],
+		allowedFileTypesErrorMsg:'wrong format'
+	},
+	onUploadCallback: this.onUploadCallback.bind(this)
+}), document.getElementById('file_selector'));
+</script>
+
+
+</html>

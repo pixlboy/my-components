@@ -1,0 +1,21 @@
+.inputGroupingWrapper{
+    
+    border: 1px solid #9F9F9F;  
+    width: 100%;
+    padding:10px;
+
+    textarea{
+        width: 500px;
+        height: 200px;
+    }
+    input{
+        width: 150px;
+        height: 20px;
+    }
+    .blocksContent{
+        min-height: 30px;
+        display: inline-block;
+    }
+    
+}
+

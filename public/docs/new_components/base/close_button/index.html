@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible"
+	content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="/lib/react-with-addons.js"></script>
+	<script src="/lib/react-dom.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+</head>
+
+
+
+<body>
+	<h5>CloseButton Document</h5>
+	<div id="output" class='output'></div>
+	<hr/>
+
+	<section>
+		<h5>Explanation</h5>
+		<p>
+			<b>Goal of Component:</b>
+			We have a lot place to close a popup, and the requirements are:
+			<ol>
+				<li>By clicking the close button</li>
+				<li>By clicking anywhere out of the wrapper application / popup component</li>
+				<li>By click ESC key to close</li>
+			</ol>
+		</p>
+		<p>
+			<b>Usage of Component:</b>
+			<pre>
+				var CloseButton = JnprCL.CloseButton;
+				var close = function(){
+					ReactDOM.unmountComponentAtNode(document.getElementById('output'));
+				};
+				ReactDOM.render(React.createElement(CloseButton, {
+					wrapperClassName: 'output',
+					onClick: this.close.bind(this)
+				}), document.getElementById('output'));
+			</pre>
+			<ol>
+				<li>wrapperClassName (mandatory): this is pointing to the wrapper appliacation className, and it should be outermost className to be used to locate which part to destroy</li>
+				<li>onClick (mandatory): callback function used to close the component. Here, you can use any solution to unmount the component.</li>
+			</ol>
+		</p>
+
+	</section>
+
+
+</body>
+
+
+<script type="text/javascript">
+var CloseButton = JnprCL.CloseButton;
+var close = function(){
+	ReactDOM.unmountComponentAtNode(document.getElementById('output'));
+};
+ReactDOM.render(React.createElement(CloseButton, {
+	wrapperClassName: 'output',
+	onClick: this.close.bind(this)
+}), document.getElementById('output'));
+</script>
+
+
+</html>

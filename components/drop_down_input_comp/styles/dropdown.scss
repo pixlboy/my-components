@@ -1,0 +1,172 @@
+.disabledDropDown{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.5;
+}
+.jnprDropDownInput {
+	.singleOption{
+		border: 1px #9F9F9F solid;
+		min-width: 120px;
+		height: 30px;
+		.content{
+			padding-top: 4px;
+			padding-left: 10px;
+		}
+	}
+	.hide{
+		display: none;
+	}
+	font-size: 12px;
+	.mdl-checkbox__label {
+		position: relative;
+		cursor: pointer;
+		font-size: 16px;
+		line-height: 24px;
+		margin: 0;
+		line-height: 1;
+		display: inline-block;
+		width: 99%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.error {
+		border: 1px #ff0000 solid;
+	}
+
+	.normal {
+		border: 1px #9F9F9F solid;
+	}
+
+	.title {
+		max-width: 180px;
+		background-color: #FFFFFF;
+		cursor: pointer;
+
+		.content {
+			line-height: 1;
+			width: 84%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 30px;
+
+			input[type='text'] {
+				font-size: 12px;
+				padding-left: 10px;
+				width: 90%;
+				height: 100%;
+				border: none;
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+
+		&:before {
+			line-height: 1;
+			font-family: Material Icons;
+			font-size: 22px;
+			float: right;
+			content: '\E313';
+			transition: transform 0.5s;
+			color: #9F9F9F;
+			margin-top: 4px;
+			margin-right: 5px;
+		}
+
+		&.open:before {
+			transform: rotate(180deg);
+		}
+	}
+
+	ul {
+		position: absolute;
+		padding: 5px 0px;
+		border: 1px solid #24536A;
+		margin-top: 0;
+		width: auto;
+		background: #ffffff;
+		box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.75);
+		min-width: 140px;
+		z-index: 100;
+		max-height: 200px;
+		overflow: auto;
+	}
+
+	li {
+		list-style: none;
+		overflow: hidden;
+		cursor: pointer;
+		padding-left: 5px;
+		position: relative;
+
+		&.inactive-dropdown{
+			padding-left: 30px;
+			&:before {
+				line-height: 1;
+				font-family: Material Icons;
+				font-size: 20px;
+				content: '\E835';
+				transition: transform 0.5s;
+				color: #2A6D8E;
+				margin-top: 2px;
+				margin-left: 5px;
+				margin-right: 5px;
+				position: absolute;
+				left: 0px;
+			}
+		}
+
+		&.active-dropdown{
+			padding-left: 30px;
+			&:before {
+				line-height: 1;
+				font-family: Material Icons;
+				font-size: 20px;
+				content: '\E834';
+				transition: transform 0.5s;
+				color: #2A6D8E;
+				margin-top: 2px;
+				margin-left: 5px;
+				margin-right: 5px;
+				position: absolute;
+				left: 0px;
+			}
+		}
+	}
+
+	.singleSelectWrapper {
+		border: 1px solid #3B6A84;
+		border-radius: 2px;
+		background-color: #FFFFFF;
+		box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.5);
+		position: absolute;
+		margin-top: 0;
+		width: auto;
+		box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.75);
+		min-width: 140px;
+		z-index: 100;
+		max-height: 200px;
+		overflow: auto;
+	}
+
+	.singleItem {
+		border-bottom: 1px solid #4B6270;
+		padding: 6px 8px 5px;
+		cursor: pointer;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:hover {
+			background-color: #F0F6F8;
+		}
+	}
+
+	.selected {
+		background-color: #F0F6F8;
+	}
+}

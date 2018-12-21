@@ -1,0 +1,93 @@
+.closingBtn {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    i{
+        cursor: pointer;
+        color: #2a6d8e;
+        font-size: 20px;
+    }
+}
+
+.active{
+    display: inline-block;
+}
+
+.btn-popup{
+    border-radius: 2px;
+    height: 29px;
+    width: 70px;
+    cursor: pointer;
+    color: black;
+}
+
+section{
+    padding: 20px;
+}
+
+.confirmation-modalboxcontent{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.confirmation-modalboxtitle{
+    padding:10px;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.add-btn{
+    background-color: #2A6D8E;
+    color: #FFFFFF;
+}
+
+.activeButton{
+    background-color: #2A6D8E;
+    color: #FFFFFF;
+}
+
+.confirmation-modalboxbuttons{
+    text-align: center;
+
+    .confirmation-btns{
+        height: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 2px;
+        margin: 10px;
+    }
+    .inactive{
+        border: 1px solid #DEDEDE;
+        background-color: #F5F5F5;
+        font-size: 12px;
+    }
+    .active{
+        background-color: #2A6D8E;
+        color: #FFFFFF;
+        font-size: 12px;
+        border: none;
+    }
+}
+
+
+
+.confirmation-modalbox {
+    position: fixed;
+    z-index: 1;
+    padding-top: 200px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.confirmation-modalbox-content {
+    background-color: #FFFFFF;
+    margin: auto;
+    border: 1px solid #D6D6D6;;
+    width: 37%;
+    height: 200px;
+}

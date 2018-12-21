@@ -1,0 +1,28 @@
+[
+	{
+		"name": "FEATURE-CASEMANAGER",
+		"enabled": "true",
+		"visibleUsers": 
+		[
+			"frankhe@juniper.net",
+			"ngcsc1@ngcsc.33mail.com"
+		]
+	},
+	{
+		"name": "FEATURE-CONTRACTRENEWAL",
+		"enabled": "false",
+		"visibleUsers": 
+		[
+			"frankhe@juniper.net",
+			"ngcsc1@ngcsc.33mail.com"
+		]
+	},
+	{
+		"name": "FEATURE-CONTRACTRENEWAL12",
+		"enabled": "true"
+	},
+	{
+		"name": "FEATURE-CONTRACTRENEWAL34",
+		"enabled": "false"
+	}
+]

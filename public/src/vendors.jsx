@@ -1,0 +1,20 @@
+window.jQuery=require('jquery');
+require('jquery-ui/ui/core');
+require('jquery-ui/ui/resizable');
+require('jquery-ui/ui/tooltip');
+require('jquery-ui/ui/datepicker');
+require('jquery-ui/ui/sortable');
+require('immutable');
+require('perfect-scrollbar');
+require('underscore');
+require('flux');
+require('swiper');
+require('fixed-data-table-2');
+require('material-design-lite/material');
+require('react-mdl');
+require('dialog-polyfill');
+require('dialog-polyfill/dialog-polyfill.css');
+//require('material-design-lite/material.css');
+import { Checkbox, Radio, RadioGroup } from 'react-mdl';
+
+require('./lib/evaporate');

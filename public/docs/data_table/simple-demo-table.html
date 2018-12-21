@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+	<title>Hello React Juniper!</title>
+	<script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>
+	<script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+	<script src="/dist/jnpr-vendors.js"></script>
+	<script src="/dist/jnpr-components.js"></script>
+
+	<link rel="stylesheet" href="./jquery-ui.css">
+</head>
+
+
+<body>
+	<a href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+	Documentation In Git</a>
+	<h3>Simple Demo Table</h3>
+	<div id="example3"></div>
+
+	<input type="button" onclick="disableRows()" value="Disable Selected Rows" />
+
+	<h5>Documentation</h5>
+	<iframe width="100%" height="500px" frameBorder="0" src="./README.md"></iframe>
+</body>
+
+
+<script type="text/javascript">
+	var checkedRows = [];
+	var disableRows = function() {
+		checkedRows = [];
+		var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+		var rows = jnprDataTableObj.getCheckedRowsFor('appId_1');
+		for (var i = 0; i < newList.length; i++) {
+			var selected = false;
+			rows.forEach(row => {
+				if (row.column0 === newList[i].column0) {
+					selected = true;
+				}
+			});
+			if (selected) {
+				checkedRows.push(i);
+			}
+		}
+		window.dispatchEvent(new Event('resize'));
+	}
+
+	var getRowClasses = function(index) {
+		if (checkedRows.indexOf(index) >= 0) {
+			return 'disableRowClick';
+		} else {
+			return '';
+		}
+	}
+
+	var generated = false;
+	var newList = [];
+
+	var draw = function() {
+
+		var newConfig = {
+			tableHeight: 500,
+			headerHeight: 39,
+			closeLeftPanelBtn: true,
+			hidingBottomPagePositioner: true,
+			checkBoxEnabled: true,
+			disableSaveConfigBtn: true,
+			columns: {},
+			defaultGlobal: false
+
+		};
+		var columns = 1;
+		var rows = 20;
+
+		newConfig.columns['numberCol'] = {
+			defaultColumn: true,
+			width: 80,
+			id: "numberCol",
+			type: "number",
+			title: "NumberCol",
+			sortable: true,
+			filterable: true,
+			key: false
+		}
+
+
+		for (var i = 0; i < columns; i++) {
+			newConfig.columns['column' + i] = {
+				defaultColumn: true,
+				width: 100,
+				id: "column" + i,
+				type: "text",
+				title: "Column" + i,
+				sortable: true,
+				filterable: true,
+				key: i == 0 ? true : false
+			}
+		}
+
+		newConfig.columns['column' + columns] = {
+			defaultColumn: true,
+			width: 100,
+			id: "column" + columns,
+			type: "checkbox",
+			title: "Column" + columns,
+			sortable: true,
+			filterable: true,
+			items: [{
+					id: 'item1',
+					title: 'Checked',
+					value: true
+				},
+				{
+					id: 'item2',
+					title: 'UnChecked',
+					value: false
+				}
+			],
+			key: i == 0 ? true : false
+		}
+		newConfig.columns['column' + (columns + 1)] = {
+			defaultColumn: true,
+			width: 160,
+			id: "column" + (columns + 1),
+			type: "single_select",
+			title: "Column" + (columns + 1),
+			sortable: true,
+			filterable: true,
+			key: i == 0 ? true : false,
+			defaultDisabledControlColumn: 'abc',
+			items: [{
+					id: 'item1',
+					title: 'option1',
+					value: 'value1'
+				}, {
+					id: 'item2',
+					title: 'option2',
+					value: 'value2'
+				}, {
+					id: 'item3',
+					title: 'option3',
+					value: 'value3'
+				},
+				{
+					id: 'item4',
+					title: 'option4',
+					value: 'value4'
+				}, {
+					id: 'item5',
+					title: 'option5',
+					value: 'value5'
+				}, {
+					id: 'item6',
+					title: 'option6',
+					value: 'value6'
+				},
+				{
+					id: 'item7',
+					title: 'option7',
+					value: 'value7'
+				},
+				{
+					id: 'item8',
+					title: 'varId_0',
+					value: 'varId_0'
+				},
+				{
+					id: 'item9',
+					title: 'varId_1',
+					value: 'varId_1'
+				}
+			]
+		}
+
+		newConfig.columns['abc'] = {
+			defaultColumn: false,
+			hidden: true,
+			sortable: false,
+			filterable: false,
+			key: false
+		}
+
+		newConfig.columns['column' + (columns + 2)] = {
+			defaultColumn: true,
+			width: 180,
+			id: "column" + (columns + 2),
+			type: "datepicker",
+			format: "DD-MMM-YYYY",
+			timezone: "PST",
+			title: "Column" + (columns + 2),
+			sortable: true,
+			filterable: true,
+			key: i == 0 ? true : false,
+			minDateControllerColumn: 'minDateControllerColumn',
+			maxDateControllerColumn: 'maxDateControllerColumn'
+		}
+
+		newConfig.columns['minDateControllerColumn'] = {
+			defaultColumn: false,
+			hidden: true,
+			id: "minDateControllerColumn",
+			type: "text",
+			sortable: false,
+			filterable: false,
+			key: false
+		}
+
+		newConfig.columns['maxDateControllerColumn'] = {
+			defaultColumn: false,
+			hidden: true,
+			id: "maxDateControllerColumn",
+			type: "text",
+			sortable: false,
+			filterable: false,
+			key: false
+		}
+
+		newConfig.columns['column' + (columns + 3)] = {
+			defaultColumn: true,
+			width: 160,
+			id: "column" + (columns + 3),
+			type: "multi_select",
+			title: "Column" + (columns + 3),
+			sortable: true,
+			filterable: true,
+			key: i == 0 ? true : false,
+			defaultDisabledControlColumn: 'def'
+		}
+
+		newConfig.columns['column' + (columns + 4)] = {
+			defaultColumn: true,
+			width: 160,
+			id: "column" + (columns + 4),
+			type: "multi_select",
+			title: "Column" + (columns + 4),
+			sortable: true,
+			filterable: true,
+			numberTitle: true,
+			key: i == 0 ? true : false
+		}
+
+
+		for (var row = 0; row < rows; row++) {
+			var rowData = {};
+			for (var column = 0; column < columns; column++) {
+				rowData['column' + column] = "value_" + (row + column);
+			}
+			rowData['column' + columns] = row % 2 == 0;
+
+			var options = [{
+					title: 'option1',
+					value: 'value1',
+					selected: false
+				}, {
+					title: 'option2',
+					value: 'value2',
+					selected: false
+				}, {
+					title: 'option3',
+					value: 'value3',
+					selected: false,
+				},
+				{
+					title: 'option4',
+					value: 'value4',
+					selected: false
+				}, {
+					title: 'option5',
+					value: 'value5',
+					selected: false
+				}, {
+					title: 'option6',
+					value: 'value6',
+					selected: false,
+				},
+				{
+					title: 'option7',
+					value: 'value7',
+					selected: true,
+				},
+				{
+					title: 'varId_0',
+					value: 'varId_0',
+					selected: false,
+				},
+				{
+					title: 'varId_1',
+					value: 'varId_1',
+					selected: false,
+				}
+
+			];
+			rowData['column' + (columns + 1)] = options;
+			rowData['column' + (columns + 2)] = '01-MAR-2018';
+			rowData['minDateControllerColumn'] = 1524547618000; //Tuesday, April 24, 2018 5:26:58 AM
+			rowData['maxDateControllerColumn'] = 1650778018000; //Tuesday, April 24, 2022 5:26:58 AM
+			rowData['column' + (columns + 3)] = options;
+			rowData['column' + (columns + 4)] = options;
+
+			rowData['abc'] = row % 2 == 1;
+			rowData['def'] = row % 2 == 0;
+
+			rowData['numberCol'] = row;
+
+			newList.push(rowData);
+		}
+
+		var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+		jnprDataTableObj.setConfig(newConfig, "appId_1");
+		setTimeout(() => {
+			jnprDataTableObj.dataList = newList;
+			//update number per page
+			jnprDataTableObj.setNumPerPageFor("appId_1", 10);
+
+			var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+			var accountsStr =
+				'{  "totalRecords": 6,  "accountsList": [    {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }  ]}';
+			var accountsList = JSON.parse(accountsStr).accountsList;
+			jnprDataTableObj.accountList = accountsList;
+
+			ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+				nested: false,
+				appId: "appId_1",
+				cellDataUpdateCallBackHandler: function(row, columnId, data) {
+					console.log('row:');
+					console.log(row);
+					console.log('columnId:', columnId);
+					console.log(data);
+				},
+				rowClassNameGetter: this.getRowClasses.bind(this),
+				subRowHeightGetter: function(index) {
+					return 30;
+				},
+				rowExpandedGetter: function(data) {
+					//console.log(data);
+					//var CheckBox = JnprCL.CheckBox;
+					return "helloWorld"; //JnprCL.CheckBox;
+				},
+				loaded: function() {},
+				destroy: function() {
+					setTimeout(function() {
+						ReactDOM.unmountComponentAtNode(document.getElementById('example3'));
+					}, 0);
+				},
+				filterHandler: function(filterObject) {
+					console.log('filtering ');
+					console.log(filterObject);
+				},
+				sortHandler: function(key, up) {
+					console.log(key, up);
+				}
+			}), document.getElementById('example3'));
+		}, 100);
+
+		generated = true;
+	};
+
+
+	draw();
+</script>
+
+
+</html>

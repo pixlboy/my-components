@@ -1,0 +1,54 @@
+{
+    "JnprTestInputComp": true,
+    "JnprDataTable": true,
+    "JnprDataTableNgcsc": true,
+    "JnprDataTableNgcscPlain": true,
+    "JnprDataTableJtwb": true,
+    "JnprDataTableObjectFactory": true,
+
+    "JnprWidgetChooser":true,
+    "JnprWidgetChooserObjectFactory": true,
+
+    "JnprDropDownComp": true,
+    "JnprInputBoxComp": true,
+
+    "JnprUploader": true,
+    "JnprUploaderProgressBar": true,
+    "JnprUploaderDataObjectFactory": true,
+
+    "AutoComplete": true,
+    "I18NFactory": true,
+    "NavigatorComp": true,
+    "NavigatorStoreFactory":true,
+
+    "RudexTestComponents": true,
+    "RudexTestComponentStore": true,
+
+    "DropDownInputComp": true,
+    "DropDownInputAppendCompSingle":true,
+    "DropDownInputAppendCompMulti": true,
+
+    "DropDownInputCompStore":true,
+    "FileSelector": true,
+    "XLSFileSelectorReader": true,
+    "FileSelectorStore": true,
+
+    "SimplifiedDataGrid": true,
+    "CloseButton":true,
+    "ExportComponent":true,
+    "ExportService": true,
+    "DatePicker": true,
+    "DatePickerStore": true,
+
+    "TabbedWrapperComp": true,
+    "TabbedWrapperStore": true,
+    "CheckBox": true,
+    "CheckBoxStore": true,
+    "InputGrouping":true,
+
+    "ConfirmationPopUpComp": true,
+    "ConfirmationPopUpStore": true,
+
+    "LoadingSpinnerComp": true,
+    "LiveSearch" : true
+}

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+    <title>Hello React Juniper!</title>
+    <script src="/lib/react-with-addons.js"></script>
+    <script src="/lib/react-dom.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="/dist/jnpr-vendors.js"></script>
+    <script src="/dist/jnpr-components.js"></script>
+    <link rel="stylesheet" href="/lib/jquery-ui.min.css">
+</head>
+
+<body>
+    <a href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View Documentation In Git</a>
+    <h1>Plain Simple Data Table</h1>
+    <div id="example1"></div>
+</body>
+
+<!-- mockData -->
+<script src="jsonObj1.js"></script>
+<script src="jsonObj2.js"></script>
+<script type="text/javascript">
+var config = {
+    rowHeight: 29,
+    headerHeight: 67,
+    tableHeight: 348,
+    tableWidth: 800,
+    closeLeftPanelBtn: false,
+    columnFilterable: false,
+    showGlobalCheckbox: false,
+    defaultGlobal: false,
+    globalAutoComplete: true,
+
+    caseManagerLink: "https://stage.juniper.net/casemanager/#/cmdetails/", //this is only for caseManagerLink
+
+    columns: {
+
+        srId: {
+            defaultColumn: true,
+            width: 180,
+            minWith: 180,
+            flexGrows: 1,
+            id: "srId",
+            type: "text",
+            title: "Case ID",
+            sortable: false,
+            filterable: false,
+            editable: true,
+            key: true,
+            sticky: true,
+            sendClickToParent: false,
+            noToolTip: true,
+            indentation: true
+        },
+
+        priority: {
+            defaultColumn: true,
+            width: 100,
+            flexGrows: 1,
+            id: "priority",
+            type: "groupedCheckBox",
+            title: "Priority",
+            sortable: true,
+            filterable: true,
+            editable: false,
+            items: ["P1 - XXXX", "P2 - High", "P3 - Medium", "P4 - Low"],
+            noToolTip: true
+        },
+
+        caseType: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 1,
+            id: "caseType",
+            type: "text",
+            title: "Case Type",
+            sortable: true,
+            filterable: true,
+            editable: false
+        },
+
+        createDate: {
+            defaultColumn: true,
+            width: 200,
+            flexGrows: 0,
+            id: "createDate",
+            type: "customDate",
+            title: "Create Date",
+            sortable: true,
+            filterable: true,
+            editable: false
+
+        },
+
+        lastModifiedDate: {
+            defaultColumn: false,
+            width: 250,
+            flexGrows: 1,
+            id: "lastModifiedDate",
+            type: "customDate",
+            title: "Last Modified Date",
+            sortable: true,
+            filterable: true,
+            editable: false
+        },
+
+        prodSeries: {
+            defaultColumn: false,
+            width: 250,
+            flexGrows: 1,
+            type: "text",
+            id: "prodSeries",
+            title: "Product Series",
+            sortable: true,
+            filterable: true,
+            editable: false
+        },
+
+        platform: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 0,
+            type: "text",
+            id: "platform",
+            title: "Platform",
+            sortable: true,
+            filterable: true,
+            editable: false
+        },
+
+        description: {
+            defaultColumn: false,
+            width: 200,
+            flexGrows: 2,
+            type: "text",
+            id: "description",
+            title: "Description",
+            sortable: true,
+            filterable: true,
+            editable: true
+        },
+
+        status: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 1,
+            type: "groupedCheckBox",
+            id: "status",
+            title: "Status",
+            sortable: true,
+            filterable: true,
+            editable: true,
+            items: ["Awaiting Customer", "Pending Closure", "In Process", "Closed"],
+            hidden: true
+        },
+
+        serialNo: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 1,
+            type: "text",
+            id: "serialNo",
+            title: "Serial No.",
+            sortable: true,
+            filterable: true
+        },
+
+        custCaseNo: {
+            defaultColumn: false,
+            width: 150,
+            flexGrows: 1,
+            type: "text",
+            id: "custCaseNo",
+            title: 'Customer #',
+            sortable: true,
+            filterable: true,
+            editable: false
+        },
+
+        relatedContent: {
+            defaultColumn: false,
+            width: 100,
+            flexGrows: 1,
+            type: "list",
+            title: "Related Contents",
+            sortable: false,
+            filterable: false,
+            editable: false,
+            children: {
+                prIds: {
+                    title: "Problem Report"
+                },
+                kbIds: {
+                    title: "Knowledge Base"
+                }
+            }
+        },
+
+        accountId: {
+            defaultColumn: false,
+            width: 200,
+            flexGrows: 1,
+            type: "text",
+            id: "accountId",
+            title: "Account Id",
+            sortable: true,
+            filterable: true,
+            editable: false,
+            hidden: true //this filed is not shown
+        },
+
+        accountName: {
+            defaultColumn: false,
+            width: 200,
+            flexGrows: 1,
+            type: "text",
+            id: "accountName",
+            title: "Account Name",
+            sortable: true,
+            filterable: true,
+            editable: false,
+            hidden: true //this filed is not shown
+        },
+
+        status_reason: {
+            defaultColumn: false,
+            width: 200,
+            flexGrows: 1,
+            type: "text",
+            id: "status_reason",
+            title: "Statue/Reason",
+            sortable: true,
+            filterable: false,
+            editable: false
+        },
+
+        accountId_accountName: {
+            defaultColumn: false,
+            width: 200,
+            flexGrows: 1,
+            type: "text",
+            id: "accountId_accountName",
+            title: "Account",
+            sortable: true,
+            filterable: false,
+            editable: false
+        }
+
+    }
+
+};
+var prDetailConfig = {
+
+    rowHeight: 29,
+    headerHeight: 38,
+    tableHeight: 348,
+    tableWidth: 800,
+    hidingBottomIndicator: true,
+    prSearchLink: "https://prsearch-stage.juniper.net/",
+    columns: {
+
+        prId: {
+            defaultColumn: true,
+            width: 110,
+            minWith: 100,
+            flexGrows: 1,
+            id: "prId",
+            type: "text",
+            title: "PR #",
+            key: true,
+            sticky: true,
+            noToolTip: true
+        },
+        title: {
+            defaultColumn: true,
+            width: 400,
+            flexGrows: 1,
+            id: "title",
+            type: "text",
+            title: "Title",
+            noToolTip: true
+        },
+        status: {
+            defaultColumn: true,
+            width: 90,
+            flexGrows: 1,
+            id: "status",
+            type: "text",
+            title: "Status",
+            noToolTip: true
+        },
+        severity: {
+            defaultColumn: true,
+            width: 90,
+            flexGrows: 1,
+            id: "severity",
+            type: "text",
+            title: "Severity",
+            noToolTip: true
+        },
+        product: {
+            defaultColumn: true,
+            width: 100,
+            flexGrows: 1,
+            id: "product",
+            type: "text",
+            title: "Product",
+            noToolTip: true
+        },
+        os: {
+            defaultColumn: true,
+            width: 100,
+            flexGrows: 1,
+            id: "os",
+            type: "text",
+            title: "OS",
+            noToolTip: true
+        },
+        resolvedIn: {
+            defaultColumn: true,
+            width: 130,
+            flexGrows: 1,
+            id: "resolvedIn",
+            type: "text",
+            title: "Resolved In",
+            noToolTip: true
+        }
+    }
+};
+
+var kbDetailConfig = {
+
+    rowHeight: 29,
+    headerHeight: 38,
+    tableHeight: 348,
+    tableWidth: 800,
+    hidingBottomIndicator: true,
+    kbSearchLink: "http://kb-stage.juniper.net/",
+    columns: {
+
+        kbId: {
+            defaultColumn: true,
+            width: 110,
+            minWith: 100,
+            flexGrows: 1,
+            id: "kbId",
+            type: "text",
+            title: "KB #",
+            key: true,
+            sticky: true,
+            noToolTip: true
+        },
+        description: {
+            defaultColumn: true,
+            width: 400,
+            flexGrows: 1,
+            id: "description",
+            type: "text",
+            title: "Description",
+            noToolTip: true
+        }
+    }
+};
+
+var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+
+jnprDataTableObj.setConfig(config, "appId_3");
+
+var detailConfigs = {};
+detailConfigs['kb'] = kbDetailConfig;
+detailConfigs['pr'] = prDetailConfig
+
+jnprDataTableObj.setAdditionalConfigFor("appId_3", 'detailConfigs', detailConfigs);
+
+jsonObj1.caseList.forEach(function(item) {
+    item['status_reason'] = item['status'] + " - " + item['reason'];
+    item['accountId_accountName'] = item['accountId'] + " - " + item['accountName'];
+});
+
+jsonObj2.caseList.forEach(function(item) {
+    item['status_reason'] = item['status'] + " - " + item['reason'];
+    item['accountId_accountName'] = item['accountId'] + " - " + item['accountName'];
+});
+
+jnprDataTableObj.dataList = jsonObj1.caseList;
+jnprDataTableObj.grandTotalRecords = jsonObj1.caseList.length;
+
+if (localStorage.getItem('jnpr_datatable_custom_config')) {
+    jnprDataTableObj.allCustomConfigurations = JSON.parse(localStorage.getItem('jnpr_datatable_custom_config'));
+}
+
+
+
+var callBack = function() {
+    jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0).concat(jsonObj1.caseList);
+    jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+};
+
+
+var updateConfig = function() {
+    config.tableWidth = config.tableWidth + 50;
+    jnprDataTableObj.config = config;
+};
+
+var changeValueHandler = function(obj, col, newValue) {
+    console.log(obj);
+    console.log(col);
+    console.log(newValue);
+};
+
+var sortHandler = function(key, up) {
+    console.log(key);
+    console.log(up);
+};
+
+var filterHandler = function(filterObject) {
+    console.log(filterObject);
+};
+
+var cellClicked = function(data) {
+    console.log(data);
+};
+var showDetailExtraDataCallBack = function(type, data) {
+    // console.log('hello ' + type);
+    // console.log(data);
+    var responsePrKb = {};
+
+    var responsepPrData = JSON.parse('{"totalRecords":2,"prLineLevelDetailsList":[{"prId":"PR11804694","title":"On QFX10000 switches,the incoming MPLS-labeled packet on the PE switch...","status":"closed","severity":"critical","product":"QFXSeries","os":"Junos OS","resolved_in":"15.1X53-D32"},{"prId":"PR11804695","title":"On QFX10000 switches,the incoming MPLS-labeled packet on the PE switch...","status":"closed","severity":"critical","product":"QFXSeries","os":"Junos OS","resolved_in":"15.1X53-D32"}]}');
+
+    responsePrKb['pr'] = responsepPrData;
+
+    var responsepKbData = JSON.parse('{"totalRecords":2,"kbLineLevelDetailsList":[{"kbId":"111111","description":"1111kbkbkbkb1111kbkbkbkbkb11111kbkbkbkbkbkbk1111bkbkbkbkbkbkbkbkbkbkbkbk..."},{"kbId":"2222222","description":"2222kbkbkbkbkbk2222bkbkbkbkbkbkbkbk222bkbkbkbkbkbkbkbkbkbkbkbkbkbk..."}]}');
+
+    responsePrKb['kb'] = responsepKbData;
+    // console.log(responsePrKb)
+    jnprDataTableObj.setExtraData('appId_3', responsePrKb);
+
+}
+
+var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcscPlain;
+
+
+ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+    parentLineItem: jsonObj1.caseList[0],
+    parentHasArrowBtn: "srId",
+    nextPageCallBack: this.callBack.bind(this),
+    changeValueHandler: this.changeValueHandler.bind(this),
+    sortHandler: this.sortHandler.bind(this),
+    showDetailExtraDataCallBack: this.showDetailExtraDataCallBack.bind(this),
+    styleType: "ngcsc",
+    appId: "appId_3",
+    nested: false
+}), document.getElementById('example1'));
+</script>
+
+</html>

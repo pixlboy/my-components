@@ -1,0 +1,13 @@
+.testCompnent{
+	background-color: white;
+}
+
+.myjuniper_testCompnent {
+	@extend .testCompnent;
+	background-color: #eee;
+}
+
+.jtacwb_testCompnent {
+	@extend .testCompnent;
+	background-color: #ccc;
+}

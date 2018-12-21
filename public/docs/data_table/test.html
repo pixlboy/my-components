@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+    <title>Hello React Juniper!</title>
+    <script src="./core-promise.js"></script>
+    <script src="/lib/react-with-addons.js"></script>
+    <script src="/lib/react-dom.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+    <script src="/dist/jnpr-vendors.js"></script>
+    <script src="/dist/jnpr-components.js"></script>
+
+    <link rel="stylesheet" href="./jquery-ui.css">
+</head>
+
+
+<body>
+    <a href="https://git.juniper.net/ngcsc/ngcl/tree/master/public/docs/data_table">View
+        Documentation In Git</a>
+        <h3>Using Standard HTML table for Nested Data - NGCSC</h3>
+        <div id="example3"></div>
+        <input id='caseIdToRemove' />
+        <input type="button" value='Remove' onclick="removeRecord()" />
+        <input type="button" value='ExportData' onclick="exportData()" />
+        <input type="button" value='set filter 1' onclick="setFilter1();" />
+        <input type="button" value='set filter 2' onclick="setFilter2();" />
+        <input type="button" value='get checked rows' onclick="getChecked()" />
+    </body>
+
+
+    <script type="text/javascript">
+    var jsonObj1 = JSON
+    .parse(
+        '{  "pageSize": 5,  "totalRecords": 9,  "caseList": [    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P1 - Critical",      "createDate": 0,      "lastModifiedDate": "1451919345000",      "closedDate": "1451919345000",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {"prIds": null, "kbIds": "HTTPS://TEST.COM"},      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P1 - Critical",      "createDate": "1433775345000",      "lastModifiedDate": "1441823251000",      "closedDate": "1441823251000",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": { "kbIds": "HTTPS://WWW.JUNIPER.", "prIds": null},      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": 0,      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P3 - Medium",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P3 - Medium",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797,PR975797,PR975797",        "kbIds": "KB28918,KB28918,KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P3 - Medium",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P4 - Low",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    }  ]}'
+    );
+
+    //new date for newly added field
+    var newFieldValue = 0;
+    jsonObj1.caseList.forEach(function(caseItem){
+        caseItem['newField']=newFieldValue++;
+    });
+
+
+    var jsonObj2 = JSON
+    .parse(
+        '{  "pageSize": 5,  "totalRecords": 9,  "caseList": [    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "1450177797000",      "lastModifiedDate": "1451919345000",      "closedDate": "1451919345000",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "1433775345000",      "lastModifiedDate": "1441823251000",      "closedDate": "1441823251000",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370584906630807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581765184803",        "targetVertexId": "2015-1215-T-1004"      },      "srId": "2015-1215-T-1004",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-12-15 11:09:57",      "lastModifiedDate": "2016-01-04 14:55:45",      "closedDate": "2016-01-04 14:55:45",      "prodSeries": "T-Series",      "platform": "T4000",      "description": "TK10000286 RF30006872 KDDIGW T4000 fpc7 Routing Chip Errors Detected",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN11BFEA0AHA",      "custCaseNo": "TK10000286 RF30006872",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370595006324807",        "srcVertexId": "-1631618697_3dcd769e-cf1b-11e5-a1bd-005056a9381b",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581766372976",        "targetVertexId": "2015-0608-T-1100"      },      "srId": "2015-0608-T-1100",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-06-08 15:44:36",      "lastModifiedDate": "2015-09-09 18:27:31",      "closedDate": "2015-09-09 18:27:31",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "MX- A RPM probe is failed behind NSR",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100161653",      "serialNo": "JN119AE4EAFA",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "KDDI GW"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370598662733807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768240082",        "targetVertexId": "2015-0729-T-0124"      },      "srId": "2015-0729-T-0124",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2015-07-28 17:56:07",      "lastModifiedDate": "2015-07-29 10:47:22",      "closedDate": "2015-07-29 10:47:22",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": null,      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN1221CCDAFB",      "custCaseNo": null,      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370631819628807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581767824637",        "targetVertexId": "2014-0602-T-0470"      },      "srId": "2014-0602-T-0470",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-06-01 23:30:43",      "lastModifiedDate": "2014-07-10 16:32:27",      "closedDate": "2014-07-10 16:32:27",      "prodSeries": "MX-Series",      "platform": "MX960",      "description": "027112T1406020001 [IIJ] MX960 FPCs resta",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN110265BAFA",      "custCaseNo": "027112T1406020001",      "relatedContent": {        "prIds": null,        "kbIds": null      },      "accountName": "NOS-IIJ"    },    {      "primaryKey": {        "propKey": "lastModified",        "propValue": null,        "propValueNum": "9223370636327863807",        "srcVertexId": "-1725275281_d30fb81b-cf1a-11e5-b83b-005056a9381e",        "label": "sr",        "direction": "-->",        "defaultIndexSequence": null,        "reverseTimeStamp": "9223370581768439789",        "targetVertexId": "2014-0311-T-1220"      },      "srId": "2014-0311-T-1220",      "caseType": null,      "caseTypeDesc": "Technical Service Request",      "priorityKey": "02",      "priority": "P2 - High",      "createDate": "2014-03-11 11:25:59",      "lastModifiedDate": "2014-05-19 12:15:12",      "closedDate": "2014-05-19 12:14:02",      "prodSeries": "MX-Series",      "platform": "MX480",      "description": "027112T1403110012 IIJ MX480 Configured M",      "status": "Closed",      "statusKey": "E0008",      "reason": null,      "release": null,      "reporter": null,      "routerName": null,      "accountId": "0100082295",      "serialNo": "JN11F3F63AFB",      "custCaseNo": "027112T1403110012",      "relatedContent": {        "prIds": "PR975797",        "kbIds": "KB28918"      },      "accountName": "NOS-IIJ"    }  ]}'
+    );
+
+    var exportData = function() {
+        console.log(jnprDataTableObj.getProcessedDataListFor('appId_3'));
+        console.log(jnprDataTableObj.getProcessedDataListFor("appId_3").slice(0)
+        .concat(jsonObj1.caseList))
+    };
+
+    var getChecked = function() {
+        console.log(jnprDataTableObj.getCheckedRowsFor('appId_3'));
+    }
+
+    var setFilter1 = function() {
+        var filterObj = {
+            createDate: {
+                comp: "on",
+                value1: "2016-11-01"
+            },
+            priority: {
+                comp: "contains",
+                value1: "p1&&p2&&p4"
+            }
+        }
+        jnprDataTableObj.setFilterObjectFor('appId_3', filterObj);
+    }
+
+    var setFilter2 = function() {
+        var filterObj = {
+            createDate: {
+                comp: "on",
+                value1: "2016-11-01"
+            },
+            srId: {
+                comp: "contains",
+                value1: "Frank He"
+            }
+        }
+        jnprDataTableObj.setFilterObjectFor('appId_3', filterObj);
+    }
+
+    var config = {
+
+        rowHeight: 29,
+        headerHeight: 85,
+        tableHeight: 348,
+        tableWidth: 800,
+        closeLeftPanelBtn: false,
+        columnFilterable: true,
+        showGlobalCheckbox: false,
+
+        //defaultGlobal : true,
+
+        defaultGlobal: false,
+        defaultSortField: 'srId',
+        defaultSortOrder: 'desc',
+
+        globalAutoComplete: true,
+        resizeMode: 'table', // table|column
+
+        displayingActionButton: true,
+        displayingActionButtonOptionList: 'CASES',
+        checkBoxEnabled: true,
+
+        caseManagerLink: "https://cmstage.juniper.net/casemanager/#", //this is only for caseManagerLink
+        kbSearchLink: "http://kb-stage.juniper.net/",
+        prSearchLink: "https://prsearch-stage.juniper.net/",
+
+        multipleConfigEnabled: true,
+        initalNumberPerPage: 5,
+
+        enableInAppDownload: true,
+        //noToolTip: true,
+
+        hidingBottomPagePositioner: true,
+
+        enableTimeZone: true,
+        defaultTimeZone: "PST",
+        isGlobalTimeZone: true,
+        timeZone: "PST",
+
+        disableAutoSummerTimeDetect: false,
+
+        mode: "R/W", // "R/W",
+
+        allowPopupColumnSelect: false,
+
+        title_filter_option: 'Filter',
+        title_column_option: 'Filter',
+        title_account_option: 'Filter',
+        noAccountTab: false,
+
+        columns: {
+
+            srId: {
+                defaultColumn: true,
+                width: 145,
+                minWidth: 145,
+                flexGrows: 0,
+                id: "srId",
+                type: "text",
+                title: "Case ID",
+                sortable: true,
+                filterable: true,
+                editable: true,
+                key: true,
+                sticky: true,
+                sendClickToParent: true,
+                noToolTip: true,
+                extraDataHandler: true,
+                clickToHighlight: true,
+                freezable: true
+            },
+
+            status_reason: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "status_reason",
+                title: "Statue/Reason",
+                sortable: true,
+                filterable: false,
+                editable: true,
+                freezable: true
+            },
+
+            priority: {
+                defaultColumn: true,
+                width: 100,
+                flexGrows: 0,
+                id: "priority",
+                type: "multilist",
+                title: "Priority",
+                sortable: true,
+                filterable: true,
+                editable: false,
+                //	freezable: true,
+                items: [{
+                    id: 'p1',
+                    title: 'P1 - Critical',
+                    value: 'p1'
+                }, {
+                    id: 'p2',
+                    title: 'P2 - High',
+                    value: 'p2'
+                }, {
+                    id: 'p3',
+                    title: 'P3 - Medium',
+                    value: 'p3'
+                }, {
+                    id: 'p4',
+                    title: 'P4 - Low',
+                    value: 'p4'
+                }],
+                noToolTip: true
+            },
+
+            caseType: {
+                defaultColumn: false,
+                width: 100,
+                flexGrows: 0,
+                id: "caseType",
+                type: "text",
+                title: "Case Type",
+                sortable: true,
+                filterable: true,
+                editable: false,
+                //  	freezable: true
+            },
+
+            status: {
+                defaultColumn: false,
+                width: 100,
+                flexGrows: 0,
+                type: "multilist",
+                id: "status",
+                title: "Status",
+                sortable: true,
+                filterable: true,
+                editable: true,
+                items: [{
+                    id: 'awaitingcust',
+                    title: 'Awaiting Customer',
+                    value: 'Awaiting Customer'
+                }, {
+                    id: 'inprocess',
+                    title: 'In Process',
+                    value: 'In Process'
+                }, {
+                    id: 'pendingclosure',
+                    title: 'Pending Closure',
+                    value: 'Pending Closure'
+                }, {
+                    id: 'closed',
+                    title: 'Closed',
+                    value: 'Closed'
+                }],
+                hidden: true
+            },
+
+            createDate: {
+                defaultColumn: true,
+                width: 200,
+                flexGrows: 1,
+                id: "createDate",
+                type: "customDate",
+                title: "Create Date",
+                sortable: true,
+                filterable: true,
+                editable: false
+
+            },
+
+            lastModifiedDate: {
+                defaultColumn: false,
+                width: 250,
+                flexGrows: 0,
+                id: "lastModifiedDate",
+                type: "customDate",
+                title: "Last Modified Date",
+                sortable: true,
+                filterable: true,
+                editable: false
+            },
+
+            prodSeries: {
+                defaultColumn: false,
+                width: 250,
+                flexGrows: 1,
+                type: "text",
+                id: "prodSeries",
+                title: "Product Series",
+                sortable: true,
+                filterable: true,
+                editable: false
+            },
+
+            platform: {
+                defaultColumn: false,
+                width: 100,
+                flexGrows: 0,
+                type: "text",
+                id: "platform",
+                title: "Platform",
+                sortable: true,
+                filterable: true,
+                editable: true
+            },
+
+            description: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 2,
+                type: "text",
+                id: "description",
+                title: "Description",
+                sortable: true,
+                filterable: true,
+                editable: true
+            },
+
+            serialNo: {
+                defaultColumn: false,
+                width: 100,
+                flexGrows: 0,
+                type: "text",
+                id: "serialNo",
+                title: "Serial No.",
+                sortable: true,
+                filterable: true
+            },
+
+            custCaseNo: {
+                defaultColumn: false,
+                width: 150,
+                flexGrows: 1,
+                type: "text",
+                id: "custCaseNo",
+                title: 'Customer #',
+                sortable: true,
+                filterable: true,
+                editable: false
+            },
+
+            relatedContent: {
+                defaultColumn: false,
+                width: 100,
+                flexGrows: 1,
+                type: "list",
+                title: "Related Contents",
+                sortable: false,
+                filterable: false,
+                editable: false,
+                children: {
+                    prIds: {
+                        title: "Problem Report"
+                    },
+                    kbIds: {
+                        title: "Knowledge Base"
+                    }
+                }
+            },
+
+            accountId: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "accountId",
+                title: "Account Id",
+                sortable: true,
+                filterable: true,
+                editable: false,
+                hidden: true
+                //this filed is not shown
+            },
+
+            accountName: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "accountName",
+                title: "Account Name",
+                sortable: true,
+                filterable: true,
+                editable: false,
+                hidden: true
+                //this filed is not shown
+            },
+
+            accountId_accountName: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "accountId_accountName",
+                title: "Account",
+                sortable: true,
+                filterable: false,
+                editable: false
+            },
+
+            demo1: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "demo1",
+                title: "Demo1",
+                sortable: true,
+                filterable: false,
+                editable: false
+            },
+
+            demo2: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "demo2",
+                title: "Demo2",
+                sortable: true,
+                filterable: false,
+                editable: false
+            },
+
+            demo3: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "demo3",
+                title: "Demo3",
+                sortable: true,
+                filterable: false,
+                editable: false
+            },
+
+            demo4: {
+                defaultColumn: false,
+                width: 200,
+                flexGrows: 1,
+                type: "text",
+                id: "demo4",
+                title: "Demo4",
+                sortable: true,
+                filterable: false,
+                editable: false
+            },
+
+            demo5 : {
+                defaultColumn : true,
+                width : 200,
+                flexGrows : 1,
+                type : "text",
+                id : "demo5",
+                title : "Demo5",
+                sortable : true,
+                filterable : false,
+                editable : false
+            },
+
+            demo6 : {
+                defaultColumn : true,
+                width : 200,
+                flexGrows : 1,
+                type : "text",
+                id : "demo6",
+                title : "Demo6",
+                sortable : true,
+                filterable : false,
+                editable : false
+            },
+
+            download:{
+                defaultColumn : true,
+                width : 100,
+                flexGrows : 1,
+                type : "actions",
+                id : "download",
+                title : "Quote Output",
+                items: [
+                    {
+                        icon:'./images/xls.png',
+                        type: 'download_xls'
+                    },
+                    {
+                        icon:'./images/pdf.png',
+                        type:'download_pdf'
+                    }
+                ],
+                //   rightFixed: true
+            },
+
+            actions:{
+                defaultColumn : true,
+                width : 200,
+                flexGrows : 1,
+                type : "actions",
+                id : "actions",
+                title : "Actions",
+                items: [
+                    {
+                        icon: 'mode_edit',
+                        type: 'edit'
+                    },
+                    {
+                        icon:'content_copy',
+                        type:'copy'
+                    },
+                    {
+                        icon:'./images/copy.png',
+                        type:'copy-1'
+                    }
+                ],
+                //  rightFixed: true
+            }
+
+        }
+
+    };
+
+//new config:
+
+//modify config by adding new columns
+config.columns['newField'] = {
+        defaultColumn: true,
+        width: 145,
+        minWidth: 145,
+        flexGrows: 0,
+        id: "newField",
+        type: "text",
+        title: "newField",
+        sortable: true,
+        filterable: true,
+        key: false,
+        sticky: true,
+        sendClickToParent: true,
+        noToolTip: true,
+        extraDataHandler: true,
+        clickToHighlight: true,
+        freezable: true
+};
+
+
+
+    var prDetailConfig = {
+
+        rowHeight: 29,
+        headerHeight: 38,
+        tableHeight: 348,
+        tableWidth: 800,
+        hidingBottomIndicator: true,
+        prSearchLink: "https://prsearch-stage.juniper.net/",
+        columns: {
+
+            prId: {
+                defaultColumn: true,
+                width: 110,
+                minWith: 100,
+                flexGrows: 1,
+                id: "prId",
+                type: "text",
+                title: "PR #",
+                key: true,
+                sticky: true,
+                noToolTip: true
+            },
+            title: {
+                defaultColumn: true,
+                width: 400,
+                flexGrows: 1,
+                id: "title",
+                type: "text",
+                title: "Title",
+                noToolTip: true
+            },
+            status: {
+                defaultColumn: true,
+                width: 90,
+                flexGrows: 1,
+                id: "status",
+                type: "text",
+                title: "Status",
+                noToolTip: true
+            },
+            severity: {
+                defaultColumn: true,
+                width: 90,
+                flexGrows: 1,
+                id: "severity",
+                type: "text",
+                title: "Severity",
+                noToolTip: true
+            },
+            product: {
+                defaultColumn: true,
+                width: 100,
+                flexGrows: 1,
+                id: "product",
+                type: "text",
+                title: "Product",
+                noToolTip: true
+            },
+            os: {
+                defaultColumn: true,
+                width: 100,
+                flexGrows: 1,
+                id: "os",
+                type: "text",
+                title: "OS",
+                noToolTip: true
+            },
+            resolvedIn: {
+                defaultColumn: true,
+                width: 130,
+                flexGrows: 1,
+                id: "resolvedIn",
+                type: "text",
+                title: "Resolved In",
+                noToolTip: true
+            }
+        }
+    };
+
+    var kbDetailConfig = {
+
+        rowHeight: 29,
+        headerHeight: 38,
+        tableHeight: 348,
+        tableWidth: 800,
+        hidingBottomIndicator: true,
+        kbSearchLink: "http://kb-stage.juniper.net/",
+        columns: {
+
+            kbId: {
+                defaultColumn: true,
+                width: 110,
+                minWith: 100,
+                flexGrows: 1,
+                id: "kbId",
+                type: "text",
+                title: "KB #",
+                key: true,
+                sticky: true,
+                noToolTip: true
+            },
+            description: {
+                defaultColumn: true,
+                width: 400,
+                flexGrows: 1,
+                id: "description",
+                type: "text",
+                title: "Description",
+                noToolTip: true
+            }
+        }
+    };
+
+    var jnprDataTableObj = JnprCL.JnprDataTableObjectFactory.getDataTableObject();
+    //assuming we have three tables, so config here
+    //purpose here for appId is to initialize the customConfiguration
+    jnprDataTableObj.setConfig(config, "appId_1");
+    jnprDataTableObj.setConfig(config, "appId_2");
+    jnprDataTableObj.setConfig(config, "appId_3");
+
+    //update number per page
+    jnprDataTableObj.setNumPerPageFor("appId_3", 10);
+
+    var updateNumPerPageHandler = function(num) {
+        console.log('updating num per page to: ' + num);
+    }
+
+    var detailConfigs = {};
+    detailConfigs['kb'] = kbDetailConfig;
+    detailConfigs['pr'] = prDetailConfig
+
+    jnprDataTableObj.setAdditionalConfigFor("appId_3", 'detailConfigs',
+    detailConfigs);
+
+    var index =0;
+    jsonObj1.caseList.forEach(function(item) {
+        item['status_reason'] = item['status'] + " - " + item['reason'];
+        item['accountId_accountName'] = item['accountId'] + " - " +
+        item['accountName'];
+
+        if(index++%2){
+            item['actions']={
+                edit: true,
+                copy:true
+            }
+            item['download']={
+                download_xls: false,
+                download_pdf: false
+            }
+        }else{
+            item['actions']={
+                edit: false,
+                copy:false
+            }
+            item['download']={
+                download_xls: true,
+                download_pdf:	true
+            }
+        }
+
+    });
+
+    jsonObj2.caseList.forEach(function(item) {
+        item['status_reason'] = item['status'] + " - " + item['reason'];
+        item['accountId_accountName'] = item['accountId'] + " - " +
+        item['accountName'];
+    });
+
+    jnprDataTableObj.dataList = jsonObj1.caseList;
+    jnprDataTableObj.grandTotalRecords = jsonObj1.caseList.length;
+
+    if (localStorage.getItem('jnpr_datatable_custom_config')) {
+        //  jnprDataTableObj.allCustomConfigurations = JSON.parse(localStorage.getItem('jnpr_datatable_custom_config'));
+    }
+
+    var callBack = function() {
+        jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0)
+        .concat(jsonObj1.caseList);
+        jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+    };
+
+    var callBack_appId_2 = function() {
+        jnprDataTableObj.appId = "appId_2";
+        jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0)
+        .concat(jsonObj1.caseList);
+        jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+    };
+
+    var callBack_appId_3 = function(currentPage) {
+        console.log('next page! ' + currentPage);
+        jnprDataTableObj.appId = "appId_3";
+        //jnprDataTableObj.dataList = jnprDataTableObj.passedOriginalList.slice(0).concat(jsonObj1.caseList);
+        jnprDataTableObj.dataList = jnprDataTableObj.getProcessedDataListFor(
+            "appId_3").slice(0).concat(jsonObj1.caseList)
+
+            jnprDataTableObj.grandTotalRecords = jnprDataTableObj.grandTotalRecords + 100;
+        };
+
+        var updateConfig = function() {
+            config.tableWidth = config.tableWidth + 50;
+            jnprDataTableObj.config = config;
+        };
+
+        var changeValueHandler = function(obj, col, newValue) {
+            console.log(obj);
+            console.log(col);
+            console.log(newValue);
+        };
+
+        var sortHandler = function(key, up) {
+            console.log(key);
+            console.log(up);
+        };
+
+        var filterHandler = function(filterObject) {
+            console.log(filterObject);
+        };
+
+        var fetchHandler = function(filter, sorter) {
+            console.log(filter);
+            console.log(sorter);
+        };
+
+        var saveConfigCallBack = function(configObject) {
+            localStorage.setItem('jnpr_datatable_custom_config', JSON
+            .stringify(configObject));
+            console.log(configObject);
+        };
+
+        var cellClicked = function(data) {
+            console.log(data);
+        };
+
+        var JnprDataTable = JnprCL.JnprDataTable;
+        /*
+        ReactDOM.render(React.createElement(JnprDataTable, {
+        nextPageCallBack: this.callBack.bind(this),
+        changeValueHandler: this.changeValueHandler.bind(this),
+        sortHandler: this.sortHandler.bind(this),
+        filterHandler: this.filterHandler.bind(this),
+        nested: false,
+        appId: "appId_1",
+        destroy: function(){
+        setTimeout(function(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('example1'));
+    }, 0);
+}
+}), document.getElementById('example1'));
+
+ReactDOM.render(React.createElement(JnprDataTable, {
+nextPageCallBack: this.callBack_appId_2.bind(this),
+changeValueHandler: this.changeValueHandler.bind(this),
+sortHandler: this.sortHandler.bind(this),
+filterHandler: this.filterHandler.bind(this),
+nested: true,
+saveConfigCallBack: this.saveConfigCallBack.bind(this),
+styleType: "ngcsc",
+appId: "appId_2",
+destroy: function(){
+setTimeout(function(){
+ReactDOM.unmountComponentAtNode(document.getElementById('example2'));
+}, 0);
+}
+}), document.getElementById('example2'));
+*/
+var JnprDataTableNgcsc = JnprCL.JnprDataTableNgcsc;
+var accountsStr =
+'{  "totalRecords": 6,  "accountsList": [    {      "accountId": "0100082295",      "accountName": "NOS-IIJ",      "uuid": "d30fb81b-cf1a-11e5-b83b-005056a9381e"    },    {      "accountId": "0100161653",      "accountName": "KDDI GW",      "uuid": "3dcd769e-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100172289",      "accountName": "NET ONE SYSTEMS CO., LTD",      "uuid": "b5e860e6-cf1b-11e5-a1bd-005056a9381b"    },    {      "accountId": "0100253620",      "accountName": "NTT-E/NETONE",      "uuid": "4fcd01d9-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0100253621",      "accountName": "NTT-W/NETONE",      "uuid": "4fce887a-cf1b-11e5-895e-005056a95759"    },    {      "accountId": "0101176992",      "accountName": "IIJ AMERICA",      "uuid": "2741857a-cf1b-11e5-917a-005056a93f00"    }  ]}';
+var accountsList = JSON.parse(accountsStr).accountsList;
+jnprDataTableObj.accountList = accountsList;
+
+var accountSearchCallBack = function(term) {
+
+    accountsList = [];
+    JSON.parse(accountsStr).accountsList.map(function(account) {
+        if (account.accountName.toLowerCase().includes(term) ||
+        account.accountId.toLowerCase().includes(term))
+        accountsList.push(account);
+    });
+    jnprDataTableObj.accountList = accountsList;
+};
+
+var removeRecord = function() {
+    console.log('removing ' + document.getElementById('caseIdToRemove').value);
+    jnprDataTableObj.removeRecordFor('appId_3', document
+    .getElementById('caseIdToRemove').value);
+}
+//------------------------ [Adobe Web analytics] ------------------------
+var trackingEventHandler = function(eventType, data) {
+    // console.log(eventType, data);
+}
+
+var showDetailExtraDataCallBack = function(type, data) {
+    // console.log('hello ' + type);
+    // console.log(data);
+    var responsePrKb = {};
+
+    var responsepPrData = JSON.parse(
+        '{"totalRecords":2,"prLineLevelDetailsList":[{"prId":"PR11804694","title":"On QFX10000 switches,the incoming MPLS-labeled packet on the PE switch...","status":"closed","severity":"critical","product":"QFXSeries","os":"Junos OS","resolved_in":"15.1X53-D32"},{"prId":"PR11804695","title":"On QFX10000 switches,the incoming MPLS-labeled packet on the PE switch...","status":"closed","severity":"critical","product":"QFXSeries","os":"Junos OS","resolved_in":"15.1X53-D32"}]}'
+    );
+    // var responsepPrData = JSON.parse('{"totalRecords":2, "prLineLevelDetailsList":[]}');
+
+    responsePrKb['pr'] = responsepPrData;
+
+    var responsepKbData = JSON.parse(
+        '{"totalRecords":2,"kbLineLevelDetailsList":[{"kbId":"111111","description":"1111kbkbkbkb1111kbkbkbkbkb11111kbkbkbkbkbkbk1111bkbkbkbkbkbkbkbkbkbkbkbk..."},{"kbId":"2222222","description":"2222kbkbkbkbkbk2222bkbkbkbkbkbkbkbk222bkbkbkbkbkbkbkbkbkbkbkbkbkbk..."}]}'
+    );
+    // var responsepKbData = JSON.parse('{"totalRecords":2, "kbLineLevelDetailsList":[]}');
+    responsePrKb['kb'] = responsepKbData;
+    // console.log(responsePrKb)
+    jnprDataTableObj.setExtraData('appId_3', responsePrKb);
+}
+
+//this is the old config
+var config1 = {
+    test:{
+        current: false,
+        default: false,
+        subType: 'test',
+        value: JSON.parse('{"orderedKeyList":["srId","status_reason","priority","caseType","createDate","lastModifiedDate","prodSeries","platform","description","serialNo","custCaseNo","accountId_accountName","demo1","demo2","demo3","demo4","demo5","demo6","download","actions","addedCheckBox"],"selectedColumnKeys":["srId","status_reason","priority","caseType","createDate","demo5","demo6","download","actions"],"sortModel":{"field":"status_reason","up":true},"filterModel":{},"defaultSelectedAccountList":[],"colWidths":{"fake":2},"frozenColumnKeyList":[],"systemDefault":false}')
+    }
+};
+jnprDataTableObj.setAvailableConfigsFor("appId_3", config1);
+
+var saveConfigWithName = function(name, config) {
+    console.log('saving new cofig here...: ' + name);
+    //now need to do here, as it will change state
+    //	availableConfigs[name] = config;
+    console.log(config);
+};
+
+jnprDataTableObj.setHighlightedRows('appId_3', ['2015-0608-T-1100',
+'2014-0602-T-0470'
+]);
+
+var updateGlobalTimeZone = function(zone) {
+    console.log('updating global zone');
+    console.log(zone);
+}
+
+var cellActionClickHandler = function(row, cell, action){
+
+    console.log('clicked the action icon');
+    console.log("row=>", row);
+    console.log("cell=>", cell);
+    console.log("action=>", action);
+
+};
+
+ReactDOM.render(React.createElement(JnprDataTableNgcsc, {
+    nextPageCallBack: this.callBack_appId_3.bind(this),
+    changeValueHandler: this.changeValueHandler.bind(this),
+    sortHandler: this.sortHandler.bind(this),
+    filterHandler: this.filterHandler.bind(this),
+    fetchHandler: this.fetchHandler.bind(this),
+    nested: false,
+    saveConfigWithName: this.saveConfigWithName.bind(this),
+    styleType: "ngcsc",
+    appId: "appId_3",
+    accountSearchCallBack: this.accountSearchCallBack.bind(this),
+    saveConfigCallBack: this.saveConfigCallBack.bind(this),
+    caseManagerLink: 'https://stage.juniper.net/casemanager/#/cmdetails/',
+    cellClicked: this.cellClicked.bind(this),
+    showDetailExtraDataCallBack: this.showDetailExtraDataCallBack.bind(this),
+    trackingEventHandler: this.trackingEventHandler.bind(this),
+    updateNumPerPageHandler: this.updateNumPerPageHandler.bind(this),
+    updateGlobalTimeZone: this.updateGlobalTimeZone.bind(this),
+    //initialDelayForDatSubscribe: 10,
+    cellActionClickHandler: this.cellActionClickHandler.bind(this),
+    destroy: function() {
+        setTimeout(function() {
+            ReactDOM.unmountComponentAtNode(document.getElementById('example3'));
+        }, 0);
+    }
+}), document.getElementById('example3'));
+</script>
+
+
+</html>

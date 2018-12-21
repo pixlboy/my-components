@@ -1,0 +1,499 @@
+[
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "stackedbar",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "chart",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Current Open Cases by Product Series and Priority",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Current Open Cases by Product Series and Priority",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "cur_open_cases_by_prodseries_priority",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "bar",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "chart",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Trend of Created to Closed Cases Ratio",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Trend of Created to Closed Cases Ratio",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "created_to_close_trend",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "groupedbar",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "chart",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Trend of Created Cases by Product Series and Priority (Quarter on Quarter)",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Trend of Created Cases by Product Series and Priority (Quarter on Quarter)",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "createdcases_prodseriespriority_trend",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "relatedcontents",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "Related Contents",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "all",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "content",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Related Content",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Related Content",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "related_contents",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Cases Awaiting My Input",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Cases Waiting for My Input",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "visibility",
+				"value": "Case Manager Read/Write;Customer Admin",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "CaseAvaitingMyInputTable",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Cases Awaiting Juniper Input",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Cases Waiting Juniper Input",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "visibility",
+				"value": "Case Manager Read/Write;Customer Admin",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "CaseAvaitingJuniperInputTable",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "P1 Cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Cases P1",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "visibility",
+				"value": "Case Manager Read/Write;Customer Admin",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "CaseP1Table",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Open Cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "Cases Open",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "visibility",
+				"value": "Case Manager Read/Write;Customer Admin",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "CaseOpenTable",
+		"order": 0
+	},
+
+	{
+		"id": null,
+		"attributes":
+		[
+			{
+				"id": null,
+				"name": "dataType",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "dataTypeTitle",
+				"value": "cases",
+				"userId": null
+			},
+			{
+				"id": null,
+				"name": "widgetType",
+				"value": "tabbed_table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "subWidgetType",
+				"value": "table",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "title",
+				"value": "Cases",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "description",
+				"value": "description",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "contextual_help",
+				"value": "help for cases view",
+				"userId": null
+			},
+
+			{
+				"id": null,
+				"name": "tabs",
+				"value": "[{\"name\": \"my_reported_cases\", \"title\":\"my open cases\", \"query\": {}},{\"name\": \"awaiting_my_input\", \"title\":\"awaiting my input\", \"query\": {}},{\"name\": \"awaiting_jnpr_input\", \"title\":\"awaiting juniper input\", \"query\": {}}, {\"name\": \"p1_cases\", \"title\":\"open p1\", \"query\": {}},{\"name\": \"all_open_cases\", \"title\":\"all open\", \"query\": {}}]",
+				"userId": null
+			}
+		],
+
+		"userId": null,
+		"name": "cases_tabbed_table",
+		"order": 0
+	}
+]
